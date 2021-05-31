@@ -1,9 +1,10 @@
 package com.example.recipesapp.model.repository
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class FirebaseRepository {
 
@@ -16,4 +17,18 @@ class FirebaseRepository {
             Log.v("TEST", "value: $value")
         }
     }
+
+    fun createAccount(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+    }
+
+    fun loginAccount(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+    }
+
+    fun googleLoginAccount(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+    }
+
 }
