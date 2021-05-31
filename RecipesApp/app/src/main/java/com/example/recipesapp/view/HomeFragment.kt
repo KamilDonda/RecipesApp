@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.recipesapp.R
+import com.example.recipesapp.model.repository.FirebaseRepository
 
 class HomeFragment : Fragment() {
 
@@ -14,5 +15,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val firebaseRepository = FirebaseRepository()
+
+        firebaseRepository.getTest()
     }
 }
