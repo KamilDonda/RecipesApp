@@ -6,4 +6,6 @@
     <string name="favourites">Favourites</string>
     <string name="account">Account</string>
     <string name="basket">Basket</string>
+    <string name="sign_in">Sing in</string>
+    <string name="sign_up">Sing up</string>
 </resources>
