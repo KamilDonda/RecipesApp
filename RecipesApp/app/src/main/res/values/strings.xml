@@ -14,4 +14,9 @@
     <string name="repeat_password">Repeat password</string>
     <string name="login">Login</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
+
+    <string name="sign_up_successfufly">Account created successfully!</string>
+    <string name="email_is_empty">E-mail is empty!</string>
+    <string name="password_is_empty">Password is empty!</string>
+    <string name="different_passwords">Passwords are different!</string>
 </resources>
