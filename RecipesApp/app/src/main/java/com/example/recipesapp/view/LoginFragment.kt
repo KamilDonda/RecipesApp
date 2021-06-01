@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
@@ -25,7 +24,13 @@ class LoginFragment : Fragment() {
         val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigation?.visibility = View.GONE
 
-        signIn_button.setOnClickListener { signIn() }
+        signIn_button.setOnClickListener {
+            signIn()
+        }
+
+        signUp_button.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     private fun signIn() {

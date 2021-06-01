@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:textSize="60sp"
+        android:textSize="@dimen/big_font_size"
         android:textColor="@color/dark"
         android:layout_marginBottom="@dimen/field_v_margin"
         app:layout_constraintBottom_toTopOf="@+id/email_layout"
@@ -55,15 +55,18 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/signIn_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:layout_marginHorizontal="@dimen/horizontal_margin"
         android:layout_marginTop="@dimen/field_v_margin"
         android:text="@string/sign_in"
         android:backgroundTint="@color/white"
         android:textColor="@color/dark"
+        app:rippleColor="@color/medium"
         app:layout_constraintTop_toBottomOf="@+id/password_layout" />
 
     <com.shobhitpuri.custombuttons.GoogleSignInButton
@@ -84,13 +87,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_button_with_google" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/signUp_button"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:textColor="@color/dark"
+        app:rippleColor="@color/medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
