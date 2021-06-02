@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_account_to_basket"
             app:destination="@id/basket" />
+        <action
+            android:id="@+id/action_account_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/basket"
