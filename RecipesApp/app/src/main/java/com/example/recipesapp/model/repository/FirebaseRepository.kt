@@ -28,9 +28,6 @@ class FirebaseRepository {
         return result
     }
 
-    fun loginAccount() {
-    }
-
     fun loginAccount(auth: FirebaseAuth, email: String, password: String): LiveData<String?> {
         val result = MutableLiveData<String?>()
         auth.signInWithEmailAndPassword(email, password)
@@ -44,9 +41,17 @@ class FirebaseRepository {
         return result
     }
 
-    fun googleLoginAccount(auth: FirebaseAuth, idToken: String) {
+    fun googleLoginAccount(auth: FirebaseAuth, idToken: String): LiveData<String?> {
+        val result = MutableLiveData<String?>()
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    result.value = null
+                } else {
+                    result.value = it.exception?.message.toString()
+                }
+            }
+        return result
     }
-
 }

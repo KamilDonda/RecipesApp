@@ -44,4 +44,8 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         }
         return message
     }
+
+    fun login(idToken: String): LiveData<String?> {
+        return firebaseRepository.googleLoginAccount(auth, idToken)
+    }
 }
