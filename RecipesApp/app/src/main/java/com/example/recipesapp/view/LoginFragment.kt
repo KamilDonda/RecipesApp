@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.model.utils.Snackbar
@@ -47,6 +48,14 @@ class LoginFragment : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        // If the user is remembered, he goes to the 'Home' fragment without logging in
+        if (firebaseViewModel.auth.currentUser != null)
+            findNavController().navigate(R.id.action_loginFragment_to_home)
+    }
+
     private fun signIn() {
         val email = email.text?.toString()
         val password = password.text?.toString()
@@ -55,7 +64,13 @@ class LoginFragment : Fragment() {
         // If input is right, then user is logged and move to 'home' fragment
         firebaseViewModel.login(email, password, requireActivity())
             .observe(viewLifecycleOwner, Observer {
-                Snackbar(requireView(), it, getString(R.string.sign_in_successfufly), R.id.action_loginFragment_to_home)
+                Snackbar(
+                    requireView(),
+                    it,
+                    getString(R.string.sign_in_successfufly),
+                    R.id.action_loginFragment_to_home,
+                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
+                )
             })
     }
 }
