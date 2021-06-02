@@ -34,8 +34,17 @@ class FirebaseRepository {
     fun loginAccount() {
     }
 
-    fun loginAccount(email: String, password: String) {
+    fun loginAccount(email: String, password: String): LiveData<String?> {
+        val result = MutableLiveData<String?>()
         auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    result.value = null
+                } else {
+                    result.value = it.exception?.message.toString()
+                }
+            }
+        return result
     }
 
     fun googleLoginAccount(idToken: String) {

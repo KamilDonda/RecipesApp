@@ -39,9 +39,11 @@ class RegisterFragment : Fragment() {
         val password = password.text?.toString()
         val repeatPassword = repeat_password.text?.toString()
 
+        // Validation of login, password and repeated password
+        // If input is right, then account is created and move to 'home' fragment
         firebaseViewModel.createAccount(email, password, repeatPassword, requireActivity())
             .observe(viewLifecycleOwner, Observer {
-                Snackbar(requireActivity(), requireView(), it, R.id.action_registerFragment_to_home)
+                Snackbar(requireView(), it, getString(R.string.sign_up_successfufly), R.id.action_registerFragment_to_home)
             })
     }
 }

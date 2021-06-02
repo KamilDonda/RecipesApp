@@ -1,19 +1,18 @@
 package com.example.recipesapp.model.utils
 
-import android.app.Activity
 import android.view.View
 import androidx.navigation.findNavController
-import com.example.recipesapp.R
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
-class Snackbar(activity: Activity, view: View, message: String?, id: Int) {
+class Snackbar(view: View, null_message: String?, message: String, id: Int) {
+    // If the first messege is null, then second messege is shown and callback is added
     init {
-        var mess = message
+        var mess = null_message
         if (mess == null)
-            mess = activity.getString(R.string.sign_up_successfufly)
+            mess = message
         val snackbar = Snackbar.make(view, mess, Snackbar.LENGTH_LONG)
-        if (message == null) {
+        if (null_message == null) {
             snackbar.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     super.onDismissed(transientBottomBar, event)

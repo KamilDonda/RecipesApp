@@ -27,4 +27,18 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         }
         return message
     }
+
+    fun login(
+        email: String?,
+        password: String?,
+        activity: Activity
+    ): LiveData<String?> {
+        val message = MutableLiveData<String>()
+        when {
+            email.isNullOrEmpty() -> message.value = activity.getString(R.string.email_is_empty)
+            password.isNullOrEmpty() -> message.value = activity.getString(R.string.password_is_empty)
+            else -> return firebaseRepository.loginAccount(email, password)
+        }
+        return message
+    }
 }
