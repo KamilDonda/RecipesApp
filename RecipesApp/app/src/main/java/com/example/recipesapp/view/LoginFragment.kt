@@ -122,10 +122,4 @@ class LoginFragment : Fragment() {
             com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
         )
     }
-
-    //TODO Add logout button and remove this function
-    override fun onStop() {
-        super.onStop()
-        firebaseViewModel.auth.signOut()
-    }
 }
