@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.recipesapp.R
 import com.example.recipesapp.model.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 class FirebaseViewModel(application: Application) : AndroidViewModel(application) {
     private val firebaseRepository = FirebaseRepository()
@@ -47,5 +46,16 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     fun login(idToken: String): LiveData<String?> {
         return firebaseRepository.googleLoginAccount(auth, idToken)
+    }
+
+    fun logout(activity: Activity): LiveData<String?> {
+        val message = MutableLiveData<String>()
+        auth.signOut()
+        if(auth.currentUser == null)
+            message.value = activity.getString(R.string.logout_successfully)
+        else
+            message.value = activity.getString(R.string.logout_not_successfully)
+        return message
+
     }
 }
