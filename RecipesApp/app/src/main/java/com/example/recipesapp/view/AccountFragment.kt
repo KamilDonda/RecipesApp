@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipesapp.R
 import com.example.recipesapp.view_model.FirebaseViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_account.*
 
 class AccountFragment : Fragment() {
@@ -15,9 +16,12 @@ class AccountFragment : Fragment() {
     private lateinit var firebaseViewModel: FirebaseViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
+        // Set bottom navigation as visible after logging in
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)!!
+        bottomNavigation.visibility = View.VISIBLE
 
         firebaseViewModel = ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
 
@@ -33,7 +37,7 @@ class AccountFragment : Fragment() {
         }
     }
 
-    // TODO move to Login fragment after logout
+    // TODO move user to Login fragment after logout
     private fun logout() {
         firebaseViewModel.auth.signOut()
     }

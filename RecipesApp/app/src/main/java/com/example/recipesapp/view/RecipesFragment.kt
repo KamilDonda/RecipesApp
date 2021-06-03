@@ -12,6 +12,7 @@ import com.example.recipesapp.R
 import com.example.recipesapp.adapter.RecipesAdapter
 import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
 class RecipesFragment : Fragment() {
@@ -23,6 +24,10 @@ class RecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
+        // Set bottom navigation as visible after logging in
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)!!
+        bottomNavigation.visibility = View.VISIBLE
 
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
 
