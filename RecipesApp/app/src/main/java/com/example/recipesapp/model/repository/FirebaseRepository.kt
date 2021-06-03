@@ -5,14 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import com.example.recipesapp.model.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class FirebaseRepository {
 
     private val cloud = FirebaseFirestore.getInstance()
 
     private val PATH_USER = "users"
+    private val PATH_RECIPES = "recipes"
 
+    // Create an account in firebase and returns a communicate
     fun createAccount(auth: FirebaseAuth, email: String, password: String): LiveData<String?> {
         val result = MutableLiveData<String?>()
         auth.createUserWithEmailAndPassword(email, password)
@@ -28,6 +32,7 @@ class FirebaseRepository {
         return result
     }
 
+    // Login with email and password
     fun loginAccount(auth: FirebaseAuth, email: String, password: String): LiveData<String?> {
         val result = MutableLiveData<String?>()
         auth.signInWithEmailAndPassword(email, password)
@@ -41,6 +46,7 @@ class FirebaseRepository {
         return result
     }
 
+    // Login with Google
     fun googleLoginAccount(auth: FirebaseAuth, idToken: String): LiveData<String?> {
         val result = MutableLiveData<String?>()
         val credential = GoogleAuthProvider.getCredential(idToken, null)
@@ -53,5 +59,10 @@ class FirebaseRepository {
                 }
             }
         return result
+    }
+
+    // Get public recipes
+    fun getPublicRecipes(): Query {
+        return cloud.collection(PATH_RECIPES).whereEqualTo("public", true)
     }
 }
