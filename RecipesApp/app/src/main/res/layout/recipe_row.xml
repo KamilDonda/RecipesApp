@@ -54,9 +54,10 @@
                     android:id="@+id/level_imageView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@color/black"
+                    app:tint="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_chef_hat" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/level_textView"
@@ -83,9 +84,10 @@
                     android:id="@+id/time_imageView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@color/black"
+                    app:tint="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_time_4" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/time_textView"
@@ -111,9 +113,10 @@
                     android:id="@+id/meals_imageView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@color/black"
+                    app:tint="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_md_restaurant" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/meals_textView"
