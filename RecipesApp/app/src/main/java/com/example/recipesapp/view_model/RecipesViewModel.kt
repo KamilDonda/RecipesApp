@@ -13,8 +13,13 @@ import com.google.firebase.firestore.QuerySnapshot
 class RecipesViewModel(application: Application) : AndroidViewModel(application) {
     private val firebaseRepository = FirebaseRepository()
 
-    var recipes: MutableLiveData<List<Recipe>> = MutableLiveData()
+    private var _currentRecipe: MutableLiveData<Recipe> = MutableLiveData()
+    val currentRecipe: LiveData<Recipe> get() = _currentRecipe
+    fun setCurrentRecipe(recipe: Recipe) {
+        _currentRecipe.value = recipe
+    }
 
+    var recipes: MutableLiveData<List<Recipe>> = MutableLiveData()
     // Get public recipes
     fun getPublicRecipes(): LiveData<List<Recipe>> {
         firebaseRepository.getPublicRecipes().addSnapshotListener(EventListener<QuerySnapshot>{ value, e ->
@@ -31,5 +36,19 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
             recipes.value = recipeList
         })
         return recipes
+    }
+
+    var ingredients: MutableLiveData<ArrayList<String>> = MutableLiveData()
+    // Get ingredients from current recipe
+    fun getIngredients(): LiveData<ArrayList<String>> {
+        ingredients.value = _currentRecipe.value?.ingredients
+        return ingredients
+    }
+
+    var preparation: MutableLiveData<ArrayList<String>> = MutableLiveData()
+    // Get preparation from current recipe
+    fun getPreparation(): LiveData<ArrayList<String>> {
+        preparation.value = _currentRecipe.value?.preparation
+        return preparation
     }
 }
