@@ -50,5 +50,7 @@ class AccountFragment : Fragment() {
             R.id.action_account_to_loginFragment,
             Snackbar.LENGTH_SHORT
         )
+
+        findNavController().navigate(R.id.action_account_to_loginFragment)
     }
 }
