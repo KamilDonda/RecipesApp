@@ -6,11 +6,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.RecipesFragment">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/background_recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="730dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipes_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/meal_example"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
         tools:listitem="@layout/recipe_row" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/recipes"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
