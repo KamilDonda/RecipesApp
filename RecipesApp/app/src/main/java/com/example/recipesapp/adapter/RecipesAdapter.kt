@@ -1,5 +1,6 @@
 package com.example.recipesapp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Recipe
+import com.example.recipesapp.model.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
@@ -27,6 +29,7 @@ class RecipesAdapter(
 
     override fun getItemCount() = list.value?.size ?: 0
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecipesHolder, position: Int) {
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.recipe_row_root)
         val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)
@@ -38,8 +41,8 @@ class RecipesAdapter(
         val item = list.value?.get(position)!!
 
         name.text = item.name
-        level.text = item.level.toString()
-        time.text = item.time.toString()
+        level.text = "${item.level} / 5"
+        time.text = TimeConverter().longToString(item.time)
         meals.text = item.meals.toString()
         author.text = item.author
 

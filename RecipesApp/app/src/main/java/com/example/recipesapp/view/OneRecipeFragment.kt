@@ -1,5 +1,6 @@
 package com.example.recipesapp.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
+import com.example.recipesapp.model.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
@@ -42,10 +44,19 @@ class OneRecipeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_one_recipe, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         ingredientsRecyclerView = ingredients_recyclerView.apply { adapter = ingredientsListAdapter }
         preparationRecyclerView = preparation_recyclerView.apply { adapter = preparationListAdapter }
+
+        recipesViewModel.currentRecipe.observe(viewLifecycleOwner, Observer {
+            name_textView.text = it.name
+            author_textView.text = it.author
+            level_textView.text = "${it.level} / 5"
+            time_textView.text = TimeConverter().longToString(it.time)
+            meals_textView.text = it.meals.toString()
+        })
     }
 }
