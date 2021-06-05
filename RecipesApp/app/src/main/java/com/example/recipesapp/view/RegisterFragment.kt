@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.recipesapp.R
 import com.example.recipesapp.model.utils.Snackbar
 import com.example.recipesapp.view_model.FirebaseViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : Fragment() {
@@ -19,6 +20,10 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
+        // Hide bottom navigation in login/register fragment
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigation?.visibility = View.GONE
 
         firebaseViewModel = ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
 

@@ -25,4 +25,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">10dp</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius" parent="">
+        <item name="cornerSizeBottomRight">100dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius2" parent="">
+        <item name="cornerSizeBottomLeft">200dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+    </style>
 </resources>

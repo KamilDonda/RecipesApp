@@ -13,7 +13,7 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
     private val firebaseRepository = FirebaseRepository()
     val auth = FirebaseAuth.getInstance()
 
-    // create an account in firebase and returns a communicate
+    // Create an account in firebase and returns a communicate
     fun createAccount(
         email: String?,
         password: String?,
@@ -30,6 +30,7 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         return message
     }
 
+    // Login with email and password
     fun login(
         email: String?,
         password: String?,
@@ -44,6 +45,7 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         return message
     }
 
+    // Login with Google
     fun login(idToken: String): LiveData<String?> {
         return firebaseRepository.googleLoginAccount(auth, idToken)
     }

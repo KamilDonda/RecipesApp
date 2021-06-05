@@ -22,4 +22,8 @@
     <string name="different_passwords">Passwords are different!</string>
     <string name="logout_successfully">Logged out successfully</string>
     <string name="logout_not_successfully">Logged out is not successfully</string>
+
+    <string name="ingredients">Ingredients</string>
+    <string name="preparation">Preparation</string>
+
 </resources>

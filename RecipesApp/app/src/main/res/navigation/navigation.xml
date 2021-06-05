@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_recipes_to_favourites"
             app:destination="@id/favourites" />
+        <action
+            android:id="@+id/action_recipes_to_oneRecipeFragment"
+            app:destination="@id/oneRecipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/account"
@@ -70,4 +73,9 @@
             android:id="@+id/action_registerFragment_to_home"
             app:destination="@id/home" />
     </fragment>
+    <fragment
+        android:id="@+id/oneRecipeFragment"
+        android:name="com.example.recipesapp.view.OneRecipeFragment"
+        android:label="fragment_one_recipe"
+        tools:layout="@layout/fragment_one_recipe" />
 </navigation>

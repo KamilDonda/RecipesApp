@@ -30,6 +30,10 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
+        // Hide bottom navigation in login/register fragment
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigation?.visibility = View.GONE
+
         firebaseViewModel = ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_login, container, false)
@@ -37,10 +41,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Hide bottom navigation in login/register fragment
-        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNavigation?.visibility = View.GONE
 
         // Click 'sign in' button
         signIn_button.setOnClickListener {
