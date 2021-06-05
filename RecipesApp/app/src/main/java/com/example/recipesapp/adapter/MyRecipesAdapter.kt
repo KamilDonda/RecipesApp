@@ -13,15 +13,15 @@ import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
-class YourRecipesAdapter(
+class MyRecipesAdapter(
     private val list: LiveData<List<Recipe>>,
     private val recipesViewModel: RecipesViewModel
-) : RecyclerView.Adapter<YourRecipesAdapter.RecipesHolder>() {
+) : RecyclerView.Adapter<MyRecipesAdapter.RecipesHolder>() {
 
     inner class RecipesHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.your_recipe_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.my_recipe_row, parent, false)
         return RecipesHolder(view)
     }
 
@@ -41,7 +41,7 @@ class YourRecipesAdapter(
 
         root.setOnClickListener {
             recipesViewModel.setCurrentRecipe(item)
-            it.findNavController().navigate(R.id.action_recipes_to_oneRecipeFragment)
+            it.findNavController().navigate(R.id.action_home_to_oneRecipeFragment)
         }
     }
 }
