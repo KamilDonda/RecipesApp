@@ -1,16 +1,15 @@
 package com.example.recipesapp.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.RecipesAdapter
-import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_recipes.*
@@ -35,7 +34,7 @@ class RecipesFragment : Fragment() {
             recipesAdapter.notifyDataSetChanged()
         })
 
-        recipesAdapter = RecipesAdapter(recipesViewModel.recipes)
+        recipesAdapter = RecipesAdapter(recipesViewModel.recipes, recipesViewModel)
 
         return inflater.inflate(R.layout.fragment_recipes, container, false)
     }
