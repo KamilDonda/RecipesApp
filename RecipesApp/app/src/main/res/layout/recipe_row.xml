@@ -75,7 +75,6 @@
                 android:id="@+id/time_imageView"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/black"
                 app:tint="@color/black"
                 app:srcCompat="@drawable/ic_time_4"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
