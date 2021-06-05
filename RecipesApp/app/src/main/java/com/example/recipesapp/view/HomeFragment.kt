@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.recipesapp.R
+import com.example.recipesapp.model.repository.FirebaseRepository
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -13,6 +15,15 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // Set bottom navigation as visible after logging in
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)!!
+        bottomNavigation.visibility = View.VISIBLE
+
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }

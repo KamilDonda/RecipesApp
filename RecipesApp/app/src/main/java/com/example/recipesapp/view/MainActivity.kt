@@ -12,10 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setUpNavigation()
+        setupNavigation()
     }
 
-    private fun setUpNavigation() {
+    // Setup navigation between fragments
+    private fun setupNavigation() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         NavigationUI.setupWithNavController(bottomNavigation, navHostFragment!!.navController)
     }
