@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.annotation.VisibleForTesting
 import com.example.recipesapp.R
 import kotlin.math.floor
 import kotlin.math.round
@@ -21,6 +22,7 @@ class RatingSystem {
         }
     }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun calculateStars(mean: Float): Array<Int> {
         val max = 5
 
