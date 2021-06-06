@@ -34,7 +34,8 @@
                 android:id="@+id/name_textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:maxLines="1"
+                android:ellipsize="none"
+                android:singleLine="true"
                 android:textSize="@dimen/small_text_size"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +43,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_margin="@dimen/very_small_space"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_textView"
                 app:srcCompat="@drawable/ic_time_4"
@@ -61,8 +63,9 @@
 
             <ImageView
                 android:id="@+id/imageView_2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_margin="@dimen/very_small_space"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
                 app:srcCompat="@drawable/ic_md_restaurant"
