@@ -79,7 +79,7 @@
                 app:tint="@color/black"
                 app:srcCompat="@drawable/ic_time_4"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
-                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintHorizontal_bias="0.35"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
                 app:layout_constraintTop_toTopOf="parent" />
 
