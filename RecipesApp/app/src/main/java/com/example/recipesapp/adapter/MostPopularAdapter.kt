@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.utils.RatingSystem
-import com.example.recipesapp.model.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
@@ -39,7 +38,7 @@ class MostPopularAdapter(
         val item = list.value?.get(position)!!
 
         name.text = item.name
-        RatingSystem().displayStars(context, ratingLayout, 4f)
+        RatingSystem().displayStars(context, ratingLayout, item.rating)
 
         root.setOnClickListener {
             recipesViewModel.setCurrentRecipe(item)
