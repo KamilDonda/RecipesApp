@@ -1,7 +1,6 @@
-package com.example.recipesapp.model.utils
+package com.example.recipesapp.utils
 
 import android.content.Context
-import android.view.ContextThemeWrapper
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.VisibleForTesting
@@ -49,11 +48,7 @@ class RatingSystem {
     }
 
     private fun createStar(context: Context, layout: LinearLayout, image: Int) {
-        val star = ImageView(
-            ContextThemeWrapper(context, R.style.StarStyle),
-            null,
-            0
-        )
+        val star = ImageView(context)
         star.setImageResource(image)
         layout.addView(star)
     }

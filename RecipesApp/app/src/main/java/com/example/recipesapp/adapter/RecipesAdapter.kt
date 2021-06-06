@@ -11,8 +11,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Recipe
-import com.example.recipesapp.model.utils.RatingSystem
-import com.example.recipesapp.model.utils.TimeConverter
+import com.example.recipesapp.utils.RatingSystem
+import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView

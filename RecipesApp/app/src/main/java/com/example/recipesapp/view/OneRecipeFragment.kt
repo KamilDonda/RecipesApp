@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
-import com.example.recipesapp.model.utils.RatingSystem
-import com.example.recipesapp.model.utils.TimeConverter
+import com.example.recipesapp.utils.RatingSystem
+import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 

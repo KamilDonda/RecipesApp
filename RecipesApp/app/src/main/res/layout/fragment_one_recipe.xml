@@ -68,7 +68,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_chef_hat"
-                            app:tint="@color/black" />
+                            app:tint="@color/text_color_dark" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/level_textView"
@@ -91,7 +91,7 @@
                         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_time_4"
-                        app:tint="@color/black" />
+                        app:tint="@color/text_color_dark" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/time_textView"
@@ -117,7 +117,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_md_restaurant"
-                            app:tint="@color/black" />
+                            app:tint="@color/text_color_dark" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/meals_textView"

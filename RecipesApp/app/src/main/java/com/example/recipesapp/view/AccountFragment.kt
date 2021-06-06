@@ -48,7 +48,7 @@ class AccountFragment : Fragment() {
     }
 
     private fun goToLogout(message: String?) {
-        com.example.recipesapp.model.utils.Snackbar(
+        com.example.recipesapp.utils.Snackbar(
             requireView(),
             message,
             getString(R.string.sign_in_successfufly),

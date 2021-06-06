@@ -27,10 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_recipes"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_big_text_size"
+            style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle"
             app:layout_constraintBottom_toBottomOf="@+id/include"
-            app:layout_constraintStart_toStartOf="@+id/materialTextView3" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecipes_recyclerView"
@@ -49,7 +48,8 @@
             android:layout_height="wrap_content"
             android:text="@string/most_popular"
             android:textColor="@color/black"
-            android:textSize="@dimen/title_big_text_size"
+            android:textSize="@dimen/title_text_size"
+            android:layout_marginTop="@dimen/medium_space"
             app:layout_constraintStart_toStartOf="@+id/myRecipes_textView"
             app:layout_constraintTop_toBottomOf="@+id/myRecipes_recyclerView" />
 

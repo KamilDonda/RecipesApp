@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/recipe_row_root"
@@ -34,9 +35,7 @@
                 android:id="@+id/name_textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:ellipsize="none"
-                android:singleLine="true"
-                android:textSize="@dimen/small_text_size"
+                style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle.Small"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -49,7 +48,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_textView"
                 app:srcCompat="@drawable/ic_time_4"
-                app:tint="@color/black" />
+                app:tint="@color/text_color_dark" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/time_textView"
@@ -66,19 +65,19 @@
                 android:layout_width="@dimen/icon_small_size"
                 android:layout_height="@dimen/icon_small_size"
                 android:layout_margin="@dimen/very_small_space"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/meals_textView"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
                 app:srcCompat="@drawable/ic_md_restaurant"
-                app:tint="@color/black" />
+                app:tint="@color/text_color_dark" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/meals_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/small_space"
                 android:textSize="@dimen/small_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_2"
-                app:layout_constraintStart_toEndOf="@+id/imageView_2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView_2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

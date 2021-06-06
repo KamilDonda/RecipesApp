@@ -45,7 +45,26 @@
         <item name="android:textSize">@dimen/title_text_size</item>
     </style>
 
-    <style name="StarStyle">
-        <item name="android:tint">@color/black</item>
+    <style name="Base.Widget.MaterialComponents.TextView.ItemTitle">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginStart">@dimen/small_space</item>
     </style>
+
+    <style name="Base.Widget.MaterialComponents.TextView.ItemTitle.Small">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:lines">3</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">0dp</item>
+    </style>
+
+    <style name="Base.Widget.MaterialComponents.TextView.ItemTitle.Big">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:lines">2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">0dp</item>
+    </style>
+
 </resources>

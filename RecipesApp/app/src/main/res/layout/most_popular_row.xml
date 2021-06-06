@@ -34,9 +34,7 @@
                 android:id="@+id/name_textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/small_text_size"
-                android:ellipsize="none"
-                android:singleLine="true"
+                style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle.Small"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
