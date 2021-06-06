@@ -48,9 +48,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/name_textView"
                 app:layout_constraintStart_toStartOf="@+id/name_textView"
-                app:layout_constraintTop_toBottomOf="@+id/name_textView">
-
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/name_textView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
