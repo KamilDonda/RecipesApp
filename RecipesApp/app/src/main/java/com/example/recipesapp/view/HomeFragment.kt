@@ -70,5 +70,11 @@ class HomeFragment : Fragment() {
         mostPopularRecyclerView = mostPopular_recyclerView.apply {
             adapter = mostPopularAdapter
         }
+
+        // TODO
+        val navBar = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        if (navBar != null) {
+            navBar.getOrCreateBadge(R.id.basket).number = 2
+        }
     }
 }
