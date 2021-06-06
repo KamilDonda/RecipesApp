@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
+import com.example.recipesapp.adapter.MostPopularAdapter
 import com.example.recipesapp.adapter.MyRecipesAdapter
 import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
@@ -19,8 +20,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var recipesViewModel: RecipesViewModel
     private lateinit var firebaseViewModel: FirebaseViewModel
+
     private lateinit var myRecipesAdapter: MyRecipesAdapter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var mostPopularAdapter: MostPopularAdapter
+
+    private lateinit var myRecipesRecyclerView: RecyclerView
+    private lateinit var mostPopularRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -46,14 +51,24 @@ class HomeFragment : Fragment() {
         })
         myRecipesAdapter = MyRecipesAdapter(recipesViewModel.my_recipes, recipesViewModel)
 
+        // Get most popular recipes
+        recipesViewModel.getMostPopular().observe(viewLifecycleOwner, Observer {
+            mostPopularAdapter.notifyDataSetChanged()
+        })
+        mostPopularAdapter = MostPopularAdapter(recipesViewModel.most_popular, recipesViewModel, requireContext())
+
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = myRecipes_recyclerView.apply {
+        myRecipesRecyclerView = myRecipes_recyclerView.apply {
             adapter = myRecipesAdapter
+        }
+
+        mostPopularRecyclerView = mostPopular_recyclerView.apply {
+            adapter = mostPopularAdapter
         }
     }
 }

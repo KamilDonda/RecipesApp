@@ -38,4 +38,24 @@
         app:layout_constraintTop_toBottomOf="@+id/myRecipes_textView"
         tools:listitem="@layout/my_recipe_row" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mostPopular_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/most_popular"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_big_text_size"
+        app:layout_constraintStart_toStartOf="@+id/myRecipes_textView"
+        app:layout_constraintTop_toBottomOf="@+id/myRecipes_recyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mostPopular_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/mostPopular_textView"
+        tools:listitem="@layout/most_popular_row" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

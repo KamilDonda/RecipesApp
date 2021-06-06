@@ -56,6 +56,24 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
         return my_recipes
     }
 
+    var most_popular: MutableLiveData<List<Recipe>> = MutableLiveData()
+    // Get most popular recipes
+    fun getMostPopular(): LiveData<List<Recipe>> {
+        firebaseRepository.getMostPopular().addSnapshotListener(EventListener<QuerySnapshot>{ value, e ->
+            if (e != null) {
+                most_popular.value = null
+                return@EventListener
+            }
+            val recipeList : MutableList<Recipe> = mutableListOf()
+            for (doc in value!!) {
+                val recipe = doc.toObject(Recipe::class.java)
+                recipeList.add(recipe)
+            }
+            most_popular.value = recipeList
+        })
+        return most_popular
+    }
+
     var ingredients: MutableLiveData<ArrayList<String>> = MutableLiveData()
     // Get ingredients from current recipe
     fun getIngredients(): LiveData<ArrayList<String>> {

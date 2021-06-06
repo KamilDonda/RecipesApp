@@ -18,6 +18,7 @@ class FirebaseRepository {
     private val FIELD_ID = "id"
     private val FIELD_UID = "uid"
     private val FIELD_PUBLIC = "public"
+    private val FIELD_RATING = "rating"
 
     // Create an account in firebase and returns a communicate
     fun createAccount(auth: FirebaseAuth, email: String, password: String): LiveData<String?> {
@@ -86,5 +87,10 @@ class FirebaseRepository {
     // Get user's recipes
     fun getMyRecipes(list: ArrayList<String>): Query {
         return cloud.collection(PATH_RECIPES).whereIn(FIELD_ID, list)
+    }
+
+    // Get most popular recipes
+    fun getMostPopular(): Query {
+        return cloud.collection(PATH_RECIPES).orderBy(FIELD_RATING, Query.Direction.DESCENDING).limit(10)
     }
 }
