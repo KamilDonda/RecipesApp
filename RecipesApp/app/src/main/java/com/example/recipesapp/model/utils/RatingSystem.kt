@@ -1,17 +1,16 @@
 package com.example.recipesapp.model.utils
 
 import android.content.Context
-import android.util.Log
-import android.view.ViewGroup
+import android.view.ContextThemeWrapper
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.allViews
-import androidx.core.view.forEach
 import com.example.recipesapp.R
 import kotlin.math.floor
 import kotlin.math.round
 import kotlin.math.roundToInt
+
 
 class RatingSystem {
     fun displayStars(context: Context, layout: LinearLayout, mean: Float) {
@@ -50,10 +49,10 @@ class RatingSystem {
     }
 
     private fun createStar(context: Context, layout: LinearLayout, image: Int) {
-        val star = ImageView(context)
-        star.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
+        val star = ImageView(
+            ContextThemeWrapper(context, R.style.StarStyle),
+            null,
+            0
         )
         star.setImageResource(image)
         layout.addView(star)
