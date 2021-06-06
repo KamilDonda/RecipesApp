@@ -21,17 +21,16 @@ class RatingSystem {
         }
     }
 
-    private fun calculateStars(mean: Float): Array<Int> {
+    fun calculateStars(mean: Float): Array<Int> {
         val max = 5
 
         val h_count: Int
         val e_count: Int
         val f_count: Int
 
-        val temp = round(mean * 10) / 10
-        val difference = temp - temp.roundToInt()
-
-        if (difference <= 0.25 || difference >= 0.75) {
+        val temp = round(mean * 100) / 100//0.25
+        val difference = temp - temp.toInt()
+        if (difference < 0.25 || difference >= 0.75) {
             f_count = mean.roundToInt()
             h_count = 0
             e_count = max - f_count
