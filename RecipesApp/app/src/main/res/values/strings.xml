@@ -25,5 +25,7 @@
 
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
+    <string name="my_recipes">My recipes</string>
+    <string name="most_popular">Most popular</string>
 
 </resources>
