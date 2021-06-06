@@ -9,9 +9,13 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/background_recipes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        layout="@layout/background_recipes" />
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/Widget.MaterialComponents.TextView.PageName"
+        android:text="@string/recipes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipes_recyclerView"
@@ -22,17 +26,5 @@
         android:src="@drawable/meal_example"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recipe_row" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/recipes"
-        android:textColor="@color/white"
-        android:textSize="@dimen/title_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
