@@ -27,5 +27,8 @@
     <string name="preparation">Preparation</string>
     <string name="my_recipes">My recipes</string>
     <string name="most_popular">Most popular</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="logout">Logout</string>
 
 </resources>
