@@ -35,8 +35,20 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Logout from the app
-        logout_button.setOnClickListener {
+        logout.setOnClickListener {
             logout()
+        }
+
+        add_recipe.setOnClickListener {
+
+        }
+
+        my_recipes.setOnClickListener {
+
+        }
+
+        edit_profile.setOnClickListener {
+
         }
     }
 
