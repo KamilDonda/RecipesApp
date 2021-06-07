@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipesapp.R
-import com.example.recipesapp.model.utils.Snackbar
+import com.example.recipesapp.utils.Snackbar
 import com.example.recipesapp.view_model.FirebaseViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_register.*

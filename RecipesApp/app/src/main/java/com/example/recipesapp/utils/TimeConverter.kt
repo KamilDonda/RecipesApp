@@ -1,4 +1,4 @@
-package com.example.recipesapp.model.utils
+package com.example.recipesapp.utils
 
 class TimeConverter {
     fun longToString(milliseconds: Long): String {

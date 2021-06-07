@@ -1,6 +1,6 @@
 package com.example.recipesapp
 
-import com.example.recipesapp.model.utils.RatingSystem
+import com.example.recipesapp.utils.RatingSystem
 import org.junit.Assert
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory

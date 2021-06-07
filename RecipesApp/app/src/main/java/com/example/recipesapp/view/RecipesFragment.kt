@@ -34,7 +34,7 @@ class RecipesFragment : Fragment() {
             recipesAdapter.notifyDataSetChanged()
         })
 
-        recipesAdapter = RecipesAdapter(recipesViewModel.recipes, recipesViewModel)
+        recipesAdapter = RecipesAdapter(recipesViewModel.recipes, recipesViewModel, requireContext())
 
         return inflater.inflate(R.layout.fragment_recipes, container, false)
     }

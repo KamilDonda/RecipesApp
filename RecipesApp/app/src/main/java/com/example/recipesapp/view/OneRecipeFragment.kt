@@ -11,7 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
-import com.example.recipesapp.model.utils.TimeConverter
+import com.example.recipesapp.utils.RatingSystem
+import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
@@ -57,6 +58,7 @@ class OneRecipeFragment : Fragment() {
             level_textView.text = "${it.level} / 5"
             time_textView.text = TimeConverter().longToString(it.time)
             meals_textView.text = it.meals.toString()
+            RatingSystem().displayStars(requireContext(), rating_linearLayout, it.rating)
         })
     }
 }
