@@ -13,7 +13,7 @@
 
         <include
             android:id="@+id/include"
-            layout="@layout/background_recipes" />
+            layout="@layout/background_home" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/materialTextView3"

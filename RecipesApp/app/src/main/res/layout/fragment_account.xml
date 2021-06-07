@@ -7,22 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".view.AccountFragment">
 
-    <TextView
+    <include
+        android:id="@+id/include"
+        layout="@layout/background_account" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView4"
+        style="@style/Widget.MaterialComponents.TextView.PageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TODO -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
