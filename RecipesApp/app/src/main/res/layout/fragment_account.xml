@@ -303,25 +303,25 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/nameTextView"
         style="@style/Widget.MaterialComponents.TextView.Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="16dp"
-        android:text="John Doe"
         app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/emailTextView"
         style="@style/Widget.MaterialComponents.TextView.Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="32dp"
-        android:text="email@onet.pl"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/favourites_number"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

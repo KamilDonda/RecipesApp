@@ -13,6 +13,7 @@ import com.example.recipesapp.view_model.FirebaseViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_login.*
 
 class AccountFragment : Fragment() {
 
@@ -34,6 +35,9 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        emailTextView.text = firebaseViewModel.auth.currentUser!!.email
+        //nameTextView.text = firebaseViewModel.firestore.
+
         // Logout from the app
         logout.setOnClickListener {
             logout()
@@ -52,7 +56,6 @@ class AccountFragment : Fragment() {
         }
     }
 
-    // TODO move user to Login fragment after logout
     private fun logout() {
         firebaseViewModel.logout(requireActivity()).observe(viewLifecycleOwner, Observer {
             goToLogout(it)
