@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".view.AccountFragment">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/background_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView4"
+        style="@style/Widget.MaterialComponents.TextView.PageName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/recipe_number"
         android:layout_width="180dp"
@@ -109,16 +124,6 @@
         android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toTopOf="@+id/edit_profile"
         app:layout_constraintEnd_toStartOf="@+id/my_recipes"
-    <include
-        android:id="@+id/include"
-        layout="@layout/background_account" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView4"
-        style="@style/Widget.MaterialComponents.TextView.PageName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/account"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_number">
 
@@ -211,7 +216,7 @@
         android:layout_margin="@dimen/very_small_space"
         android:layout_marginEnd="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/logout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_recipe">
 
