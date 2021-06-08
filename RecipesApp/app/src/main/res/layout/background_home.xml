@@ -12,7 +12,7 @@
         android:layout_marginStart="116dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/cookbook"
+        android:src="@drawable/home"
         android:alpha="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recipe_row_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/small_space"
-    app:cardBackgroundColor="@color/transparent_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recipe_row_root">
+    android:layout_marginHorizontal="@dimen/medium_space"
+    android:layout_marginVertical="@dimen/small_space"
+    app:cardBackgroundColor="@color/transparent_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,12 +27,10 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/name_textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/small_space"
-            android:maxLines="3"
-            android:textSize="@dimen/normal_text_size"
-            app:layout_constrainedWidth="true"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle.Big"
             app:layout_constrainedHeight="true"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
@@ -52,12 +51,12 @@
 
                 <ImageView
                     android:id="@+id/level_imageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:tint="@color/black"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_chef_hat" />
+                    app:srcCompat="@drawable/ic_chef_hat"
+                    app:tint="@color/text_color_dark" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/level_textView"
@@ -73,14 +72,14 @@
 
             <ImageView
                 android:id="@+id/time_imageView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:tint="@color/black"
-                app:srcCompat="@drawable/ic_time_4"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.35"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_time_4"
+                app:tint="@color/text_color_dark" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/time_textView"
@@ -101,12 +100,12 @@
 
                 <ImageView
                     android:id="@+id/meals_imageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:tint="@color/black"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_md_restaurant" />
+                    app:srcCompat="@drawable/ic_md_restaurant"
+                    app:tint="@color/text_color_dark" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/meals_textView"
@@ -124,10 +123,19 @@
                 android:id="@+id/author_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text_size"
                 android:paddingVertical="@dimen/small_space"
+                android:textSize="@dimen/normal_text_size"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+            <LinearLayout
+                android:id="@+id/rating_linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/author_textView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

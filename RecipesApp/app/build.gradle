@@ -67,5 +67,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
+    // SignIn icon
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.1.0'
+
+    implementation 'com.github.Kwasow:BottomNavigationCircles-Android:1.1-beta5'
 }

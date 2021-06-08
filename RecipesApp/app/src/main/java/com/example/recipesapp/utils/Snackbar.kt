@@ -1,4 +1,4 @@
-package com.example.recipesapp.model.utils
+package com.example.recipesapp.utils
 
 import android.view.View
 import androidx.navigation.findNavController
