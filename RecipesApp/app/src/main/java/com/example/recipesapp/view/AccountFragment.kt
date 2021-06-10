@@ -44,7 +44,7 @@ class AccountFragment : Fragment() {
         }
 
         add_recipe.setOnClickListener {
-
+            findNavController().navigate(R.id.action_account_to_editRecipeFragment)
         }
 
         my_recipes.setOnClickListener {

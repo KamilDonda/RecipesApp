@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_account_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_account_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/basket"
@@ -80,5 +83,14 @@
         android:id="@+id/oneRecipeFragment"
         android:name="com.example.recipesapp.view.OneRecipeFragment"
         android:label="fragment_one_recipe"
-        tools:layout="@layout/fragment_one_recipe" />
+        tools:layout="@layout/fragment_one_recipe" >
+        <action
+            android:id="@+id/action_oneRecipeFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="com.example.recipesapp.view.EditRecipeFragment"
+        android:label="fragment_edit_recipe"
+        tools:layout="@layout/fragment_edit_recipe" />
 </navigation>
