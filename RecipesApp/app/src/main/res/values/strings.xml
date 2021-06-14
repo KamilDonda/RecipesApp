@@ -33,7 +33,10 @@
     <string name="pick_image">Pick image</string>
     <string name="name_desc">Enter a name for the recipe</string>
     <string name="select_level">Select level</string>
+    <string name="select_level_desc">Select difficulty level</string>
     <string name="select_time">Select time</string>
-    <string name="select_meals">Select meals count</string>
+    <string name="select_time_desc">Select preparation time</string>
+    <string name="select_meals">Select count</string>
+    <string name="select_meals_desc">Select meals count</string>
 
 </resources>
