@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import com.example.recipesapp.R
 import com.example.recipesapp.utils.RecipeMenu
-import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 
 class EditRecipeFragment : Fragment() {
@@ -29,7 +27,7 @@ class EditRecipeFragment : Fragment() {
         setupMenus()
 
         level_button.setOnClickListener {
-            levelMenu.click()
+            levelMenu.showMenu()
         }
 
         time_button.setOnClickListener {
@@ -37,12 +35,12 @@ class EditRecipeFragment : Fragment() {
         }
 
         meals_button.setOnClickListener {
-            mealsMenu.click()
+            mealsMenu.showMenu()
         }
     }
 
     private fun setupMenus() {
-        levelMenu = RecipeMenu(requireContext(), level_button, listOf("Easy", "Medium", "Hard"))
-        mealsMenu = RecipeMenu(requireContext(), meals_button, (1..10).toList())
+        levelMenu = RecipeMenu(requireContext(), level_button, listOf("Easy", "Medium", "Hard"), level_textView)
+        mealsMenu = RecipeMenu(requireContext(), meals_button, (1..10).toList(), meals_textView)
     }
 }
