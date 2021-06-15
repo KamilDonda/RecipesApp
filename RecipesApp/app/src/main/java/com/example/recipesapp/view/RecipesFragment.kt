@@ -24,10 +24,6 @@ class RecipesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        // Set bottom navigation as visible after logging in
-        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)!!
-        bottomNavigation.visibility = View.VISIBLE
-
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
 
         recipesViewModel.getPublicRecipes().observe(viewLifecycleOwner, Observer {
