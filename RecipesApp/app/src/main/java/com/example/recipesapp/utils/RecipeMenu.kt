@@ -6,14 +6,17 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import com.example.recipesapp.R
+import com.example.recipesapp.model.entity.Level
+import com.example.recipesapp.view_model.AddRecipeViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 
 class RecipeMenu(
     context: Context,
     button: MaterialButton,
-    list: List<Any>,
-    private val textView: MaterialTextView
+    private val list: List<Any>,
+    private val viewModel: AddRecipeViewModel,
+    element: String
 ) {
 
     private var listPopupWindow: ListPopupWindow =
@@ -25,7 +28,7 @@ class RecipeMenu(
         listPopupWindow.setAdapter(adapter)
 
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-            clickItem(list[position])
+            clickItem(position, element)
             listPopupWindow.dismiss()
         }
     }
@@ -34,7 +37,18 @@ class RecipeMenu(
         listPopupWindow.show()
     }
 
-    private fun clickItem(item: Any) {
-        textView.text = item.toString()
+    private fun clickItem(position: Int, element: String) {
+        when (element) {
+            "level" -> setLevel(Level.values()[position].number)
+            "meals" -> setMeals(list[position].toString().toInt())
+        }
+    }
+
+    private fun setLevel(level: Int) {
+        viewModel.setLevel(level)
+    }
+
+    private fun setMeals(meals: Int) {
+        viewModel.setMeals(meals)
     }
 }

@@ -14,12 +14,15 @@ import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
+import com.example.recipesapp.view_model.AddRecipeViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
 class OneRecipeFragment : Fragment() {
 
     private lateinit var recipesViewModel: RecipesViewModel
+    private lateinit var addRecipesViewModel: AddRecipeViewModel
+
     private lateinit var ingredientsListAdapter: ListAdapter
     private lateinit var ingredientsRecyclerView: RecyclerView
 
@@ -31,6 +34,7 @@ class OneRecipeFragment : Fragment() {
     ): View? {
 
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+        addRecipesViewModel = ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
 
         recipesViewModel.getIngredients().observe(viewLifecycleOwner, Observer {
             ingredientsListAdapter.notifyDataSetChanged()
@@ -63,6 +67,7 @@ class OneRecipeFragment : Fragment() {
         })
 
         editRecipe_button.setOnClickListener {
+            addRecipesViewModel.clearData()
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
         }
     }

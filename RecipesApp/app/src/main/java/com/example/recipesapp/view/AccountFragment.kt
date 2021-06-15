@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
+import com.example.recipesapp.view_model.AddRecipeViewModel
 import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +21,7 @@ class AccountFragment : Fragment() {
 
     private lateinit var firebaseViewModel: FirebaseViewModel
     private lateinit var recipesViewModel: RecipesViewModel
+    private lateinit var addRecipesViewModel: AddRecipeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -31,6 +33,8 @@ class AccountFragment : Fragment() {
 
         firebaseViewModel = ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+        addRecipesViewModel =
+            ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
@@ -48,6 +52,7 @@ class AccountFragment : Fragment() {
 
         add_recipe.setOnClickListener {
             recipesViewModel.resetCurrentRecipe()
+            addRecipesViewModel.clearData()
             findNavController().navigate(R.id.action_account_to_editRecipeFragment)
         }
 
