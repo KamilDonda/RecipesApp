@@ -19,6 +19,9 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
     fun setCurrentRecipe(recipe: Recipe) {
         _currentRecipe.value = recipe
     }
+    fun resetCurrentRecipe() {
+        _currentRecipe.value = null
+    }
 
     var recipes: MutableLiveData<List<Recipe>> = MutableLiveData()
     // Get public recipes

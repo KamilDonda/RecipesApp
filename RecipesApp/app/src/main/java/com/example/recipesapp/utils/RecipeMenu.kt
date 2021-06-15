@@ -1,7 +1,6 @@
 package com.example.recipesapp.utils
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -36,7 +35,6 @@ class RecipeMenu(
     }
 
     private fun clickItem(item: Any) {
-        Log.v("TEST", item.toString())
         textView.text = item.toString()
     }
 }

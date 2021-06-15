@@ -33,6 +33,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editRecipe_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit"
+                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/small_space"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_imageView" />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/name_textView"
                     android:layout_width="match_parent"
@@ -41,7 +51,7 @@
                     android:textSize="@dimen/title_text_size"
                     android:textStyle="bold"
                     android:layout_margin="@dimen/small_space"
-                    app:layout_constraintTop_toBottomOf="@+id/image_imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/editRecipe_button" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

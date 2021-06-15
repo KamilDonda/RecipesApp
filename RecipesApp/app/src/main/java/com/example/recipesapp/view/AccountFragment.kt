@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.view_model.FirebaseViewModel
+import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_account.*
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class AccountFragment : Fragment() {
 
     private lateinit var firebaseViewModel: FirebaseViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -28,6 +30,7 @@ class AccountFragment : Fragment() {
         bottomNavigation.visibility = View.VISIBLE
 
         firebaseViewModel = ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
+        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
@@ -44,6 +47,7 @@ class AccountFragment : Fragment() {
         }
 
         add_recipe.setOnClickListener {
+            recipesViewModel.resetCurrentRecipe()
             findNavController().navigate(R.id.action_account_to_editRecipeFragment)
         }
 

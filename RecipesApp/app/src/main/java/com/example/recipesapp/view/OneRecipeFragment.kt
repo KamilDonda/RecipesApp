@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
@@ -60,5 +61,9 @@ class OneRecipeFragment : Fragment() {
             meals_textView.text = it.meals.toString()
             RatingSystem().displayStars(requireContext(), rating_linearLayout, it.rating)
         })
+
+        editRecipe_button.setOnClickListener {
+            findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
+        }
     }
 }
