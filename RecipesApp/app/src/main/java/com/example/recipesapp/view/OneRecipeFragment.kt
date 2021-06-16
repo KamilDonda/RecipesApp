@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
+import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.AddRecipeViewModel
@@ -71,7 +72,8 @@ class OneRecipeFragment : Fragment() {
         oneRecipeViewModel.recipe.observe(viewLifecycleOwner, Observer {
             name_textView.text = it.name
             author_textView.text = it.author
-            level_textView.text = "${it.level} / 5"
+            level_textView.text =
+                getString(Level.values().find { level -> level.number == it.level }!!.id)
             time_textView.text = TimeConverter().longToString(it.time)
             meals_textView.text = it.meals.toString()
             RatingSystem().displayStars(requireContext(), rating_linearLayout, it.rating)

@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
+import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
@@ -46,7 +47,9 @@ class RecipesAdapter(
         val item = list.value?.get(position)!!
 
         name.text = item.name
-        level.text = "${item.level} / 5"
+        level.text = context.getString(
+            (Level.values().find { level -> level.number == item.level }!!.id)
+        )
         time.text = TimeConverter().longToString(item.time)
         meals.text = item.meals.toString()
         author.text = item.author
