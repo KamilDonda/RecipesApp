@@ -27,7 +27,7 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     init {
-        _visibleIngredients.value = false
-        _visiblePreparation.value = false
+        _visibleIngredients.value = true
+        _visiblePreparation.value = true
     }
 }
