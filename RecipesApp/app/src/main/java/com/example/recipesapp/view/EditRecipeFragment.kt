@@ -13,8 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.utils.RecipeMenu
+import com.example.recipesapp.utils.Snackbar
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.AddRecipeViewModel
+import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 
 class EditRecipeFragment : Fragment() {
 
+    private lateinit var firebaseViewModel: FirebaseViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private lateinit var addRecipesViewModel: AddRecipeViewModel
 
@@ -32,7 +35,10 @@ class EditRecipeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+        firebaseViewModel =
+            ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
+        recipesViewModel =
+            ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
         addRecipesViewModel =
             ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
 
@@ -58,7 +64,7 @@ class EditRecipeFragment : Fragment() {
         })
 
         save_button.setOnClickListener {
-            addOrUpdateRecipe()
+            addOrUpdateRecipe(it)
         }
 
         level_button.setOnClickListener {
@@ -134,8 +140,9 @@ class EditRecipeFragment : Fragment() {
         })
     }
 
-    private fun addOrUpdateRecipe() {
-        val recipe = addRecipesViewModel.recipe.value
-        Log.v("TEST", recipe.toString())
+    private fun addOrUpdateRecipe(view: View) {
+        if (addRecipesViewModel.recipe.value!!.name.length > 6)
+        firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
+        else Snackbar(view, "Name is too short!")
     }
 }

@@ -2,7 +2,6 @@ package com.example.recipesapp.view_model
 
 import android.app.Activity
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,10 +10,9 @@ import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.model.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.QuerySnapshot
+import java.util.*
 
 class FirebaseViewModel(application: Application) : AndroidViewModel(application) {
     private val firebaseRepository = FirebaseRepository()
@@ -86,8 +84,21 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         return currentUser
     }
 
+    fun updateUser(user: User) {
+        firebaseRepository.updateUser(user)
+    }
+
+    // Add recipe to firebase or update if it exists
     fun addOrUpdateRecipe(recipe: Recipe) {
-        firebaseRepository.addOrUpdateRecipe(recipe)
+        if (recipe.id.isEmpty()) {
+            val recipe_id = UUID.randomUUID().toString()
+            firebaseRepository.addOrUpdateRecipe(recipe.copy(id = recipe_id))
+            currentUser.value!!.recipes.add(recipe_id)
+//            val recipes = currentUser.value!!.recipes.also { it.add(recipe_id) }
+            updateUser(currentUser.value!!.copy(recipes = currentUser.value!!.recipes))
+        }
+        else
+            firebaseRepository.addOrUpdateRecipe(recipe.copy(public = false))
     }
 
     fun setRecipeAsPublic(recipe: Recipe) {

@@ -102,4 +102,8 @@ class FirebaseRepository {
     fun addOrUpdateRecipe(recipe: Recipe) {
         cloud.collection(PATH_RECIPES).document(recipe.id).set(recipe)
     }
+
+    fun updateUser(user: User) {
+        cloud.collection(PATH_USER).document(user.uid).set(user)
+    }
 }
