@@ -3,7 +3,7 @@ package com.example.recipesapp.model.entity
 import java.io.Serializable
 
 data class Recipe(
-    val id: String,
+    var id: String,
     var name: String,
     var author: String = "",
     var level: Int = 0,

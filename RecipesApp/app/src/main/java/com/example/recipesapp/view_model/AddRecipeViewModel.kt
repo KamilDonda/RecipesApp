@@ -12,43 +12,23 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
 
     var isDataDefault = true
 
-    private var _name: MutableLiveData<String> = MutableLiveData()
-    val name: LiveData<String> get() = _name
-    fun setName(name: String) {
-        _name.value = name
-    }
-
-    private var _level: MutableLiveData<Int> = MutableLiveData()
-    val level: LiveData<Int> get() = _level
-    fun setLevel(level: Int) {
-        _level.value = level
-    }
-
-    private var _time: MutableLiveData<Long> = MutableLiveData()
-    val time: LiveData<Long> get() = _time
-    fun setTime(time: Long) {
-        _time.value = time
-    }
-
-    private var _meals: MutableLiveData<Int> = MutableLiveData()
-    val meals: LiveData<Int> get() = _meals
-    fun setMeals(meals: Int) {
-        _meals.value = meals
+    private var _recipe = MutableLiveData<Recipe>()
+    val recipe: LiveData<Recipe> get() = _recipe
+    fun setRecipe(recipe: Recipe) {
+        _recipe.value = recipe
     }
 
     fun fetchData(recipe: Recipe) {
         isDataDefault = false
-        setName(recipe.name)
-        setLevel(recipe.level)
-        setTime(recipe.time)
-        setMeals(recipe.meals)
+        setRecipe(recipe)
     }
 
     fun clearData() {
         isDataDefault = true
-        setName("")
-        setLevel(Level.EASY.number)
-        setTime(TimeConverter().hourAndMinuteToLong(0, 30))
-        setMeals(1)
+        setRecipe(Recipe().apply {
+            level = Level.EASY.number
+            time = TimeConverter().hourAndMinuteToLong(0, 30)
+            meals = 1
+        })
     }
 }

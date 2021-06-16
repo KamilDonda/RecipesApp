@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipesapp.R
@@ -52,10 +51,15 @@ class EditRecipeFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!name_textInput.text.isNullOrEmpty()) {
-                    addRecipesViewModel.setName(name_textInput.text.toString())
+                    addRecipesViewModel.recipe.value?.copy(name = name_textInput.text.toString())
+                        ?.let { addRecipesViewModel.setRecipe(it) }
                 }
             }
         })
+
+        save_button.setOnClickListener {
+            addOrUpdateRecipe()
+        }
 
         level_button.setOnClickListener {
             levelMenu.showMenu()
@@ -108,33 +112,30 @@ class EditRecipeFragment : Fragment() {
             val m = picker.minute
             val time = TimeConverter().hourAndMinuteToLong(h, m)
 
-            addRecipesViewModel.setTime(time)
+            addRecipesViewModel.recipe.value?.copy(time = time)?.let {
+                addRecipesViewModel.setRecipe(it)
+            }
         }
 
         picker.show(requireFragmentManager(), null)
     }
 
     private fun displayData() {
-        addRecipesViewModel.name.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (name_textInput.text.toString() != it)
-                    name_textInput.setText(it)
-            })
+        addRecipesViewModel.recipe.observe(viewLifecycleOwner, Observer {
+            if (name_textInput.text.toString() != it.name)
+                name_textInput.setText(it.name)
 
-        addRecipesViewModel.level.observe(
-            viewLifecycleOwner,
-            Observer {
-                level_textView.text =
-                    getString((Level.values().find { level -> level.number == it })!!.id)
-            })
+            level_textView.text =
+                getString((Level.values().find { level -> level.number == it.level })!!.id)
 
-        addRecipesViewModel.time.observe(
-            viewLifecycleOwner,
-            Observer { time_textView.text = TimeConverter().longToString(it) })
+            time_textView.text = TimeConverter().longToString(it.time)
 
-        addRecipesViewModel.meals.observe(
-            viewLifecycleOwner,
-            Observer { meals_textView.text = it.toString() })
+            meals_textView.text = it.meals.toString()
+        })
+    }
+
+    private fun addOrUpdateRecipe() {
+        val recipe = addRecipesViewModel.recipe.value
+        Log.v("TEST", recipe.toString())
     }
 }

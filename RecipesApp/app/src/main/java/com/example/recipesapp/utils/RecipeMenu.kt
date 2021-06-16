@@ -45,10 +45,10 @@ class RecipeMenu(
     }
 
     private fun setLevel(level: Int) {
-        viewModel.setLevel(level)
+        viewModel.recipe.value?.copy(level = level)?.let { viewModel.setRecipe(it) }
     }
 
     private fun setMeals(meals: Int) {
-        viewModel.setMeals(meals)
+        viewModel.recipe.value?.copy(meals = meals)?.let { viewModel.setRecipe(it) }
     }
 }
