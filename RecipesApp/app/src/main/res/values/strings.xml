@@ -43,6 +43,7 @@
     <string name="edit">Edit</string>
     <string name="public_recipe">Public</string>
     <string name="save">Save</string>
+    <string name="add_new_item">Add new item</string>
 
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>

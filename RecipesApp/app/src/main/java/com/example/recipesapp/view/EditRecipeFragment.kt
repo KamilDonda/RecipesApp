@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
+import com.example.recipesapp.adapter.EditTextAdapter
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.utils.RecipeMenu
 import com.example.recipesapp.utils.Snackbar
@@ -22,6 +24,11 @@ import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import kotlinx.android.synthetic.main.fragment_edit_recipe.*
+import kotlinx.android.synthetic.main.fragment_edit_recipe.ingredients_recyclerView
+import kotlinx.android.synthetic.main.fragment_edit_recipe.level_textView
+import kotlinx.android.synthetic.main.fragment_edit_recipe.meals_textView
+import kotlinx.android.synthetic.main.fragment_edit_recipe.time_textView
+import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
 class EditRecipeFragment : Fragment() {
 
@@ -31,6 +38,9 @@ class EditRecipeFragment : Fragment() {
 
     private lateinit var levelMenu: RecipeMenu
     private lateinit var mealsMenu: RecipeMenu
+
+    private lateinit var ingredientsListAdapter: EditTextAdapter
+    private lateinit var ingredientsRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -85,6 +95,11 @@ class EditRecipeFragment : Fragment() {
                 addRecipesViewModel.fetchData(it)
         })
 
+        ingredientsListAdapter = EditTextAdapter(addRecipesViewModel.recipe)
+
+        ingredientsRecyclerView =
+            ingredients_recyclerView.apply { adapter = ingredientsListAdapter }
+
         displayData()
     }
 
@@ -138,6 +153,8 @@ class EditRecipeFragment : Fragment() {
             time_textView.text = TimeConverter().longToString(it.time)
 
             meals_textView.text = it.meals.toString()
+
+            ingredientsListAdapter.notifyDataSetChanged()
         })
     }
 
