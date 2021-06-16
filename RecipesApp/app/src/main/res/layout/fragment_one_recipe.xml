@@ -33,36 +33,44 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/editRecipe_button"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/buttons_constraintLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_space"
-                    android:text="@string/edit"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/image_imageView">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/publicRecipe_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/small_space"
-                    android:text="@string/public_recipe"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:iconPadding="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_imageView" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/editRecipe_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small_space"
+                        android:text="@string/edit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/publicRecipe_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/small_space"
+                        android:text="@string/public_recipe"
+                        app:icon="@drawable/ic_arrow_right"
+                        app:iconGravity="end"
+                        app:iconPadding="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/name_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_space"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title_text_size"
                     android:textStyle="bold"
-                    android:layout_margin="@dimen/small_space"
-                    app:layout_constraintTop_toBottomOf="@+id/editRecipe_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/buttons_constraintLayout" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
