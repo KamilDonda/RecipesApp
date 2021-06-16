@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.utils.RecipeMenu
@@ -141,8 +142,10 @@ class EditRecipeFragment : Fragment() {
     }
 
     private fun addOrUpdateRecipe(view: View) {
-        if (addRecipesViewModel.recipe.value!!.name.length > 6)
-        firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
-        else Snackbar(view, "Name is too short!")
+        if (addRecipesViewModel.recipe.value!!.name.length > 6) {
+            firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
+            Snackbar(view, getString(R.string.saved_successfully))
+            findNavController().popBackStack()
+        } else Snackbar(view, getString(R.string.name_too_short))
     }
 }

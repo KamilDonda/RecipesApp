@@ -92,12 +92,12 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
     fun addOrUpdateRecipe(recipe: Recipe) {
         if (recipe.id.isEmpty()) {
             val recipe_id = UUID.randomUUID().toString()
-            firebaseRepository.addOrUpdateRecipe(recipe.copy(id = recipe_id))
+            firebaseRepository.addOrUpdateRecipe(
+                recipe.copy(id = recipe_id, author = currentUser.value!!.nickname)
+            )
             currentUser.value!!.recipes.add(recipe_id)
-//            val recipes = currentUser.value!!.recipes.also { it.add(recipe_id) }
             updateUser(currentUser.value!!.copy(recipes = currentUser.value!!.recipes))
-        }
-        else
+        } else
             firebaseRepository.addOrUpdateRecipe(recipe.copy(public = false))
     }
 
