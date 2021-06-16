@@ -92,6 +92,7 @@ class OneRecipeFragment : Fragment() {
 
         publicRecipe_button.setOnClickListener {
             firebaseViewModel.setRecipeAsPublic(oneRecipeViewModel.recipe.value!!)
+            findNavController().popBackStack()
         }
 
         editRecipe_button.setOnClickListener {

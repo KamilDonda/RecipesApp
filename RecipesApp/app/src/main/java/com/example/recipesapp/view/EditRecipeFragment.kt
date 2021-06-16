@@ -146,6 +146,7 @@ class EditRecipeFragment : Fragment() {
             firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
             Snackbar(view, getString(R.string.saved_successfully))
             findNavController().popBackStack()
+            findNavController().popBackStack()
         } else Snackbar(view, getString(R.string.name_too_short))
     }
 }
