@@ -13,12 +13,7 @@ class Snackbar(view: View, null_message: String?, message: String, id: Int, leng
             mess = message
         val snackbar = Snackbar.make(view, mess, length)
         if (null_message == null) {
-            snackbar.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                    super.onDismissed(transientBottomBar, event)
-                    view.findNavController().navigate(id)
-                }
-            })
+            view.findNavController().navigate(id)
         }
         snackbar.show()
     }
