@@ -82,6 +82,8 @@ class OneRecipeFragment : Fragment() {
                 buttons_constraintLayout.visibility =
                     if (list.contains(it)) View.VISIBLE else View.GONE
             })
+
+            publicRecipe_button.isEnabled = !it.public
         })
 
         editRecipe_button.setOnClickListener {
