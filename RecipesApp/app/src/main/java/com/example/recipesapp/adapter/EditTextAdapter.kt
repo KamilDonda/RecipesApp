@@ -7,11 +7,10 @@ import android.widget.ImageButton
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
-import com.example.recipesapp.model.entity.Recipe
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 
-class EditTextAdapter(private val recipe: LiveData<Recipe>) :
+class EditTextAdapter(private val list: LiveData<ArrayList<String>>) :
     RecyclerView.Adapter<EditTextAdapter.EditTextHolder>() {
 
     inner class EditTextHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -21,7 +20,7 @@ class EditTextAdapter(private val recipe: LiveData<Recipe>) :
         return EditTextHolder(view)
     }
 
-    override fun getItemCount() = recipe.value?.ingredients?.size ?: 0
+    override fun getItemCount() = list.value?.size ?: 0
 
     override fun onBindViewHolder(holder: EditTextHolder, position: Int) {
         val text = holder.itemView.findViewById<TextInputEditText>(R.id.textInput)
@@ -29,6 +28,6 @@ class EditTextAdapter(private val recipe: LiveData<Recipe>) :
         val dragButton = holder.itemView.findViewById<ImageButton>(R.id.drag_button)
 
         number.text = (position + 1).toString()
-        text.setText(recipe.value?.ingredients?.get(position) ?: "")
+        text.setText(list.value?.get(position))
     }
 }

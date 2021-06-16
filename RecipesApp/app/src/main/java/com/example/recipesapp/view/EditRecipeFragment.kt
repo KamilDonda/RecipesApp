@@ -3,7 +3,6 @@ package com.example.recipesapp.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,6 @@ import kotlinx.android.synthetic.main.fragment_edit_recipe.ingredients_recyclerV
 import kotlinx.android.synthetic.main.fragment_edit_recipe.level_textView
 import kotlinx.android.synthetic.main.fragment_edit_recipe.meals_textView
 import kotlinx.android.synthetic.main.fragment_edit_recipe.time_textView
-import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
 class EditRecipeFragment : Fragment() {
 
@@ -41,6 +39,9 @@ class EditRecipeFragment : Fragment() {
 
     private lateinit var ingredientsListAdapter: EditTextAdapter
     private lateinit var ingredientsRecyclerView: RecyclerView
+
+    private lateinit var preparationListAdapter: EditTextAdapter
+    private lateinit var preparationRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -90,15 +91,32 @@ class EditRecipeFragment : Fragment() {
             mealsMenu.showMenu()
         }
 
+        ingredients_constraintLayout.setOnClickListener {
+            addRecipesViewModel.changeVisibilityOfIngredients()
+        }
+        addRecipesViewModel.visibleIngredients.observe(viewLifecycleOwner, Observer {
+            ingredients_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
+        preparation_constraintLayout.setOnClickListener {
+            addRecipesViewModel.changeVisibilityOfPreparation()
+        }
+        addRecipesViewModel.visiblePreparation.observe(viewLifecycleOwner, Observer {
+            preparation_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
         recipesViewModel.currentRecipe.observe(viewLifecycleOwner, Observer {
             if (it != null && addRecipesViewModel.isDataDefault)
                 addRecipesViewModel.fetchData(it)
         })
 
-        ingredientsListAdapter = EditTextAdapter(addRecipesViewModel.recipe)
+        ingredientsListAdapter = EditTextAdapter(addRecipesViewModel.ingredients)
+        preparationListAdapter = EditTextAdapter(addRecipesViewModel.preparation)
 
         ingredientsRecyclerView =
             ingredients_recyclerView.apply { adapter = ingredientsListAdapter }
+        preparationRecyclerView =
+            preparation_recyclerView.apply { adapter = preparationListAdapter }
 
         displayData()
     }
@@ -154,6 +172,8 @@ class EditRecipeFragment : Fragment() {
 
             meals_textView.text = it.meals.toString()
 
+            addRecipesViewModel.setIngredients(it.ingredients)
+            addRecipesViewModel.setPreparation(it.preparation)
             ingredientsListAdapter.notifyDataSetChanged()
         })
     }

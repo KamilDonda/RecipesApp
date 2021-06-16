@@ -12,7 +12,7 @@
 
         <!-- Meal info -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView2"
+            android:id="@+id/ingredients_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_space"
@@ -185,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_space"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+            app:layout_constraintTop_toBottomOf="@+id/ingredients_cardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ingredients_constraintLayout"
