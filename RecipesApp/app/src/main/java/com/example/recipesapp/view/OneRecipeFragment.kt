@@ -77,6 +77,11 @@ class OneRecipeFragment : Fragment() {
             time_textView.text = TimeConverter().longToString(it.time)
             meals_textView.text = it.meals.toString()
             RatingSystem().displayStars(requireContext(), rating_linearLayout, it.rating)
+
+            recipesViewModel.my_recipes.observe(viewLifecycleOwner, Observer { list ->
+                buttons_constraintLayout.visibility =
+                    if (list.contains(it)) View.VISIBLE else View.GONE
+            })
         })
 
         editRecipe_button.setOnClickListener {
