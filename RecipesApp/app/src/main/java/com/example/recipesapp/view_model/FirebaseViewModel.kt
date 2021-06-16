@@ -85,4 +85,12 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
             })
         return currentUser
     }
+
+    fun addOrUpdateRecipe(recipe: Recipe) {
+        firebaseRepository.addOrUpdateRecipe(recipe)
+    }
+
+    fun setRecipeAsPublic(recipe: Recipe) {
+        firebaseRepository.addOrUpdateRecipe(recipe.copy(public = true))
+    }
 }

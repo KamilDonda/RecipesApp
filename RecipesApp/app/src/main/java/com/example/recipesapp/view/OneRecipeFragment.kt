@@ -16,12 +16,14 @@ import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.AddRecipeViewModel
+import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.OneRecipeViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
 class OneRecipeFragment : Fragment() {
 
+    private lateinit var firebaseViewModel: FirebaseViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private lateinit var addRecipesViewModel: AddRecipeViewModel
     private lateinit var oneRecipeViewModel: OneRecipeViewModel
@@ -36,7 +38,10 @@ class OneRecipeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+        firebaseViewModel =
+            ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
+        recipesViewModel =
+            ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
         addRecipesViewModel =
             ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
         oneRecipeViewModel =
@@ -82,9 +87,12 @@ class OneRecipeFragment : Fragment() {
                 buttons_constraintLayout.visibility =
                     if (list.contains(it)) View.VISIBLE else View.GONE
             })
-
             publicRecipe_button.isEnabled = !it.public
         })
+
+        publicRecipe_button.setOnClickListener {
+            firebaseViewModel.setRecipeAsPublic(oneRecipeViewModel.recipe.value!!)
+        }
 
         editRecipe_button.setOnClickListener {
             addRecipesViewModel.clearData()

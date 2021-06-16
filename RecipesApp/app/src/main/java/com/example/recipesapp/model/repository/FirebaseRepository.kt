@@ -2,6 +2,7 @@ package com.example.recipesapp.model.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -95,5 +96,10 @@ class FirebaseRepository {
             .whereEqualTo(FIELD_PUBLIC, true)
             .orderBy(FIELD_RATING, Query.Direction.DESCENDING)
             .limit(10)
+    }
+
+    // Add recipe to firebase or update if it exists
+    fun addOrUpdateRecipe(recipe: Recipe) {
+        cloud.collection(PATH_RECIPES).document(recipe.id).set(recipe)
     }
 }
