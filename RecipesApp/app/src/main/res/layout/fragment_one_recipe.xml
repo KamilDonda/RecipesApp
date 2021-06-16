@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_space"
                     android:text="@string/ingredients"
-                    android:textSize="@dimen/title_big_text_size"
+                    android:textSize="@dimen/title_text_size"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -207,7 +207,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
-                    android:padding="@dimen/small_space"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/ingredients_textView" />
 
@@ -235,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_space"
                     android:text="@string/preparation"
-                    android:textSize="@dimen/title_big_text_size"
+                    android:textSize="@dimen/title_text_size"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -243,7 +242,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
-                    android:padding="@dimen/small_space"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/preparation_textView" />
 
