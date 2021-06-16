@@ -91,6 +91,9 @@ class FirebaseRepository {
 
     // Get most popular recipes
     fun getMostPopular(): Query {
-        return cloud.collection(PATH_RECIPES).orderBy(FIELD_RATING, Query.Direction.DESCENDING).limit(10)
+        return cloud.collection(PATH_RECIPES)
+            .whereEqualTo(FIELD_PUBLIC, true)
+            .orderBy(FIELD_RATING, Query.Direction.DESCENDING)
+            .limit(10)
     }
 }
