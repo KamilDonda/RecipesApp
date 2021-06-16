@@ -15,6 +15,7 @@ import com.example.recipesapp.adapter.ListAdapter
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.AddRecipeViewModel
+import com.example.recipesapp.view_model.OneRecipeViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
@@ -22,6 +23,7 @@ class OneRecipeFragment : Fragment() {
 
     private lateinit var recipesViewModel: RecipesViewModel
     private lateinit var addRecipesViewModel: AddRecipeViewModel
+    private lateinit var oneRecipeViewModel: OneRecipeViewModel
 
     private lateinit var ingredientsListAdapter: ListAdapter
     private lateinit var ingredientsRecyclerView: RecyclerView
@@ -34,7 +36,10 @@ class OneRecipeFragment : Fragment() {
     ): View? {
 
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
-        addRecipesViewModel = ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
+        addRecipesViewModel =
+            ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
+        oneRecipeViewModel =
+            ViewModelProvider(requireActivity()).get(OneRecipeViewModel::class.java)
 
         recipesViewModel.getIngredients().observe(viewLifecycleOwner, Observer {
             ingredientsListAdapter.notifyDataSetChanged()
@@ -54,10 +59,16 @@ class OneRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ingredientsRecyclerView = ingredients_recyclerView.apply { adapter = ingredientsListAdapter }
-        preparationRecyclerView = preparation_recyclerView.apply { adapter = preparationListAdapter }
+        ingredientsRecyclerView =
+            ingredients_recyclerView.apply { adapter = ingredientsListAdapter }
+        preparationRecyclerView =
+            preparation_recyclerView.apply { adapter = preparationListAdapter }
 
         recipesViewModel.currentRecipe.observe(viewLifecycleOwner, Observer {
+            oneRecipeViewModel.setRecipe(it)
+        })
+
+        oneRecipeViewModel.recipe.observe(viewLifecycleOwner, Observer {
             name_textView.text = it.name
             author_textView.text = it.author
             level_textView.text = "${it.level} / 5"
@@ -70,5 +81,19 @@ class OneRecipeFragment : Fragment() {
             addRecipesViewModel.clearData()
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
         }
+
+        ingredients_constraintLayout.setOnClickListener {
+            oneRecipeViewModel.changeVisibilityOfIngredients()
+        }
+        oneRecipeViewModel.visibleIngredients.observe(viewLifecycleOwner, Observer {
+            ingredients_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
+        preparation_constraintLayout.setOnClickListener {
+            oneRecipeViewModel.changeVisibilityOfPreparation()
+        }
+        oneRecipeViewModel.visiblePreparation.observe(viewLifecycleOwner, Observer {
+            preparation_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 }

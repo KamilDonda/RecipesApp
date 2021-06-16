@@ -169,12 +169,13 @@
             app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ingredients_constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/materialTextView"
+                    android:id="@+id/ingredients_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_space"
@@ -189,7 +190,7 @@
                     android:overScrollMode="never"
                     android:padding="@dimen/small_space"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/ingredients_textView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -204,12 +205,13 @@
             app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/preparation_constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/small_space">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/materialTextView2"
+                    android:id="@+id/preparation_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_space"
@@ -224,7 +226,7 @@
                     android:overScrollMode="never"
                     android:padding="@dimen/small_space"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/preparation_textView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
