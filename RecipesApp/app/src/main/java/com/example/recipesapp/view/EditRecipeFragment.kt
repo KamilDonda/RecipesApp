@@ -3,6 +3,7 @@ package com.example.recipesapp.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,6 +92,9 @@ class EditRecipeFragment : Fragment() {
             mealsMenu.showMenu()
         }
 
+        addIngredient_button.setOnClickListener {
+
+        }
         ingredients_constraintLayout.setOnClickListener {
             addRecipesViewModel.changeVisibilityOfIngredients()
         }
@@ -98,6 +102,9 @@ class EditRecipeFragment : Fragment() {
             ingredients_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
         })
 
+        addPreparation_button.setOnClickListener {
+
+        }
         preparation_constraintLayout.setOnClickListener {
             addRecipesViewModel.changeVisibilityOfPreparation()
         }
@@ -110,8 +117,14 @@ class EditRecipeFragment : Fragment() {
                 addRecipesViewModel.fetchData(it)
         })
 
-        ingredientsListAdapter = EditTextAdapter(addRecipesViewModel.ingredients)
-        preparationListAdapter = EditTextAdapter(addRecipesViewModel.preparation)
+        ingredientsListAdapter =
+            EditTextAdapter(addRecipesViewModel.ingredients) { p: Int, s: String ->
+                addRecipesViewModel.updateIngredients(p, s)
+            }
+        preparationListAdapter =
+            EditTextAdapter(addRecipesViewModel.preparation) { p: Int, s: String ->
+                addRecipesViewModel.updatePreparation(p, s)
+            }
 
         ingredientsRecyclerView =
             ingredients_recyclerView.apply { adapter = ingredientsListAdapter }
@@ -185,5 +198,9 @@ class EditRecipeFragment : Fragment() {
             findNavController().popBackStack()
             findNavController().popBackStack()
         } else Snackbar(view, getString(R.string.name_too_short))
+    }
+
+    private fun addIngredientRow() {
+
     }
 }

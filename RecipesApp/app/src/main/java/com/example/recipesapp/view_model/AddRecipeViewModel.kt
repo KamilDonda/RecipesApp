@@ -23,11 +23,21 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
     fun setIngredients(ingredients: ArrayList<String>) {
         _ingredients.value = ingredients
     }
+    fun updateIngredients(position: Int, text: String) {
+        setIngredients(ingredients.value!!.apply {
+            this[position] = text
+        })
+    }
 
     private var _preparation = MutableLiveData<ArrayList<String>>()
     val preparation: LiveData<ArrayList<String>> get() = _preparation
     fun setPreparation(preparation: ArrayList<String>) {
         _preparation.value = preparation
+    }
+    fun updatePreparation(position: Int, text: String) {
+        setPreparation(preparation.value!!.apply {
+            this[position] = text
+        })
     }
 
     fun fetchData(recipe: Recipe) {
