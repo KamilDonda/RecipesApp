@@ -14,7 +14,8 @@ import com.google.android.material.textview.MaterialTextView
 
 class EditTextAdapter(
     private val list: LiveData<ArrayList<String>>,
-    private val updateItem: (Int, String) -> Unit
+    private val updateItem: (Int, String) -> Unit,
+    private val deleteItem: () -> Unit
 ) :
     RecyclerView.Adapter<EditTextAdapter.EditTextHolder>() {
 
@@ -31,6 +32,7 @@ class EditTextAdapter(
     override fun onBindViewHolder(holder: EditTextHolder, position: Int) {
         val text = holder.itemView.findViewById<TextInputEditText>(R.id.textInput)
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_textView)
+        val deleteButton = holder.itemView.findViewById<ImageButton>(R.id.delete_button)
         val dragButton = holder.itemView.findViewById<ImageButton>(R.id.drag_button)
 
         number.text = (position + 1).toString()
@@ -44,5 +46,12 @@ class EditTextAdapter(
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
+
+        deleteButton.visibility = if (position == itemCount - 1) View.VISIBLE else View.INVISIBLE
+
+        deleteButton.setOnClickListener {
+            deleteItem()
+        }
     }
 }

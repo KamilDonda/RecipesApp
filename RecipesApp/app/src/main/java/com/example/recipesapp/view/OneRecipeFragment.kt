@@ -2,6 +2,7 @@ package com.example.recipesapp.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class OneRecipeFragment : Fragment() {
 
         recipesViewModel.getIngredients().observe(viewLifecycleOwner, Observer {
             ingredientsListAdapter.notifyDataSetChanged()
+            Log.v("TEST", "Ingredients: $it")
         })
 
         recipesViewModel.getPreparation().observe(viewLifecycleOwner, Observer {

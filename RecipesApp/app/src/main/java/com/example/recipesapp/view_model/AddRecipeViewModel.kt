@@ -10,8 +10,6 @@ import com.example.recipesapp.utils.TimeConverter
 
 class AddRecipeViewModel(application: Application) : AndroidViewModel(application) {
 
-    var isDataDefault = true
-
     private var _recipe = MutableLiveData<Recipe>()
     val recipe: LiveData<Recipe> get() = _recipe
     fun setRecipe(recipe: Recipe) {
@@ -41,12 +39,10 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun fetchData(recipe: Recipe) {
-        isDataDefault = false
         setRecipe(recipe)
     }
 
     fun clearData() {
-        isDataDefault = true
         setRecipe(Recipe().apply {
             level = Level.EASY.number
             time = TimeConverter().hourAndMinuteToLong(0, 30)

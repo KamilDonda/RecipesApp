@@ -41,7 +41,7 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
         return recipes
     }
 
-    var my_recipes: MutableLiveData<List<Recipe>> = MutableLiveData()
+    var   my_recipes: MutableLiveData<List<Recipe>> = MutableLiveData()
     // Get user's recipes
     fun getMyRecipes(list: ArrayList<String>): LiveData<List<Recipe>> {
         firebaseRepository.getMyRecipes(list).addSnapshotListener(EventListener<QuerySnapshot>{ value, e ->
