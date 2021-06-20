@@ -117,14 +117,14 @@ class EditRecipeFragment : Fragment() {
                 { p: Int, s: String ->
                     addRecipesViewModel.updateIngredients(p, s)
                 }, {
-                    deleteIngredient()
+                    deleteIngredient(it)
                 })
         preparationListAdapter =
             EditTextAdapter(addRecipesViewModel.preparation,
                 { p: Int, s: String ->
                     addRecipesViewModel.updatePreparation(p, s)
                 }, {
-                    deletePreparation()
+                    deletePreparation(it)
                 })
 
         ingredientsRecyclerView =
@@ -229,16 +229,16 @@ class EditRecipeFragment : Fragment() {
         preparationListAdapter.notifyDataSetChanged()
     }
 
-    private fun deleteIngredient() {
+    private fun deleteIngredient(position: Int) {
         addRecipesViewModel.setIngredients(addRecipesViewModel.ingredients.value!!.apply {
-            this.removeAt(this.size - 1)
+            this.removeAt(position)
         })
         ingredientsListAdapter.notifyDataSetChanged()
     }
 
-    private fun deletePreparation() {
+    private fun deletePreparation(position: Int) {
         addRecipesViewModel.setPreparation(addRecipesViewModel.preparation.value!!.apply {
-            this.removeAt(this.size - 1)
+            this.removeAt(position)
         })
         preparationListAdapter.notifyDataSetChanged()
     }
