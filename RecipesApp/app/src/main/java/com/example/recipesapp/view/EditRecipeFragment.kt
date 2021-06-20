@@ -194,10 +194,22 @@ class EditRecipeFragment : Fragment() {
 
     private fun addOrUpdateRecipe(view: View) {
         if (addRecipesViewModel.recipe.value!!.name.length > 6) {
-            firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
-            Snackbar(view, getString(R.string.saved_successfully))
-            findNavController().popBackStack()
-            findNavController().popBackStack()
+            when {
+                addRecipesViewModel.recipe.value!!.ingredients.isEmpty() ->
+                    Snackbar(view, getString(R.string.empty_ingredients_list))
+                addRecipesViewModel.recipe.value!!.preparation.isEmpty() ->
+                    Snackbar(view, getString(R.string.empty_preparation_list))
+                addRecipesViewModel.recipe.value!!.ingredients.contains("") ->
+                    Snackbar(view, getString(R.string.empty_ingredients))
+                addRecipesViewModel.recipe.value!!.preparation.contains("") ->
+                    Snackbar(view, getString(R.string.empty_preparation))
+                else -> {
+                    firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
+                    Snackbar(view, getString(R.string.saved_successfully))
+                    findNavController().popBackStack()
+                    findNavController().popBackStack()
+                }
+            }
         } else Snackbar(view, getString(R.string.name_too_short))
     }
 

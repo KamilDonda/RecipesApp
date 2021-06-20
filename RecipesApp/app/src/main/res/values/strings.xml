@@ -23,7 +23,11 @@
     <string name="logout_successfully">Logged out successfully</string>
     <string name="logout_not_successfully">Logged out is not successfully</string>
     <string name="saved_successfully">Saved successfully!</string>
-    <string name="name_too_short">The name must contain at least 6 characters! </string>
+    <string name="name_too_short">The name must contain at least 6 characters!</string>
+    <string name="empty_ingredients">The ingredients section cannot contain an empty element!</string>
+    <string name="empty_preparation">The preparation section cannot contain an empty element!</string>
+    <string name="empty_ingredients_list">The ingredients list cannot be empty!</string>
+    <string name="empty_preparation_list">The preparation list cannot be empty!</string>
 
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
