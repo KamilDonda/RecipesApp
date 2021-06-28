@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
                         myRecipesAdapter.notifyDataSetChanged()
                     })
         })
-        myRecipesAdapter = MyRecipesAdapter(recipesViewModel.my_recipes, recipesViewModel)
+        myRecipesAdapter = MyRecipesAdapter(recipesViewModel.my_recipes, recipesViewModel, requireContext())
 
         // Get most popular recipes
         recipesViewModel.getMostPopular().observe(viewLifecycleOwner, Observer {

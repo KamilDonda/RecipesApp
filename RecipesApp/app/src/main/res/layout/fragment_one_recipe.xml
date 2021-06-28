@@ -24,7 +24,7 @@
                 android:layout_margin="@dimen/small_space">
 
                 <ImageView
-                    android:id="@+id/image_imageView"
+                    android:id="@+id/imageView_one_recipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
@@ -37,7 +37,7 @@
                     android:id="@+id/buttons_constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/image_imageView">
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_one_recipe">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/editRecipe_button"

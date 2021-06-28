@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/shapeableImageView"
+            android:id="@+id/imageView_most_popular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="150dp"
@@ -28,7 +28,7 @@
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
+            app:layout_constraintTop_toBottomOf="@+id/imageView_most_popular">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name_textView"

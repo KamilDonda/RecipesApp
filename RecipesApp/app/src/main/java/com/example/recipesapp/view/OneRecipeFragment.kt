@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
 import com.example.recipesapp.model.entity.Level
+import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.AddRecipeViewModel
@@ -84,6 +85,7 @@ class OneRecipeFragment : Fragment() {
             time_textView.text = TimeConverter().longToString(it.time)
             meals_textView.text = it.meals.toString()
             RatingSystem().displayStars(requireContext(), rating_linearLayout, it.rating)
+            Photo().setPhoto(it.image, requireContext(), imageView_one_recipe)
 
             recipesViewModel.my_recipes.observe(viewLifecycleOwner, Observer { list ->
                 buttons_constraintLayout.visibility =

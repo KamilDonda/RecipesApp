@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.EditTextAdapter
 import com.example.recipesapp.model.entity.Level
+import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RecipeMenu
 import com.example.recipesapp.utils.Snackbar
 import com.example.recipesapp.utils.TimeConverter
@@ -185,6 +186,8 @@ class EditRecipeFragment : Fragment() {
             time_textView.text = TimeConverter().longToString(it.time)
 
             meals_textView.text = it.meals.toString()
+
+            Photo().setPhoto(it.image, requireContext(), imageView_edit_recipe)
 
             addRecipesViewModel.setIngredients(it.ingredients)
             addRecipesViewModel.setPreparation(it.preparation)
