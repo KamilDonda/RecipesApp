@@ -14,8 +14,9 @@ data class Recipe(
     var public: Boolean = false,
     var ratingCount: Int = 0,
     var ratingSum: Int = 0,
-    var rating: Float
+    var rating: Float,
+    var image: String = ""
 ) : Serializable {
 
-    constructor() : this("", "", "", 0, 0, 0, ArrayList(), ArrayList(), false, 0, 0, 0f)
+    constructor() : this("", "", "", 0, 0, 0, ArrayList(), ArrayList(), false, 0, 0, 0f, "")
 }
