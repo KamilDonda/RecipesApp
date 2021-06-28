@@ -33,7 +33,6 @@ class EditTextAdapter(
         val text = holder.itemView.findViewById<TextInputEditText>(R.id.textInput)
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_textView)
         val deleteButton = holder.itemView.findViewById<ImageButton>(R.id.delete_button)
-        val dragButton = holder.itemView.findViewById<ImageButton>(R.id.drag_button)
 
         number.text = (position + 1).toString()
         text.setText(list.value?.get(position))
