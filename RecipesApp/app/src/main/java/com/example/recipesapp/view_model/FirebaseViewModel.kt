@@ -12,11 +12,13 @@ import com.example.recipesapp.model.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
+import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 class FirebaseViewModel(application: Application) : AndroidViewModel(application) {
     private val firebaseRepository = FirebaseRepository()
     val auth = FirebaseAuth.getInstance()
+    private val storage = FirebaseStorage.getInstance()
 
     // Create an account in firebase and returns a communicate
     fun createAccount(
@@ -103,5 +105,9 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     fun setRecipeAsPublic(recipe: Recipe) {
         firebaseRepository.addOrUpdateRecipe(recipe.copy(public = true))
+    }
+
+    fun uploadPhoto(id: String, bytes: ByteArray) {
+        firebaseRepository.uploadPhoto(storage, id, bytes)
     }
 }

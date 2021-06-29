@@ -1,6 +1,11 @@
 package com.example.recipesapp.view
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -24,6 +29,8 @@ import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import kotlinx.android.synthetic.main.fragment_edit_recipe.*
+import java.io.ByteArrayOutputStream
+
 
 class EditRecipeFragment : Fragment() {
 
@@ -39,6 +46,8 @@ class EditRecipeFragment : Fragment() {
 
     private lateinit var preparationListAdapter: EditTextAdapter
     private lateinit var preparationRecyclerView: RecyclerView
+
+    private var photo: Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -71,6 +80,10 @@ class EditRecipeFragment : Fragment() {
                 }
             }
         })
+
+        addImage_button.setOnClickListener {
+            pickPhoto()
+        }
 
         save_button.setOnClickListener {
             addOrUpdateRecipe(it)
@@ -187,7 +200,8 @@ class EditRecipeFragment : Fragment() {
 
             meals_textView.text = it.meals.toString()
 
-            Photo().setPhoto(it.image, requireContext(), imageView_edit_recipe)
+            if (photo == null)
+                Photo().setPhoto(it.image, requireContext(), imageView_edit_recipe)
 
             addRecipesViewModel.setIngredients(it.ingredients)
             addRecipesViewModel.setPreparation(it.preparation)
@@ -196,18 +210,28 @@ class EditRecipeFragment : Fragment() {
     }
 
     private fun addOrUpdateRecipe(view: View) {
-        if (addRecipesViewModel.recipe.value!!.name.length > 6) {
+        val recipe = addRecipesViewModel.recipe.value!!
+
+        if (recipe.name.length > 6) {
             when {
-                addRecipesViewModel.recipe.value!!.ingredients.isEmpty() ->
+                recipe.ingredients.isEmpty() ->
                     Snackbar(view, getString(R.string.empty_ingredients_list))
-                addRecipesViewModel.recipe.value!!.preparation.isEmpty() ->
+                recipe.preparation.isEmpty() ->
                     Snackbar(view, getString(R.string.empty_preparation_list))
-                addRecipesViewModel.recipe.value!!.ingredients.contains("") ->
+                recipe.ingredients.contains("") ->
                     Snackbar(view, getString(R.string.empty_ingredients))
-                addRecipesViewModel.recipe.value!!.preparation.contains("") ->
+                recipe.preparation.contains("") ->
                     Snackbar(view, getString(R.string.empty_preparation))
                 else -> {
-                    firebaseViewModel.addOrUpdateRecipe(addRecipesViewModel.recipe.value!!)
+                    firebaseViewModel.addOrUpdateRecipe(recipe)
+
+                    if (photo != null) {
+                        val stream = ByteArrayOutputStream()
+                        val result = photo!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                        val byteArray = stream.toByteArray()
+                        if (result) firebaseViewModel.uploadPhoto(recipe.id, byteArray)
+                    }
+
                     Snackbar(view, getString(R.string.saved_successfully))
                     findNavController().popBackStack()
                     findNavController().popBackStack()
@@ -244,5 +268,20 @@ class EditRecipeFragment : Fragment() {
             this.removeAt(position)
         })
         preparationListAdapter.notifyDataSetChanged()
+    }
+
+    private fun pickPhoto() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == 100) {
+            val imageUri: Uri? = data?.data
+            photo = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, imageUri)
+
+            imageView_edit_recipe.setImageBitmap(photo)
+        }
     }
 }
