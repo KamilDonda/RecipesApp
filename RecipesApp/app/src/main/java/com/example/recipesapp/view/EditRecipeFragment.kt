@@ -28,6 +28,8 @@ import com.example.recipesapp.view_model.FirebaseViewModel
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 import java.io.ByteArrayOutputStream
 
@@ -48,6 +50,7 @@ class EditRecipeFragment : Fragment() {
     private lateinit var preparationRecyclerView: RecyclerView
 
     private var photo: Bitmap? = null
+    private val GALLERY_REQUEST_CODE = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -272,16 +275,43 @@ class EditRecipeFragment : Fragment() {
 
     private fun pickPhoto() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-        startActivityForResult(intent, 100)
+        intent.type = "image/*"
+        val mimeTypes = arrayOf("image/jpeg", "image/png", "image/jpg")
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == 100) {
-            val imageUri: Uri? = data?.data
-            photo = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, imageUri)
-
-            imageView_edit_recipe.setImageBitmap(photo)
+        when (requestCode) {
+            GALLERY_REQUEST_CODE -> {
+                if (resultCode == RESULT_OK)
+                    data?.data?.let {
+                        launchImageCrop(it)
+                    }
+            }
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                val result = CropImage.getActivityResult(data)
+                if (resultCode == RESULT_OK) {
+                    result.uri?.let {
+                        setPhoto(it)
+                    }
+                }
+            }
         }
+    }
+
+    private fun launchImageCrop(uri: Uri) {
+        CropImage.activity(uri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(150, 80)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .start(requireContext(), this);
+    }
+
+    private fun setPhoto(uri: Uri) {
+        photo = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
+        imageView_edit_recipe.setImageBitmap(photo)
     }
 }
