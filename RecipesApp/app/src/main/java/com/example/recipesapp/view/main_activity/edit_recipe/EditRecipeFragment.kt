@@ -1,4 +1,4 @@
-package com.example.recipesapp.view
+package com.example.recipesapp.view.main_activity.edit_recipe
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent

@@ -7,6 +7,8 @@ import com.example.recipesapp.model.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
@@ -25,12 +27,14 @@ class FirebaseRepository {
     private val FIELD_RATING = "rating"
     private val FIELD_IMAGE = "image"
 
+    // Create new user
     fun createUser(user: User) {
         cloud.collection(PATH_USER)
             .document(user.uid)
             .set(user)
     }
 
+    // Create new user with Google
     fun createUserWithGoogle(user: User) {
         cloud.collection(PATH_USER).whereEqualTo(FIELD_UID, user.uid).get()
             .addOnCompleteListener {
@@ -41,28 +45,66 @@ class FirebaseRepository {
             }
     }
 
-    // Get current user
-    fun getCurrentUser(uid: String): DocumentReference {
-        return cloud.collection(PATH_USER).document(uid)
-    }
-
-    // Get public recipes
-    fun getPublicRecipes(): Query {
-        return cloud.collection(PATH_RECIPES).whereEqualTo(FIELD_PUBLIC, true)
-    }
-
     // Get user's recipes
-    fun getMyRecipes(list: ArrayList<String>): Query {
-        return cloud.collection(PATH_RECIPES).whereIn(FIELD_ID, list)
+    fun getUserRecipes(list: ArrayList<String>): LiveData<List<Recipe>> {
+        val result = MutableLiveData<List<Recipe>>()
+        cloud.collection(PATH_RECIPES)
+            .whereIn(FIELD_ID, list)
+            .get()
+            .addOnSuccessListener {
+                val recipes = it.toObjects(Recipe::class.java)
+                result.postValue(recipes)
+            }
+        return result
+    }
+
+    // Get id list of recipes
+    fun getIdOfRecipes(uid: String): LiveData<List<String>> {
+        val result = MutableLiveData<List<String>>()
+        cloud.collection(PATH_USER)
+            .document(uid)
+            .addSnapshotListener(EventListener<DocumentSnapshot> { value, e ->
+                if (e != null) {
+                    result.value = null
+                    return@EventListener
+                }
+                result.value = value!!.toObject(User::class.java)?.recipes
+            })
+        return result
     }
 
     // Get most popular recipes
-    fun getMostPopular(): Query {
-        return cloud.collection(PATH_RECIPES)
+    fun getMostPopular(): LiveData<List<Recipe>> {
+        val result = MutableLiveData<List<Recipe>>()
+        cloud.collection(PATH_RECIPES)
             .whereEqualTo(FIELD_PUBLIC, true)
             .orderBy(FIELD_RATING, Query.Direction.DESCENDING)
             .limit(10)
+            .get()
+            .addOnSuccessListener {
+                val recipes = it.toObjects(Recipe::class.java)
+                result.postValue(recipes)
+            }
+        return result
     }
+
+    // Get public recipes
+    fun getPublicRecipes(): LiveData<List<Recipe>> {
+        val result = MutableLiveData<List<Recipe>>()
+        cloud.collection(PATH_RECIPES)
+            .whereEqualTo(FIELD_PUBLIC, true)
+            .get()
+            .addOnSuccessListener {
+                val recipes = it.toObjects(Recipe::class.java)
+                result.postValue(recipes)
+            }
+        return result
+    }
+//==============================
+    // Get public recipes
+//    fun getPublicRecipes(): Query {
+//        return cloud.collection(PATH_RECIPES).whereEqualTo(FIELD_PUBLIC, true)
+//    }
 
     // Add recipe to firebase or update if it exists
     fun addOrUpdateRecipe(recipe: Recipe) {

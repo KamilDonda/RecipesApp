@@ -1,5 +1,7 @@
 package com.example.recipesapp.model.entity
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import java.io.Serializable
 
 data class Recipe(
@@ -19,4 +21,15 @@ data class Recipe(
 ) : Serializable {
 
     constructor() : this("", "", "", 0, 0, 0, ArrayList(), ArrayList(), false, 0, 0, 0f, "")
+
+    companion object {
+        private var _currentRecipe: MutableLiveData<Recipe> = MutableLiveData()
+        val currentRecipe: LiveData<Recipe> get() = _currentRecipe
+        fun setCurrentRecipe(recipe: Recipe) {
+            _currentRecipe.value = recipe
+        }
+        fun resetCurrentRecipe() {
+            _currentRecipe.value = Recipe()
+        }
+    }
 }

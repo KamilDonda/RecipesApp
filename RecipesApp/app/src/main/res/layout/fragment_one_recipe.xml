@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.OneRecipeFragment">
+    tools:context=".view.main_activity.one_recipe.OneRecipeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,6 +37,7 @@
                     android:id="@+id/buttons_constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_one_recipe">
 
                     <com.google.android.material.button.MaterialButton

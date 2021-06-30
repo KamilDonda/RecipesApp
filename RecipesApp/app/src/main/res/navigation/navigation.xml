@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.example.recipesapp.view.HomeFragment"
+        android:name="com.example.recipesapp.view.main_activity.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipes"
-        android:name="com.example.recipesapp.view.RecipesFragment"
+        android:name="com.example.recipesapp.view.main_activity.recipes.RecipesFragment"
         android:label="fragment_recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/oneRecipeFragment"
-        android:name="com.example.recipesapp.view.OneRecipeFragment"
+        android:name="com.example.recipesapp.view.main_activity.one_recipe.OneRecipeFragment"
         android:label="fragment_one_recipe"
         tools:layout="@layout/fragment_one_recipe" >
         <action
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/editRecipeFragment"
-        android:name="com.example.recipesapp.view.EditRecipeFragment"
+        android:name="com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeFragment"
         android:label="fragment_edit_recipe"
         tools:layout="@layout/fragment_edit_recipe" />
 </navigation>

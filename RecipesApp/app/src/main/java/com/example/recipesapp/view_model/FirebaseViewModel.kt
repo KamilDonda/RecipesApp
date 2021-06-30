@@ -33,19 +33,6 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     var currentUser: MutableLiveData<User> = MutableLiveData()
 
-    // Get current user
-    fun getCurrentUser(): LiveData<User> {
-        firebaseRepository.getCurrentUser(auth.uid!!)
-            .addSnapshotListener(EventListener<DocumentSnapshot> { value, e ->
-                if (e != null) {
-                    currentUser.value = null
-                    return@EventListener
-                }
-                currentUser.value = value!!.toObject(User::class.java)
-            })
-        return currentUser
-    }
-
     fun updateUser(user: User) {
         firebaseRepository.updateUser(user)
     }
