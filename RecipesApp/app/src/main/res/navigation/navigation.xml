@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
@@ -38,9 +38,6 @@
             android:id="@+id/action_account_to_basket"
             app:destination="@id/basket" />
         <action
-            android:id="@+id/action_account_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
             android:id="@+id/action_account_to_editRecipeFragment"
             app:destination="@id/editRecipeFragment" />
     </fragment>
@@ -57,27 +54,6 @@
         <action
             android:id="@+id/action_favourites_to_account"
             app:destination="@id/account" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.recipesapp.view.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_home"
-            app:destination="@id/home" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.recipesapp.view.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_home"
-            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/oneRecipeFragment"

@@ -1,6 +1,5 @@
 package com.example.recipesapp.model.repository
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.recipesapp.model.entity.Recipe
@@ -26,58 +25,20 @@ class FirebaseRepository {
     private val FIELD_RATING = "rating"
     private val FIELD_IMAGE = "image"
 
-    // Create an account in firebase and returns a communicate
-    fun createAccount(auth: FirebaseAuth, email: String, password: String): LiveData<String?> {
-        val result = MutableLiveData<String?>()
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    val UID = it.result!!.user!!.uid
-                    cloud.collection(PATH_USER).document(UID).set(User(UID))
-                    result.value = null
-                } else {
-                    result.value = it.exception?.message.toString()
-                }
-            }
-        return result
+    fun createUser(user: User) {
+        cloud.collection(PATH_USER)
+            .document(user.uid)
+            .set(user)
     }
 
-    // Login with email and password
-    fun loginAccount(auth: FirebaseAuth, email: String, password: String): LiveData<String?> {
-        val result = MutableLiveData<String?>()
-        auth.signInWithEmailAndPassword(email, password)
+    fun createUserWithGoogle(user: User) {
+        cloud.collection(PATH_USER).whereEqualTo(FIELD_UID, user.uid).get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    result.value = null
-                } else {
-                    result.value = it.exception?.message.toString()
+                    if (it.result!!.documents.isEmpty())
+                        createUser(user)
                 }
             }
-        return result
-    }
-
-    // Login with Google
-    fun googleLoginAccount(auth: FirebaseAuth, idToken: String): LiveData<String?> {
-        val result = MutableLiveData<String?>()
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    result.value = null
-                    val UID = it.result!!.user!!.uid
-                    // If user is not exist, then his account is created
-                    cloud.collection(PATH_USER).whereEqualTo(FIELD_UID, UID).get()
-                        .addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                if (it.result!!.documents.isEmpty())
-                                    cloud.collection(PATH_USER).document(UID).set(User(UID))
-                            }
-                        }
-                } else {
-                    result.value = it.exception?.message.toString()
-                }
-            }
-        return result
     }
 
     // Get current user

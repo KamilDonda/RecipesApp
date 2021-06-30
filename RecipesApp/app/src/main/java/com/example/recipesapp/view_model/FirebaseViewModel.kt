@@ -20,46 +20,6 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
     val auth = FirebaseAuth.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-    // Create an account in firebase and returns a communicate
-    fun createAccount(
-        email: String?,
-        password: String?,
-        repeatPassword: String?,
-        activity: Activity
-    ): LiveData<String?> {
-        val message = MutableLiveData<String>()
-        when {
-            email.isNullOrEmpty() -> message.value = activity.getString(R.string.email_is_empty)
-            password.isNullOrEmpty() -> message.value =
-                activity.getString(R.string.password_is_empty)
-            password != repeatPassword -> message.value =
-                activity.getString(R.string.different_passwords)
-            else -> return firebaseRepository.createAccount(auth, email, password)
-        }
-        return message
-    }
-
-    // Login with email and password
-    fun login(
-        email: String?,
-        password: String?,
-        activity: Activity
-    ): LiveData<String?> {
-        val message = MutableLiveData<String>()
-        when {
-            email.isNullOrEmpty() -> message.value = activity.getString(R.string.email_is_empty)
-            password.isNullOrEmpty() -> message.value =
-                activity.getString(R.string.password_is_empty)
-            else -> return firebaseRepository.loginAccount(auth, email, password)
-        }
-        return message
-    }
-
-    // Login with Google
-    fun login(idToken: String): LiveData<String?> {
-        return firebaseRepository.googleLoginAccount(auth, idToken)
-    }
-
     fun logout(activity: Activity): LiveData<String?> {
         val message = MutableLiveData<String>()
         auth.signOut()
