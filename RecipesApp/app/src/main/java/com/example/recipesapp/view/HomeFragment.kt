@@ -43,19 +43,22 @@ class HomeFragment : Fragment() {
         // 3: Get user's recipes from Firebase
         // 'myRecipesAdapter.itemCount == 0' prevents multiple data downloads
         firebaseViewModel.getCurrentUser().observe(viewLifecycleOwner, Observer {
-            if (it != null && it.recipes.isNotEmpty() && myRecipesAdapter.itemCount == 0)
+            if (it != null && it.recipes.isNotEmpty() &&
+                (myRecipesAdapter.itemCount == 0 || myRecipesAdapter.itemCount != it.recipes.size)
+            )
                 recipesViewModel.getMyRecipes(it.recipes)
                     .observe(viewLifecycleOwner, Observer {
                         myRecipesAdapter.notifyDataSetChanged()
                     })
         })
-        myRecipesAdapter = MyRecipesAdapter(recipesViewModel.my_recipes, recipesViewModel)
+        myRecipesAdapter = MyRecipesAdapter(recipesViewModel.my_recipes, recipesViewModel, requireContext())
 
         // Get most popular recipes
         recipesViewModel.getMostPopular().observe(viewLifecycleOwner, Observer {
             mostPopularAdapter.notifyDataSetChanged()
         })
-        mostPopularAdapter = MostPopularAdapter(recipesViewModel.most_popular, recipesViewModel, requireContext())
+        mostPopularAdapter =
+            MostPopularAdapter(recipesViewModel.most_popular, recipesViewModel, requireContext())
 
         return inflater.inflate(R.layout.fragment_home, container, false)
     }

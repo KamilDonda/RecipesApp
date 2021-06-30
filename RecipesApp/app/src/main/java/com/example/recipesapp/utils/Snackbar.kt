@@ -5,21 +5,18 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
-class Snackbar(view: View, null_message: String?, message: String, id: Int, length: Int = Snackbar.LENGTH_LONG) {
-    // If the first messege is null, then second messege is shown and callback is added
+class Snackbar(
+    view: View,
+    null_message: String?,
+    message: String = "",
+    id: Int = 0,
+    length: Int = Snackbar.LENGTH_LONG
+) {
+    // If the first messege (null_message) is null, then second messege is shown and navigate to fragment
     init {
-        var mess = null_message
-        if (mess == null)
-            mess = message
-        val snackbar = Snackbar.make(view, mess, length)
+        Snackbar.make(view, null_message ?: message, length).show()
         if (null_message == null) {
-            snackbar.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                    super.onDismissed(transientBottomBar, event)
-                    view.findNavController().navigate(id)
-                }
-            })
+            view.findNavController().navigate(id)
         }
-        snackbar.show()
     }
 }

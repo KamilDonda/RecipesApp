@@ -9,24 +9,28 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
+import com.example.recipesapp.view_model.AddRecipeViewModel
 import com.example.recipesapp.view_model.FirebaseViewModel
+import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_login.*
 
 class AccountFragment : Fragment() {
 
     private lateinit var firebaseViewModel: FirebaseViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
+    private lateinit var addRecipesViewModel: AddRecipeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        // Set bottom navigation as visible after logging in
-        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)!!
-        bottomNavigation.visibility = View.VISIBLE
-
         firebaseViewModel = ViewModelProvider(requireActivity()).get(FirebaseViewModel::class.java)
+        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+        addRecipesViewModel =
+            ViewModelProvider(requireActivity()).get(AddRecipeViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
@@ -34,13 +38,29 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        emailTextView.text = firebaseViewModel.auth.currentUser!!.email
+        //nameTextView.text = firebaseViewModel.firestore.
+
         // Logout from the app
-        logout_button.setOnClickListener {
+        logout.setOnClickListener {
             logout()
+        }
+
+        add_recipe.setOnClickListener {
+            recipesViewModel.resetCurrentRecipe()
+            addRecipesViewModel.clearData()
+            findNavController().navigate(R.id.action_account_to_editRecipeFragment)
+        }
+
+        my_recipes.setOnClickListener {
+
+        }
+
+        edit_profile.setOnClickListener {
+
         }
     }
 
-    // TODO move user to Login fragment after logout
     private fun logout() {
         firebaseViewModel.logout(requireActivity()).observe(viewLifecycleOwner, Observer {
             goToLogout(it)

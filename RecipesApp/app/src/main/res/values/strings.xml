@@ -22,10 +22,35 @@
     <string name="different_passwords">Passwords are different!</string>
     <string name="logout_successfully">Logged out successfully</string>
     <string name="logout_not_successfully">Logged out is not successfully</string>
+    <string name="saved_successfully">Saved successfully!</string>
+    <string name="name_too_short">The name must contain at least 6 characters!</string>
+    <string name="empty_ingredients">The ingredients section cannot contain an empty element!</string>
+    <string name="empty_preparation">The preparation section cannot contain an empty element!</string>
+    <string name="empty_ingredients_list">The ingredients list cannot be empty!</string>
+    <string name="empty_preparation_list">The preparation list cannot be empty!</string>
 
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
     <string name="my_recipes">My recipes</string>
     <string name="most_popular">Most popular</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="logout">Logout</string>
+    <string name="pick_image">Pick image</string>
+    <string name="name_desc">Enter a name for the recipe</string>
+    <string name="select_level">Select level</string>
+    <string name="select_level_desc">Select difficulty level</string>
+    <string name="select_time">Select time</string>
+    <string name="select_time_desc">Select preparation time</string>
+    <string name="select_meals">Select count</string>
+    <string name="select_meals_desc">Select meals count</string>
+    <string name="edit">Edit</string>
+    <string name="public_recipe">Public</string>
+    <string name="save">Save</string>
+    <string name="add_new_item">Add new item</string>
+
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 
 </resources>

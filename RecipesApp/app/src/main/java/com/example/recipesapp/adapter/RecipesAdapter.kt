@@ -5,16 +5,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
+import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
+import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view_model.RecipesViewModel
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 
 class RecipesAdapter(
@@ -42,15 +46,19 @@ class RecipesAdapter(
         val meals = holder.itemView.findViewById<MaterialTextView>(R.id.meals_textView)
         val author = holder.itemView.findViewById<MaterialTextView>(R.id.author_textView)
         val ratingLayout = holder.itemView.findViewById<LinearLayout>(R.id.rating_linearLayout)
+        val imageView = holder.itemView.findViewById<ShapeableImageView>(R.id.imageView_recipe)
 
         val item = list.value?.get(position)!!
 
         name.text = item.name
-        level.text = "${item.level} / 5"
+        level.text = context.getString(
+            (Level.values().find { level -> level.number == item.level }!!.id)
+        )
         time.text = TimeConverter().longToString(item.time)
         meals.text = item.meals.toString()
         author.text = item.author
         RatingSystem().displayStars(context, ratingLayout, item.rating)
+        Photo().setPhoto(item.image, context, imageView)
 
         root.setOnClickListener {
             recipesViewModel.setCurrentRecipe(item)

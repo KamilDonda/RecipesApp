@@ -14,10 +14,6 @@ class FavouritesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        // Set bottom navigation as visible after logging in
-        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)!!
-        bottomNavigation.visibility = View.VISIBLE
-
         return inflater.inflate(R.layout.fragment_favourites, container, false)
     }
 }
