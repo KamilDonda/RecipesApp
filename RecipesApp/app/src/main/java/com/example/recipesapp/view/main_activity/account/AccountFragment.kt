@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Recipe
+import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
 import com.example.recipesapp.view_model.AddRecipeViewModel
 import com.example.recipesapp.view_model.FirebaseViewModel
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_account.*
 class AccountFragment : Fragment() {
 
     private lateinit var editRecipeViewModel: EditRecipeViewModel
+    private lateinit var accountViewModel: AccountViewModel
 
     val auth = FirebaseAuth.getInstance()
 
@@ -29,6 +32,8 @@ class AccountFragment : Fragment() {
 
         editRecipeViewModel =
             ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
+        accountViewModel =
+            ViewModelProvider(requireActivity()).get(AccountViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
@@ -36,12 +41,20 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupData()
         setupAddRecipeClick()
         setupMyRecipesClick()
         setupEditProfileClick()
         setupLogoutClick()
+        
+    }
 
-        emailTextView.text = auth.currentUser!!.email
+    private fun setupData() {
+        User.currentUser.observe(viewLifecycleOwner) {
+            my_recipes_textView.text = it.recipes.size.toString()
+            favourites_textView.text = it.favourites.size.toString()
+            emailTextView.text = auth.currentUser!!.email
+        }
     }
 
     private fun setupAddRecipeClick() {

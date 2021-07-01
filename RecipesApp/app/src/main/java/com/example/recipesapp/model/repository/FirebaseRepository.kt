@@ -145,7 +145,7 @@ class FirebaseRepository {
                     currentUser.value = null
                     return@EventListener
                 }
-                currentUser.value = value!!.toObject(User::class.java)
+                currentUser.value = value?.toObject(User::class.java)
             })
         return currentUser
     }

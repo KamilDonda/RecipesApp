@@ -7,10 +7,11 @@ import java.io.Serializable
 data class User(
     val uid: String,
     var nickname: String = "",
-    val recipes: ArrayList<String> = ArrayList()
+    val recipes: ArrayList<String> = ArrayList(),
+    val favourites: ArrayList<String> = ArrayList()
 ): Serializable {
 
-    constructor() : this("", "", ArrayList())
+    constructor() : this("", "", ArrayList(), ArrayList())
 
     companion object {
         private var _currentUser: MutableLiveData<User> = MutableLiveData()
