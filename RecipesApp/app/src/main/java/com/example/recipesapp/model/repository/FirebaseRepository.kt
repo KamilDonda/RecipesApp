@@ -27,6 +27,7 @@ class FirebaseRepository {
     private val FIELD_PUBLIC = "public"
     private val FIELD_RATING = "rating"
     private val FIELD_IMAGE = "image"
+    private val FIELD_RECIPES = "recipes"
 
     // Create new user
     fun createUser(user: User) {
@@ -127,9 +128,25 @@ class FirebaseRepository {
     private fun updatePhoto(url: String?, id: String) {
         cloud.collection(PATH_RECIPES).document(id).update(FIELD_IMAGE, url)
     }
-//==============================
 
     fun updateUser(user: User) {
         cloud.collection(PATH_USER).document(user.uid).set(user)
+    }
+
+    fun updateUserRecipes(uid: String, idsOfRecipes: List<String>) {
+        cloud.collection(PATH_USER).document(uid).update(FIELD_RECIPES, idsOfRecipes)
+    }
+
+    fun getUser(uid: String): LiveData<User> {
+        val currentUser: MutableLiveData<User> = MutableLiveData()
+        cloud.collection(PATH_USER).document(uid)
+            .addSnapshotListener(EventListener<DocumentSnapshot> { value, e ->
+                if (e != null) {
+                    currentUser.value = null
+                    return@EventListener
+                }
+                currentUser.value = value!!.toObject(User::class.java)
+            })
+        return currentUser
     }
 }

@@ -25,10 +25,13 @@ import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view.login_activity.BaseFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.auth.FirebaseAuth
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 import java.io.ByteArrayOutputStream
+import java.lang.Exception
+import java.util.*
 
 class EditRecipeFragment : BaseFragment() {
 
@@ -39,6 +42,8 @@ class EditRecipeFragment : BaseFragment() {
 
     private lateinit var ingredientsListAdapter: EditTextAdapter
     private lateinit var preparationListAdapter: EditTextAdapter
+
+    val auth = FirebaseAuth.getInstance()
 
     private var photo: Bitmap? = null
     private val GALLERY_REQUEST_CODE = 100
@@ -129,20 +134,24 @@ class EditRecipeFragment : BaseFragment() {
 
     private fun setupData() {
         editRecipeViewModel.recipe.observe(viewLifecycleOwner) {
-            if (name_textInput.text.toString() != it.name)
-                name_textInput.setText(it.name)
-            level_textView.text =
-                getString((Level.values().find { level -> level.number == it.level })!!.id)
-            time_textView.text = TimeConverter().longToString(it.time)
-            meals_textView.text = it.meals.toString()
-            if (photo == null)
-                Photo().setPhoto(it.image, requireContext(), imageView_edit_recipe)
+            try {
+                if (name_textInput.text.toString() != it.name)
+                    name_textInput.setText(it.name)
+                level_textView.text =
+                    getString((Level.values().find { level -> level.number == it.level })!!.id)
+                time_textView.text = TimeConverter().longToString(it.time)
+                meals_textView.text = it.meals.toString()
+                if (photo == null)
+                    Photo().setPhoto(it.image, requireContext(), imageView_edit_recipe)
 
-            ingredientsListAdapter.setList(it.ingredients)
-            preparationListAdapter.setList(it.preparation)
+                ingredientsListAdapter.setList(it.ingredients)
+                preparationListAdapter.setList(it.preparation)
 
-            Log.v("testt", "i" + it.ingredients.toString())
-            Log.v("testt", "a" + ingredientsListAdapter.stringList.toString())
+                Log.v("testt", "i" + it.ingredients.toString())
+                Log.v("testt", "a" + ingredientsListAdapter.stringList.toString())
+            } catch (e: Exception) {
+                Log.v("Error", e.toString())
+            }
         }
     }
 
@@ -176,7 +185,7 @@ class EditRecipeFragment : BaseFragment() {
 
     private fun setupSaveButtonClick() {
         save_button.setOnClickListener {
-            val recipe = editRecipeViewModel.recipe.value!!
+            var recipe = editRecipeViewModel.recipe.value!!
 
             if (recipe.name.length > 6) {
                 when {
@@ -189,7 +198,14 @@ class EditRecipeFragment : BaseFragment() {
                     recipe.preparation.contains("") ->
                         showSnackbar(getString(R.string.empty_preparation))
                     else -> {
-                        editRecipeViewModel.addOrUpdateRecipe(recipe)
+                        var updateRecipes = false
+                        if (recipe.id.isEmpty()) {
+                            val recipe_id = UUID.randomUUID().toString()
+                            val author = (auth.currentUser?.email ?: "anonym")
+                            recipe = recipe.copy(id = recipe_id, author = author)
+                            updateRecipes = true
+                        }
+                        editRecipeViewModel.addOrUpdateRecipe(recipe, updateRecipes)
 
                         if (photo != null) {
                             val stream = ByteArrayOutputStream()

@@ -4,11 +4,17 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
+import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.model.repository.FirebaseRepository
+import com.example.recipesapp.utils.TimeConverter
+import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 class EditRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
+    val auth = FirebaseAuth.getInstance()
 
     private var _recipe = MutableLiveData<Recipe>(Recipe.currentRecipe.value)
     val recipe: LiveData<Recipe> get() = _recipe
@@ -17,11 +23,21 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun resetRecipe() {
-        _recipe = MutableLiveData<Recipe>(Recipe.currentRecipe.value)
+        _recipe = MutableLiveData<Recipe>(Recipe.currentRecipe.value?.apply {
+            level = Level.EASY.number
+            time = TimeConverter().hourAndMinuteToLong(0, 30)
+            meals = 1
+        })
     }
 
-    fun addOrUpdateRecipe(recipe: Recipe) {
-        repository.addOrUpdateRecipe(recipe)
+    fun addOrUpdateRecipe(recipe: Recipe, updateRecipes: Boolean) {
+        if (updateRecipes) {
+            val recipes = User.currentUser.value!!.recipes
+            recipes.add(recipe.id)
+            repository.updateUserRecipes(auth.uid!!, recipes)
+            repository.addOrUpdateRecipe(recipe)
+        }
+        else repository.addOrUpdateRecipe(recipe.copy(public = false))
     }
 
     fun uploadPhoto(id: String, bytes: ByteArray) {

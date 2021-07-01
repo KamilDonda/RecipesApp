@@ -15,7 +15,7 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
 //    private val firebaseRepository = FirebaseRepository()
 
     private var _currentRecipe: MutableLiveData<Recipe> = MutableLiveData()
-    val currentRecipe: LiveData<Recipe> get() = _currentRecipe
+//    val currentRecipe: LiveData<Recipe> get() = _currentRecipe
 //    fun setCurrentRecipe(recipe: Recipe) {
 //        _currentRecipe.value = recipe
 //    }

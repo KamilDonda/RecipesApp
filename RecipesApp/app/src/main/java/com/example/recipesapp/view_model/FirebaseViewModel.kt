@@ -16,20 +16,20 @@ import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 class FirebaseViewModel(application: Application) : AndroidViewModel(application) {
-    private val firebaseRepository = FirebaseRepository()
-    val auth = FirebaseAuth.getInstance()
+//    private val firebaseRepository = FirebaseRepository()
+//    val auth = FirebaseAuth.getInstance()
 //    private val storage = FirebaseStorage.getInstance()
 
-    fun logout(activity: Activity): LiveData<String?> {
-        val message = MutableLiveData<String>()
-        auth.signOut()
-        if (auth.currentUser == null)
-            message.value = activity.getString(R.string.logout_successfully)
-        else
-            message.value = activity.getString(R.string.logout_not_successfully)
-        return message
-
-    }
+//    fun logout(activity: Activity): LiveData<String?> {
+//        val message = MutableLiveData<String>()
+//        auth.signOut()
+//        if (auth.currentUser == null)
+//            message.value = activity.getString(R.string.logout_successfully)
+//        else
+//            message.value = activity.getString(R.string.logout_not_successfully)
+//        return message
+//
+//    }
 
 //    var currentUser: MutableLiveData<User> = MutableLiveData()
 //

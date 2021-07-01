@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.AccountFragment">
+    tools:context=".view.main_activity.account.AccountFragment">
 
     <include
         android:id="@+id/include"
@@ -321,7 +321,6 @@
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/favourites_number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
