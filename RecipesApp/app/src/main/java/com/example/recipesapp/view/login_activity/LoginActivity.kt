@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.recipesapp.R
-import com.example.recipesapp.view.MainActivity
+import com.example.recipesapp.view.main_activity.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {

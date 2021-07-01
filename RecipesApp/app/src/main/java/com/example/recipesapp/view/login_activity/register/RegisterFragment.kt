@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.User
-import com.example.recipesapp.view.login_activity.BaseFragment
+import com.example.recipesapp.view.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_register.*
 

@@ -62,10 +62,10 @@ class HomeFragment : Fragment() {
         myRecipes_recyclerView.adapter = myRecipesAdapter
         mostPopular_recyclerView.adapter = mostPopularAdapter
 
-        // TODO
-        val navBar = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        if (navBar != null) {
-            navBar.getOrCreateBadge(R.id.basket).number = 2
-        }
+//        // TODO
+//        val navBar = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
+//        if (navBar != null) {
+//            navBar.getOrCreateBadge(R.id.basket).number = 2
+//        }
     }
 }

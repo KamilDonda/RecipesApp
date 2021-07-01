@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.User
-import com.example.recipesapp.view.login_activity.BaseFragment
+import com.example.recipesapp.view.BaseFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

@@ -1,8 +1,8 @@
-package com.example.recipesapp.view.login_activity
+package com.example.recipesapp.view
 
 import android.content.Intent
 import androidx.fragment.app.Fragment
-import com.example.recipesapp.view.MainActivity
+import com.example.recipesapp.view.main_activity.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment : Fragment() {

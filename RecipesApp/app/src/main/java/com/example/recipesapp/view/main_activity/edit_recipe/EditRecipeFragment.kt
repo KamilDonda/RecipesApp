@@ -22,7 +22,7 @@ import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RecipeMenu
 import com.example.recipesapp.utils.TimeConverter
-import com.example.recipesapp.view.login_activity.BaseFragment
+import com.example.recipesapp.view.BaseFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth

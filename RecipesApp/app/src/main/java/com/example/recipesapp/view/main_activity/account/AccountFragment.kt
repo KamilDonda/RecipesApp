@@ -79,8 +79,8 @@ class AccountFragment : Fragment() {
 
     private fun setupLogoutClick() {
         logout.setOnClickListener {
-            auth.signOut()
             requireActivity().finish()
+            auth.signOut()
         }
     }
 }
