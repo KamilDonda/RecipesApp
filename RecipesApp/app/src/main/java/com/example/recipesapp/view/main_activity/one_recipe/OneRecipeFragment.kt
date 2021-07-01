@@ -16,12 +16,14 @@ import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
+import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
 class OneRecipeFragment : Fragment() {
 
     private lateinit var oneRecipeViewModel: OneRecipeViewModel
+    private lateinit var editRecipeViewModel: EditRecipeViewModel
 
     private val ingredientsListAdapter = ListAdapter()
     private val preparationListAdapter = ListAdapter()
@@ -34,6 +36,8 @@ class OneRecipeFragment : Fragment() {
 
         oneRecipeViewModel =
             ViewModelProvider(requireActivity()).get(OneRecipeViewModel::class.java)
+        editRecipeViewModel =
+            ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_one_recipe, container, false)
     }
@@ -85,6 +89,7 @@ class OneRecipeFragment : Fragment() {
     }
 
     private fun setupEditClick() {
+        editRecipeViewModel.resetRecipe()
         editRecipe_button.setOnClickListener {
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
         }

@@ -16,31 +16,31 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         _recipe.value = recipe
     }
 
-    private var _ingredients = MutableLiveData<ArrayList<String>>()
-    val ingredients: LiveData<ArrayList<String>> get() = _ingredients
-    fun setIngredients(ingredients: ArrayList<String>) {
-        _ingredients.value = ingredients
-    }
-    fun updateIngredients(position: Int, text: String) {
-        setIngredients(ingredients.value!!.apply {
-            this[position] = text
-        })
-    }
+//    private var _ingredients = MutableLiveData<ArrayList<String>>()
+//    val ingredients: LiveData<ArrayList<String>> get() = _ingredients
+//    fun setIngredients(ingredients: ArrayList<String>) {
+//        _ingredients.value = ingredients
+//    }
+//    fun updateIngredients(position: Int, text: String) {
+//        setIngredients(ingredients.value!!.apply {
+//            this[position] = text
+//        })
+//    }
 
-    private var _preparation = MutableLiveData<ArrayList<String>>()
-    val preparation: LiveData<ArrayList<String>> get() = _preparation
-    fun setPreparation(preparation: ArrayList<String>) {
-        _preparation.value = preparation
-    }
-    fun updatePreparation(position: Int, text: String) {
-        setPreparation(preparation.value!!.apply {
-            this[position] = text
-        })
-    }
-
-    fun fetchData(recipe: Recipe) {
-        setRecipe(recipe)
-    }
+//    private var _preparation = MutableLiveData<ArrayList<String>>()
+//    val preparation: LiveData<ArrayList<String>> get() = _preparation
+//    fun setPreparation(preparation: ArrayList<String>) {
+//        _preparation.value = preparation
+//    }
+//    fun updatePreparation(position: Int, text: String) {
+//        setPreparation(preparation.value!!.apply {
+//            this[position] = text
+//        })
+//    }
+//
+//    fun fetchData(recipe: Recipe) {
+//        setRecipe(recipe)
+//    }
 
     fun clearData() {
         setRecipe(Recipe().apply {
@@ -50,20 +50,20 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         })
     }
 
-    private var _visibleIngredients: MutableLiveData<Boolean> = MutableLiveData()
-    val visibleIngredients: LiveData<Boolean> get() = _visibleIngredients
-    fun changeVisibilityOfIngredients() {
-        _visibleIngredients.value = !_visibleIngredients.value!!
-    }
-
-    private var _visiblePreparation: MutableLiveData<Boolean> = MutableLiveData()
-    val visiblePreparation: LiveData<Boolean> get() = _visiblePreparation
-    fun changeVisibilityOfPreparation() {
-        _visiblePreparation.value = !_visiblePreparation.value!!
-    }
-
-    init {
-        _visibleIngredients.value = true
-        _visiblePreparation.value = true
-    }
+//    private var _visibleIngredients: MutableLiveData<Boolean> = MutableLiveData()
+//    val visibleIngredients: LiveData<Boolean> get() = _visibleIngredients
+//    fun changeVisibilityOfIngredients() {
+//        _visibleIngredients.value = !_visibleIngredients.value!!
+//    }
+//
+//    private var _visiblePreparation: MutableLiveData<Boolean> = MutableLiveData()
+//    val visiblePreparation: LiveData<Boolean> get() = _visiblePreparation
+//    fun changeVisibilityOfPreparation() {
+//        _visiblePreparation.value = !_visiblePreparation.value!!
+//    }
+//
+//    init {
+//        _visibleIngredients.value = true
+//        _visiblePreparation.value = true
+//    }
 }

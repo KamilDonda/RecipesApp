@@ -17,6 +17,7 @@ import com.google.firebase.storage.StorageReference
 class FirebaseRepository {
 
     private val cloud = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance()
 
     private val PATH_USER = "users"
     private val PATH_RECIPES = "recipes"
@@ -100,22 +101,14 @@ class FirebaseRepository {
             }
         return result
     }
-//==============================
-    // Get public recipes
-//    fun getPublicRecipes(): Query {
-//        return cloud.collection(PATH_RECIPES).whereEqualTo(FIELD_PUBLIC, true)
-//    }
 
     // Add recipe to firebase or update if it exists
     fun addOrUpdateRecipe(recipe: Recipe) {
         cloud.collection(PATH_RECIPES).document(recipe.id).set(recipe)
     }
 
-    fun updateUser(user: User) {
-        cloud.collection(PATH_USER).document(user.uid).set(user)
-    }
-
-    fun uploadPhoto(storage: FirebaseStorage, id: String, bytes: ByteArray) {
+    // Upload photo to storage
+    fun uploadPhoto(id: String, bytes: ByteArray) {
         storage.getReference(PATH_IMAGES)
             .child(id)
             .putBytes(bytes)
@@ -133,5 +126,10 @@ class FirebaseRepository {
 
     private fun updatePhoto(url: String?, id: String) {
         cloud.collection(PATH_RECIPES).document(id).update(FIELD_IMAGE, url)
+    }
+//==============================
+
+    fun updateUser(user: User) {
+        cloud.collection(PATH_USER).document(user.uid).set(user)
     }
 }

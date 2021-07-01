@@ -18,7 +18,7 @@ import java.util.*
 class FirebaseViewModel(application: Application) : AndroidViewModel(application) {
     private val firebaseRepository = FirebaseRepository()
     val auth = FirebaseAuth.getInstance()
-    private val storage = FirebaseStorage.getInstance()
+//    private val storage = FirebaseStorage.getInstance()
 
     fun logout(activity: Activity): LiveData<String?> {
         val message = MutableLiveData<String>()
@@ -31,30 +31,30 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     }
 
-    var currentUser: MutableLiveData<User> = MutableLiveData()
-
-    fun updateUser(user: User) {
-        firebaseRepository.updateUser(user)
-    }
+//    var currentUser: MutableLiveData<User> = MutableLiveData()
+//
+//    fun updateUser(user: User) {
+//        firebaseRepository.updateUser(user)
+//    }
 
     // Add recipe to firebase or update if it exists
-    fun addOrUpdateRecipe(recipe: Recipe) {
-        if (recipe.id.isEmpty()) {
-            val recipe_id = UUID.randomUUID().toString()
-            firebaseRepository.addOrUpdateRecipe(
-                recipe.copy(id = recipe_id, author = currentUser.value!!.nickname)
-            )
-            currentUser.value!!.recipes.add(recipe_id)
-            updateUser(currentUser.value!!.copy(recipes = currentUser.value!!.recipes))
-        } else
-            firebaseRepository.addOrUpdateRecipe(recipe.copy(public = false))
-    }
-
-    fun setRecipeAsPublic(recipe: Recipe) {
-        firebaseRepository.addOrUpdateRecipe(recipe.copy(public = true))
-    }
-
-    fun uploadPhoto(id: String, bytes: ByteArray) {
-        firebaseRepository.uploadPhoto(storage, id, bytes)
-    }
+//    fun addOrUpdateRecipe(recipe: Recipe) {
+//        if (recipe.id.isEmpty()) {
+//            val recipe_id = UUID.randomUUID().toString()
+//            firebaseRepository.addOrUpdateRecipe(
+//                recipe.copy(id = recipe_id, author = currentUser.value!!.nickname)
+//            )
+//            currentUser.value!!.recipes.add(recipe_id)
+//            updateUser(currentUser.value!!.copy(recipes = currentUser.value!!.recipes))
+//        } else
+//            firebaseRepository.addOrUpdateRecipe(recipe.copy(public = false))
+//    }
+//
+//    fun setRecipeAsPublic(recipe: Recipe) {
+//        firebaseRepository.addOrUpdateRecipe(recipe.copy(public = true))
+//    }
+//
+//    fun uploadPhoto(id: String, bytes: ByteArray) {
+//        firebaseRepository.uploadPhoto(storage, id, bytes)
+//    }
 }
