@@ -122,13 +122,15 @@ class EditRecipeFragment : BaseFragment() {
     private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(150, 80)
+            .setAspectRatio(150, 100)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(requireContext(), this);
     }
 
     private fun setPhoto(uri: Uri) {
         photo = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
+        if (photo!!.width > 1125)
+            photo = Bitmap.createScaledBitmap(photo!!, 1125, 750, true)
         imageView_edit_recipe.setImageBitmap(photo)
     }
 
@@ -206,7 +208,7 @@ class EditRecipeFragment : BaseFragment() {
 
                         if (photo != null) {
                             val stream = ByteArrayOutputStream()
-                            val result = photo!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                            val result = photo!!.compress(Bitmap.CompressFormat.JPEG, 90, stream)
                             val byteArray = stream.toByteArray()
                             if (result) editRecipeViewModel.uploadPhoto(recipe.id, byteArray)
                         }
