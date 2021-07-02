@@ -1,6 +1,5 @@
 package com.example.recipesapp.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +39,6 @@ class RecipesAdapter(
 
     override fun getItemCount() = recipesList.size
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecipesHolder, position: Int) {
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.recipe_row_root)
         val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)

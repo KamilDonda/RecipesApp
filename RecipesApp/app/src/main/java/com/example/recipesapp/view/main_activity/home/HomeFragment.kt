@@ -11,7 +11,6 @@ import androidx.lifecycle.observe
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.MostPopularAdapter
 import com.example.recipesapp.adapter.MyRecipesAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 

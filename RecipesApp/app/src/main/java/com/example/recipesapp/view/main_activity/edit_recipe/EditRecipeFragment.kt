@@ -146,9 +146,6 @@ class EditRecipeFragment : BaseFragment() {
 
                 ingredientsListAdapter.setList(it.ingredients)
                 preparationListAdapter.setList(it.preparation)
-
-                Log.v("testt", "i" + it.ingredients.toString())
-                Log.v("testt", "a" + ingredientsListAdapter.stringList.toString())
             } catch (e: Exception) {
                 Log.v("Error", e.toString())
             }

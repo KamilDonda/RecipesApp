@@ -10,7 +10,7 @@ import com.example.recipesapp.R
 class Photo {
     companion object {
         fun setPhoto(image: String, context: Context, imageView: ImageView) {
-            if (image == "") imageView.setImageDrawable(
+            if (image.isEmpty()) imageView.setImageDrawable(
                 ContextCompat.getDrawable(context, R.drawable.meal_example)!!
             )
             else

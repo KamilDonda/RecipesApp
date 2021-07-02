@@ -1,12 +1,11 @@
 package com.example.recipesapp.view.main_activity.favourites
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.recipesapp.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class FavouritesFragment : Fragment() {
 
