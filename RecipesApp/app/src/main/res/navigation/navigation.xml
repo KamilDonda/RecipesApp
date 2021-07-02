@@ -43,12 +43,12 @@
     </fragment>
     <fragment
         android:id="@+id/basket"
-        android:name="com.example.recipesapp.view.BasketFragment"
+        android:name="com.example.recipesapp.view.main_activity.basket.BasketFragment"
         android:label="fragment_basket"
         tools:layout="@layout/fragment_basket" />
     <fragment
         android:id="@+id/favourites"
-        android:name="com.example.recipesapp.view.FavouritesFragment"
+        android:name="com.example.recipesapp.view.main_activity.favourites.FavouritesFragment"
         android:label="fragment_favourites"
         tools:layout="@layout/fragment_favourites" >
         <action
