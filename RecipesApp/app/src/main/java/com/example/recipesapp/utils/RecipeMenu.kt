@@ -8,9 +8,7 @@ import android.widget.ListPopupWindow
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
-import com.example.recipesapp.view_model.AddRecipeViewModel
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textview.MaterialTextView
 
 class RecipeMenu(
     context: Context,
