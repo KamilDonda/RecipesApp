@@ -19,12 +19,14 @@ class FirebaseRepository {
     private val PATH_USER = "users"
     private val PATH_RECIPES = "recipes"
     private val PATH_IMAGES = "images"
+
     private val FIELD_ID = "id"
     private val FIELD_UID = "uid"
     private val FIELD_PUBLIC = "public"
     private val FIELD_RATING = "rating"
     private val FIELD_IMAGE = "image"
     private val FIELD_RECIPES = "recipes"
+    private val FIELD_NAME = "name"
 
     // Create new user
     fun createUser(user: User) {
@@ -49,6 +51,7 @@ class FirebaseRepository {
         val result = MutableLiveData<List<Recipe>>()
         cloud.collection(PATH_RECIPES)
             .whereIn(FIELD_ID, list)
+            .orderBy(FIELD_NAME)
             .get()
             .addOnSuccessListener {
                 val recipes = it.toObjects(Recipe::class.java)

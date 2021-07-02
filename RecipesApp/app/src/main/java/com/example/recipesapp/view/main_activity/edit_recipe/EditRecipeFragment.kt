@@ -184,7 +184,7 @@ class EditRecipeFragment : BaseFragment() {
         save_button.setOnClickListener {
             var recipe = editRecipeViewModel.recipe.value!!
 
-            if (recipe.name.length > 6) {
+            if (recipe.name.length >= 6) {
                 when {
                     recipe.ingredients.isEmpty() ->
                         showSnackbar(getString(R.string.empty_ingredients_list))
