@@ -4,9 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -137,7 +134,7 @@ class FirebaseRepository {
         cloud.collection(PATH_USER).document(uid).update(FIELD_RECIPES, idsOfRecipes)
     }
 
-    fun getUser(uid: String): LiveData<User> {
+    fun getUser(uid: String): LiveData<User?> {
         val currentUser: MutableLiveData<User> = MutableLiveData()
         cloud.collection(PATH_USER).document(uid)
             .addSnapshotListener(EventListener<DocumentSnapshot> { value, e ->

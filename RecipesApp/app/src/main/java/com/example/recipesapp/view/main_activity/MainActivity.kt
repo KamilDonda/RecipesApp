@@ -1,8 +1,7 @@
 package com.example.recipesapp.view.main_activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         repository.getUser(auth.uid!!).observe(this) {
-            User.setCurrentUser(it)
+            if (it != null) User.setCurrentUser(it)
         }
 
         setupNavigation()
@@ -30,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     // Setup navigation between fragments
     private fun setupNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         NavigationUI.setupWithNavController(bottomNavigation, navHostFragment!!.navController)
     }
 }
