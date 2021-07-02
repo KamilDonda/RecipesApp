@@ -15,7 +15,6 @@
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
     </style>
 
     <style name="TextInputStyle">
@@ -90,5 +89,4 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">0dp</item>
     </style>
-
 </resources>
