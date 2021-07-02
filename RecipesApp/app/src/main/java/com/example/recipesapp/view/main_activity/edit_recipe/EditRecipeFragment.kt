@@ -139,10 +139,10 @@ class EditRecipeFragment : BaseFragment() {
                     name_textInput.setText(it.name)
                 level_textView.text =
                     getString((Level.values().find { level -> level.number == it.level })!!.id)
-                time_textView.text = TimeConverter().longToString(it.time)
+                time_textView.text = TimeConverter.longToString(it.time)
                 meals_textView.text = it.meals.toString()
                 if (photo == null)
-                    Photo().setPhoto(it.image, requireContext(), imageView_edit_recipe)
+                    Photo.setPhoto(it.image, requireContext(), imageView_edit_recipe)
 
                 ingredientsListAdapter.setList(it.ingredients)
                 preparationListAdapter.setList(it.preparation)
@@ -257,7 +257,7 @@ class EditRecipeFragment : BaseFragment() {
             picker.addOnPositiveButtonClickListener {
                 val h = picker.hour
                 val m = picker.minute
-                val time = TimeConverter().hourAndMinuteToLong(h, m)
+                val time = TimeConverter.hourAndMinuteToLong(h, m)
 
                 editRecipeViewModel.recipe.value?.copy(time = time)?.let {
                     editRecipeViewModel.setRecipe(it)

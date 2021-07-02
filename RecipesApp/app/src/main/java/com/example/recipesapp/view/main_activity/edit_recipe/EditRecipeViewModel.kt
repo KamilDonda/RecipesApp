@@ -25,7 +25,7 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
     fun resetRecipe() {
         _recipe = MutableLiveData<Recipe>(Recipe.currentRecipe.value?.apply {
             level = Level.EASY.number
-            time = TimeConverter().hourAndMinuteToLong(0, 30)
+            time = TimeConverter.hourAndMinuteToLong(0, 30)
             meals = 1
         })
     }

@@ -46,9 +46,9 @@ class MyRecipesAdapter(
         val item = recipesList[position]
 
         name.text = item.name
-        time.text = TimeConverter().longToString(item.time)
+        time.text = TimeConverter.longToString(item.time)
         meals.text = item.meals.toString()
-        Photo().setPhoto(item.image, context, imageView)
+        Photo.setPhoto(item.image, context, imageView)
 
         root.setOnClickListener {
             Recipe.setCurrentRecipe(item)

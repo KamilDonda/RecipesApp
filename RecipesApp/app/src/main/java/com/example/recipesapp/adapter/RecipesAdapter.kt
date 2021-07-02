@@ -55,13 +55,13 @@ class RecipesAdapter(
 
         name.text = item.name
         level.text = context.getString(
-            (Level.values().find { level -> level.number == item.level }!!.id)
+            (Level.values().find { lvl -> lvl.number == item.level }!!.id)
         )
-        time.text = TimeConverter().longToString(item.time)
+        time.text = TimeConverter.longToString(item.time)
         meals.text = item.meals.toString()
         author.text = item.author
-        RatingSystem().displayStars(context, ratingLayout, item.rating)
-        Photo().setPhoto(item.image, context, imageView)
+        RatingSystem.displayStars(context, ratingLayout, item.rating)
+        Photo.setPhoto(item.image, context, imageView)
 
         root.setOnClickListener {
             Recipe.setCurrentRecipe(item)

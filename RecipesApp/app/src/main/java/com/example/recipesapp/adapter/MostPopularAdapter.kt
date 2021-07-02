@@ -46,8 +46,8 @@ class MostPopularAdapter(
         val item = recipesList[position]
 
         name.text = item.name
-        RatingSystem().displayStars(context, ratingLayout, item.rating)
-        Photo().setPhoto(item.image, context, imageView)
+        RatingSystem.displayStars(context, ratingLayout, item.rating)
+        Photo.setPhoto(item.image, context, imageView)
 
         root.setOnClickListener {
             Recipe.setCurrentRecipe(item)
