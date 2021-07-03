@@ -13,18 +13,22 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val auth = FirebaseAuth.getInstance()
-    val repository = FirebaseRepository()
+    private val auth = FirebaseAuth.getInstance()
+    private val repository = FirebaseRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupUser()
+        setupNavigation()
+    }
+
+    // Setup current User
+    private fun setupUser() {
         repository.getUser(auth.uid!!).observe(this) {
             if (it != null) User.setCurrentUser(it)
         }
-
-        setupNavigation()
     }
 
     // Setup navigation between fragments

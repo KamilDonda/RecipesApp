@@ -1,19 +1,16 @@
 package com.example.recipesapp.view.main_activity.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.MostPopularAdapter
 import com.example.recipesapp.adapter.MyRecipesAdapter
 import com.example.recipesapp.model.entity.User
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -22,8 +19,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var myRecipesAdapter: MyRecipesAdapter
     private lateinit var mostPopularAdapter: MostPopularAdapter
-
-    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -39,6 +34,8 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupRefreshAction()
 
         User.currentUser.observe(viewLifecycleOwner) {
             homeViewModel.myRecipes(it.recipes)
@@ -63,5 +60,15 @@ class HomeFragment : Fragment() {
 //        if (navBar != null) {
 //            navBar.getOrCreateBadge(R.id.basket).number = 2
 //        }
+    }
+
+    // Setup refresh
+    private fun setupRefreshAction() {
+        swipeRefreshLayout.setOnRefreshListener {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition( 0, 0)
+            startActivity(requireActivity().intent)
+            requireActivity().overridePendingTransition( 0, 0)
+        }
     }
 }
