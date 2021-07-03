@@ -205,10 +205,11 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ingredients_recyclerView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ingredients_textView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -240,10 +241,11 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/preparation_recyclerView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/preparation_textView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
