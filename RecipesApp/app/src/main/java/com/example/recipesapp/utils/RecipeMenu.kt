@@ -23,7 +23,7 @@ class RecipeMenu(
 
     init {
         listPopupWindow.anchorView = button
-        val adapter = ArrayAdapter(context, R.layout.list_popup_window_item, list)
+        val adapter = ArrayAdapter(context, R.layout.item_list_popup_window, list)
         listPopupWindow.setAdapter(adapter)
 
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->

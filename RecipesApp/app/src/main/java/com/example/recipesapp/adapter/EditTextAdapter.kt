@@ -29,7 +29,7 @@ class EditTextAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditTextHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.edit_text_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_edit_text, parent, false)
         return EditTextHolder(view)
     }
 

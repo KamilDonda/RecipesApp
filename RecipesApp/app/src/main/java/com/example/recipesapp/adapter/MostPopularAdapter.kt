@@ -31,7 +31,7 @@ class MostPopularAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.most_popular_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_most_popular, parent, false)
         return RecipesHolder(view)
     }
 

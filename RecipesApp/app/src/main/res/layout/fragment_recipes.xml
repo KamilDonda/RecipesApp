@@ -25,6 +25,6 @@
         android:overScrollMode="never"
         android:src="@drawable/meal_example"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/recipe_row" />
+        tools:listitem="@layout/item_recipe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

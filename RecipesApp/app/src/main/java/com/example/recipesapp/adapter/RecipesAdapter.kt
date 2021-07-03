@@ -33,7 +33,7 @@ class RecipesAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recipe_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recipe, parent, false)
         return RecipesHolder(view)
     }
 

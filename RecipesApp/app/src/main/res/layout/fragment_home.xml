@@ -68,7 +68,7 @@
                 android:padding="@dimen/very_small_space"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/my_recipe_row" />
+                tools:listitem="@layout/item_my_recipe" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mostPopular_textView"
@@ -91,7 +91,7 @@
                 android:padding="@dimen/very_small_space"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/mostPopular_textView"
-                tools:listitem="@layout/most_popular_row" />
+                tools:listitem="@layout/item_most_popular" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
