@@ -13,6 +13,7 @@ import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
+import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
@@ -73,11 +74,10 @@ class OneRecipeFragment : Fragment() {
             ingredientsListAdapter.setList(it.ingredients)
             preparationListAdapter.setList(it.preparation)
 
-            oneRecipeViewModel.getIdOfRecipes(auth.currentUser!!.uid)
-                .observe(viewLifecycleOwner) { list ->
-                    buttons_constraintLayout.visibility =
-                        if (list.contains(it.id)) View.VISIBLE else View.GONE
-                }
+            User.currentUser.observe(viewLifecycleOwner) { user ->
+                buttons_constraintLayout.visibility =
+                    if (user.recipes.contains(it.id)) View.VISIBLE else View.GONE
+            }
         }
     }
 

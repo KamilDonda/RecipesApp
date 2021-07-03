@@ -10,7 +10,6 @@ import com.example.recipesapp.model.repository.FirebaseRepository
 class OneRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
 
-    fun getIdOfRecipes(uid: String) = repository.getIdOfRecipes(uid)
     fun setRecipeAsPublic(recipe: Recipe) {
         repository.addOrUpdateRecipe(recipe.copy(public = true))
     }

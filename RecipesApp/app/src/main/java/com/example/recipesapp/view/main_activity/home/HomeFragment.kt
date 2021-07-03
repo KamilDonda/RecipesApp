@@ -1,6 +1,7 @@
 package com.example.recipesapp.view.main_activity.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.lifecycle.observe
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.MostPopularAdapter
 import com.example.recipesapp.adapter.MyRecipesAdapter
+import com.example.recipesapp.model.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -38,17 +40,12 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // 1: Get list of Strings with id of user's recipes
-        // 2: Get user's recipes from Firebase
-        homeViewModel.getIdOfRecipes(auth.currentUser!!.uid).observe(viewLifecycleOwner, Observer {
-            if (!it.isNullOrEmpty() &&
-                (myRecipesAdapter.itemCount == 0 || myRecipesAdapter.itemCount != it.size)
-            )
-                homeViewModel.myRecipes(it as ArrayList<String>)
-                    .observe(viewLifecycleOwner) { list ->
-                        myRecipesAdapter.setRecipes(list)
-                    }
-        })
+        User.currentUser.observe(viewLifecycleOwner) {
+            homeViewModel.myRecipes(it.recipes)
+                .observe(viewLifecycleOwner) { list ->
+                    myRecipesAdapter.setRecipes(list)
+                }
+        }
 
         homeViewModel.mostPopular.observe(viewLifecycleOwner) {
             mostPopularAdapter.setRecipes(it)

@@ -9,5 +9,4 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     val mostPopular = repository.getMostPopular()
     fun myRecipes(list: ArrayList<String>) = repository.getUserRecipes(list)
-    fun getIdOfRecipes(uid: String) = repository.getIdOfRecipes(uid)
 }

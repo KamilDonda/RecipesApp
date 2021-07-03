@@ -60,21 +60,6 @@ class FirebaseRepository {
         return result
     }
 
-    // Get id list of recipes
-    fun getIdOfRecipes(uid: String): LiveData<List<String>> {
-        val result = MutableLiveData<List<String>>()
-        cloud.collection(PATH_USER)
-            .document(uid)
-            .addSnapshotListener(EventListener<DocumentSnapshot> { value, e ->
-                if (e != null) {
-                    result.value = null
-                    return@EventListener
-                }
-                result.value = value!!.toObject(User::class.java)?.recipes
-            })
-        return result
-    }
-
     // Get most popular recipes
     fun getMostPopular(): LiveData<List<Recipe>> {
         val result = MutableLiveData<List<Recipe>>()
