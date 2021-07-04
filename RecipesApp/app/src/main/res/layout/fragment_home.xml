@@ -33,7 +33,6 @@
                         layout="@layout/background_home" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/materialTextView3"
                         style="@style/Widget.MaterialComponents.TextView.PageName"
                         android:text="@string/home"
                         app:layout_constraintStart_toStartOf="parent"

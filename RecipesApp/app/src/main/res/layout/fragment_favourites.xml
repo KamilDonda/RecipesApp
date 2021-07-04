@@ -12,7 +12,6 @@
         layout="@layout/background_favourites" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView3"
         style="@style/Widget.MaterialComponents.TextView.PageName"
         android:text="@string/favourites"
         app:layout_constraintStart_toStartOf="parent"

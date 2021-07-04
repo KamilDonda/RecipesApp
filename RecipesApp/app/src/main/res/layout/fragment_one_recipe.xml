@@ -80,7 +80,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/name_textView">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout3"
+                        android:id="@+id/constraintLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                         android:layout_height="@dimen/icon_size"
                         app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
                         app:layout_constraintHorizontal_bias="0.35"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+                        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_time_4"
                         app:tint="@color/text_color_dark" />
@@ -162,8 +162,8 @@
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/small_space"
                         android:textSize="@dimen/small_text_size"
-                        app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                     <LinearLayout
                         android:id="@+id/rating_linearLayout"
@@ -182,7 +182,7 @@
 
         <!-- Ingredients -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView3"
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_space"
@@ -222,7 +222,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_space"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/preparation_constraintLayout"

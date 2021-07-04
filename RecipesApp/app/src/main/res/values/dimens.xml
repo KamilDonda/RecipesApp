@@ -22,4 +22,6 @@
     <dimen name="mainImage_height">200dp</dimen>
     <dimen name="icon_size">24dp</dimen>
     <dimen name="icon_small_size">14sp</dimen>
+    <dimen name="account_icon_size">60dp</dimen>
+    <dimen name="account_icon_size_small">50dp</dimen>
 </resources>

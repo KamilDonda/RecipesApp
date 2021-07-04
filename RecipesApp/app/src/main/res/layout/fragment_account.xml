@@ -14,7 +14,6 @@
         android:layout_height="wrap_content" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView4"
         style="@style/Widget.MaterialComponents.TextView.PageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,19 +45,15 @@
                 style="@style/Widget.MaterialComponents.TextView.ButtonName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="16"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="@dimen/account_icon_size_small"
+                android:layout_height="@dimen/account_icon_size_small"
+                android:layout_marginVertical="@dimen/small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -93,19 +88,15 @@
                 style="@style/Widget.MaterialComponents.TextView.ButtonName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="12"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="@dimen/account_icon_size_small"
+                android:layout_height="@dimen/account_icon_size_small"
+                android:layout_marginVertical="@dimen/small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -137,23 +128,22 @@
             app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name_textView3"
                 style="@style/Widget.MaterialComponents.TextView.ButtonName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/small_space"
                 android:text="@string/add_recipe"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toTopOf="@+id/imageView3"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/account_icon_size"
+                android:layout_height="@dimen/account_icon_size"
+                android:layout_marginBottom="@dimen/small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,23 +173,22 @@
             app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name_textView4"
                 style="@style/Widget.MaterialComponents.TextView.ButtonName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/small_space"
                 android:text="@string/my_recipes"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toTopOf="@+id/imageView4"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
+                android:id="@+id/imageView2"
+                android:layout_width="@dimen/account_icon_size"
+                android:layout_height="@dimen/account_icon_size"
+                android:layout_marginBottom="@dimen/small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,7 +223,7 @@
                 style="@style/Widget.MaterialComponents.TextView.ButtonName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/small_space"
                 android:text="@string/edit_profile"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@+id/imageView5"
@@ -244,9 +233,9 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="@dimen/account_icon_size"
+                android:layout_height="@dimen/account_icon_size"
+                android:layout_marginBottom="@dimen/small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -280,7 +269,7 @@
                 style="@style/Widget.MaterialComponents.TextView.ButtonName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/small_space"
                 android:text="@string/logout"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@+id/imageView6"
@@ -290,9 +279,9 @@
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="@dimen/account_icon_size"
+                android:layout_height="@dimen/account_icon_size"
+                android:layout_marginBottom="@dimen/small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -309,8 +298,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <TextView
