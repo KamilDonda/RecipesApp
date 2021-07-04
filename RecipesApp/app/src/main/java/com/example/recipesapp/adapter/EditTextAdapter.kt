@@ -1,6 +1,5 @@
 package com.example.recipesapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,6 @@ class EditTextAdapter(
         }
 
         deleteButton.setOnClickListener {
-            Log.v("testt", "position: $position")
             deleteItem(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, stringList.size)
