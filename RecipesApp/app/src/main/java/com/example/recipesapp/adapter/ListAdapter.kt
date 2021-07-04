@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ListAdapter() :
+class ListAdapter(private val click: () -> Unit) :
     RecyclerView.Adapter<ListAdapter.ListHolder>() {
 
     inner class ListHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -30,5 +30,9 @@ class ListAdapter() :
     override fun onBindViewHolder(holder: ListHolder, position: Int) {
         val text = holder.itemView.rootView as TextView
         text.text = stringList[position]
+
+        text.setOnClickListener {
+            click()
+        }
     }
 }

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.ListAdapter
 import com.example.recipesapp.model.entity.Level
@@ -18,18 +20,16 @@ import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
+
 
 class OneRecipeFragment : Fragment() {
 
     private lateinit var oneRecipeViewModel: OneRecipeViewModel
     private lateinit var editRecipeViewModel: EditRecipeViewModel
 
-    private val ingredientsListAdapter = ListAdapter()
-    private val preparationListAdapter = ListAdapter()
-
-    private val auth = FirebaseAuth.getInstance()
+    private val ingredientsListAdapter = ListAdapter { oneRecipeViewModel.changeVisibilityOfIngredients() }
+    private val preparationListAdapter = ListAdapter { oneRecipeViewModel.changeVisibilityOfPreparation() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -57,6 +57,11 @@ class OneRecipeFragment : Fragment() {
 
         ingredients_recyclerView.adapter = ingredientsListAdapter
         preparation_recyclerView.adapter = preparationListAdapter
+
+        DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
+            ingredients_recyclerView.addItemDecoration(this)
+            preparation_recyclerView.addItemDecoration(this)
+        }
     }
 
     private fun setupData() {
