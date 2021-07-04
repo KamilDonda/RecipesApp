@@ -57,19 +57,13 @@ class EditRecipeFragment : BaseFragment() {
 
         ingredientsListAdapter =
             EditTextAdapter(
-                { p: Int, s: String ->
-                    editRecipeViewModel.updateIngredients(p, s)
-                }, {
-                    editRecipeViewModel.deleteIngredient(it)
-                }
+                { p: Int, s: String -> editRecipeViewModel.updateIngredients(p, s) },
+                { editRecipeViewModel.deleteIngredient(it) }
             )
         preparationListAdapter =
             EditTextAdapter(
-                { p: Int, s: String ->
-                    editRecipeViewModel.updatePreparation(p, s)
-                }, {
-                    editRecipeViewModel.deletePreparation(it)
-                }
+                { p: Int, s: String -> editRecipeViewModel.updatePreparation(p, s) },
+                { editRecipeViewModel.deletePreparation(it) }
             )
 
         return inflater.inflate(R.layout.fragment_edit_recipe, container, false)
@@ -198,7 +192,10 @@ class EditRecipeFragment : BaseFragment() {
                         showSnackbar(getString(R.string.empty_preparation))
                     else -> {
                         var updateRecipes = false
+
+                        // The condition is true when the recipe is new
                         if (recipe.id.isEmpty()) {
+                            // Generate random uid
                             val recipe_id = UUID.randomUUID().toString()
                             val author = (auth.currentUser?.email ?: "anonym")
                             recipe = recipe.copy(id = recipe_id, author = author)
@@ -206,6 +203,7 @@ class EditRecipeFragment : BaseFragment() {
                         }
                         editRecipeViewModel.addOrUpdateRecipe(recipe, updateRecipes)
 
+                        // Update/Add photo
                         if (photo != null) {
                             val stream = ByteArrayOutputStream()
                             val result = photo!!.compress(Bitmap.CompressFormat.JPEG, 90, stream)
@@ -278,9 +276,7 @@ class EditRecipeFragment : BaseFragment() {
             val temp = editRecipeViewModel.recipe.value!!.ingredients
             temp.add("")
             editRecipeViewModel.setRecipe(editRecipeViewModel.recipe.value!!.copy(ingredients = temp))
-            val position =
-                if (ingredientsListAdapter.itemCount >= 1) ingredientsListAdapter.itemCount - 1 else 0
-            ingredientsListAdapter.notifyItemRangeInserted(position, 1)
+            ingredientsListAdapter.notifyItemInserted(temp.size - 1)
         }
     }
 
@@ -289,9 +285,7 @@ class EditRecipeFragment : BaseFragment() {
             val temp = editRecipeViewModel.recipe.value!!.preparation
             temp.add("")
             editRecipeViewModel.setRecipe(editRecipeViewModel.recipe.value!!.copy(preparation = temp))
-            val position =
-                if (preparationListAdapter.itemCount >= 1) preparationListAdapter.itemCount - 1 else 0
-            preparationListAdapter.notifyItemRangeInserted(position, 1)
+            preparationListAdapter.notifyItemInserted(temp.size - 1)
         }
     }
 
