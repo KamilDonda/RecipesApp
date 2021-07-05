@@ -28,6 +28,7 @@
     <string name="empty_preparation">The preparation section cannot contain an empty element!</string>
     <string name="empty_ingredients_list">The ingredients list cannot be empty!</string>
     <string name="empty_preparation_list">The preparation list cannot be empty!</string>
+    <string name="copied">Copied to clipboard!</string>
 
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>

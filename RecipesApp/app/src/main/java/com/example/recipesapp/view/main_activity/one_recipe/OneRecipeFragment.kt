@@ -1,11 +1,16 @@
 package com.example.recipesapp.view.main_activity.one_recipe
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -52,12 +57,11 @@ class OneRecipeFragment : Fragment() {
         setupData()
         setupPublicClick()
         setupEditClick()
-        setupIngredientsClick()
-        setupPreparationClick()
-        setupIngredientsObserver()
-        setupPreparationObserver()
+        setupVisibilityClick()
+        setupVisibilityObservers()
         setupSelectAllClick()
         setupFabClick()
+        setupCopyClick()
 
         ingredients_recyclerView.adapter = ingredientsListAdapter
         preparation_recyclerView.adapter = preparationListAdapter
@@ -109,26 +113,20 @@ class OneRecipeFragment : Fragment() {
         }
     }
 
-    private fun setupIngredientsClick() {
+    private fun setupVisibilityClick() {
         ingredients_constraintLayout.setOnClickListener {
             if (!oneRecipeViewModel.isSelectedMode.value!!)
                 oneRecipeViewModel.changeVisibilityOfIngredients()
         }
-    }
-
-    private fun setupPreparationClick() {
         preparation_constraintLayout.setOnClickListener {
             oneRecipeViewModel.changeVisibilityOfPreparation()
         }
     }
 
-    private fun setupIngredientsObserver() {
+    private fun setupVisibilityObservers() {
         oneRecipeViewModel.visibleIngredients.observe(viewLifecycleOwner) {
             ingredients_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
         }
-    }
-
-    private fun setupPreparationObserver() {
         oneRecipeViewModel.visiblePreparation.observe(viewLifecycleOwner) {
             preparation_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
         }
@@ -145,5 +143,30 @@ class OneRecipeFragment : Fragment() {
             // TODO
             Log.v("test", ingredientsListAdapter.getSelectedList().toString())
         }
+    }
+
+    private fun setupCopyClick() {
+        ingredients_constraintLayout.setOnLongClickListener {
+            context?.copyToClipboard(
+                Recipe.currentRecipe.value!!.ingredients.joinToString(
+                    prefix = "[",
+                    postfix = "]"
+                )
+            )
+            true
+        }
+        preparation_constraintLayout.setOnLongClickListener {
+            context?.copyToClipboard(Recipe.currentRecipe.value!!.preparation.mapIndexed { index, s ->
+                "${index + 1}. $s"
+            }.joinToString(separator = "\n"))
+            true
+        }
+    }
+
+    private fun Context.copyToClipboard(text: CharSequence) {
+        val clipboard = ContextCompat.getSystemService(this, ClipboardManager::class.java)
+        clipboard?.setPrimaryClip(ClipData.newPlainText("", text))
+        Log.v("test", text.toString())
+        Toast.makeText(this, getString(R.string.copied), Toast.LENGTH_LONG).show()
     }
 }
