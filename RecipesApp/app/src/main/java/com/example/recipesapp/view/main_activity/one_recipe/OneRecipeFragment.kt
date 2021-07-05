@@ -58,6 +58,7 @@ class OneRecipeFragment : Fragment() {
         setupPreparationClick()
         setupIngredientsObserver()
         setupPreparationObserver()
+        setupSelectAllClick()
 
         ingredients_recyclerView.adapter = ingredientsListAdapter
         preparation_recyclerView.adapter = preparationListAdapter
@@ -87,6 +88,10 @@ class OneRecipeFragment : Fragment() {
                     if (user.recipes.contains(it.id)) View.VISIBLE else View.GONE
             }
         }
+
+        oneRecipeViewModel.isSelectedMode.observe(viewLifecycleOwner) {
+            select_all_button.visibility = if (it) View.VISIBLE else View.INVISIBLE
+        }
     }
 
     private fun setupPublicClick() {
@@ -105,7 +110,8 @@ class OneRecipeFragment : Fragment() {
 
     private fun setupIngredientsClick() {
         ingredients_constraintLayout.setOnClickListener {
-            oneRecipeViewModel.changeVisibilityOfIngredients()
+            if (!oneRecipeViewModel.isSelectedMode.value!!)
+                oneRecipeViewModel.changeVisibilityOfIngredients()
         }
     }
 
@@ -124,6 +130,12 @@ class OneRecipeFragment : Fragment() {
     private fun setupPreparationObserver() {
         oneRecipeViewModel.visiblePreparation.observe(viewLifecycleOwner) {
             preparation_recyclerView.visibility = if (it) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun setupSelectAllClick() {
+        select_all_button.setOnClickListener {
+            ingredientsListAdapter.selectAll()
         }
     }
 }

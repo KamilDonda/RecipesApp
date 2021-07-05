@@ -25,9 +25,12 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         stringList.addAll(list)
         notifyDataSetChanged()
 
+        // Fill list with false
         selectedItems.addAll(stringList.map { false })
         viewModel.setSelectedMode(false)
     }
+
+    private val items = ArrayList<Triple<MaterialCardView, ImageView, MaterialTextView>>()
 
     private val selectedItems = ArrayList<Boolean>()
 
@@ -44,6 +47,7 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_ingredient_textView)
         val text = holder.itemView.findViewById<MaterialTextView>(R.id.materialTextView)
         val icon = holder.itemView.findViewById<ImageView>(R.id.icon_circle)
+        items.add(Triple(root, icon, number))
 
         root.setOnLongClickListener {
             selectItem(position, root, icon, number)
@@ -51,8 +55,9 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         }
 
         root.setOnClickListener {
-            if (viewModel.isSelectedMode)
+            if (viewModel.isSelectedMode.value!!) {
                 selectItem(position, root, icon, number)
+            }
         }
 
         number.text = (position + 1).toString()
@@ -61,22 +66,35 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
 
     private fun selectItem(position: Int, root: MaterialCardView, icon: ImageView, number: MaterialTextView) {
         selectedItems[position] = !selectedItems[position]
-
-        if (selectedItems[position]) {
-            val color = ContextCompat.getColor(context, R.color.light_green)
-            root.setCardBackgroundColor(color)
-            icon.visibility = View.VISIBLE
-            number.visibility = View.INVISIBLE
-
-            viewModel.setSelectedMode(true)
-        } else {
-            root.setCardBackgroundColor(Color.TRANSPARENT)
-            icon.visibility = View.INVISIBLE
-            number.visibility = View.VISIBLE
-        }
+        val isSelected = selectedItems[position]
+        changeSelected(isSelected, root, icon, number)
+        if (isSelected) viewModel.setSelectedMode(true)
 
         if (!selectedItems.contains(true)) {
             viewModel.setSelectedMode(false)
+        }
+    }
+
+    private fun changeSelected(isSelected: Boolean, root: MaterialCardView, icon: ImageView, number: MaterialTextView) {
+        val color: Int
+        if (isSelected) {
+            color = ContextCompat.getColor(context, R.color.light_green)
+            icon.visibility = View.VISIBLE
+            number.visibility = View.INVISIBLE
+        } else {
+            color = Color.TRANSPARENT
+            icon.visibility = View.INVISIBLE
+            number.visibility = View.VISIBLE
+        }
+        root.setCardBackgroundColor(color)
+    }
+
+    fun selectAll() {
+        val bool = selectedItems.contains(false)
+        selectedItems.fill(bool)
+        viewModel.setSelectedMode(bool)
+        selectedItems.forEachIndexed { index, _ ->
+            changeSelected(bool, items[index].first, items[index].second, items[index].third)
         }
     }
 }

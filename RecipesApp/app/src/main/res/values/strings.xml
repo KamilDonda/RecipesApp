@@ -44,6 +44,8 @@
     <string name="select_time_desc">Select preparation time</string>
     <string name="select_meals">Select count</string>
     <string name="select_meals_desc">Select meals count</string>
+    <string name="select_all">Select all</string>
+    <string name="unselect_all">Unselect all</string>
     <string name="edit">Edit</string>
     <string name="public_recipe">Public</string>
     <string name="save">Save</string>

@@ -204,6 +204,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/select_all_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetBottom="0dp"
+                    android:text="@string/select_all"
+                    android:visibility="invisible"
+                    app:icon="@drawable/ic_arrow"
+                    app:iconGravity="end"
+                    app:layout_constraintBottom_toBottomOf="@+id/ingredients_textView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ingredients_recyclerView"
                     android:layout_width="match_parent"

@@ -31,9 +31,9 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         _visiblePreparation.value = true
     }
 
-    var isSelectedMode = false
-        private set
+    private var _isSelectedMode: MutableLiveData<Boolean> = MutableLiveData()
+    val isSelectedMode: LiveData<Boolean> get() =_isSelectedMode
     fun setSelectedMode(mode: Boolean) {
-        isSelectedMode = mode
+        _isSelectedMode.value = mode
     }
 }
