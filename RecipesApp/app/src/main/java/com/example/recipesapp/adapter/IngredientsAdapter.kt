@@ -41,34 +41,38 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
 
     override fun onBindViewHolder(holder: ListHolder, position: Int) {
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.root)
+        val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_ingredient_textView)
         val text = holder.itemView.findViewById<MaterialTextView>(R.id.materialTextView)
         val icon = holder.itemView.findViewById<ImageView>(R.id.icon_circle)
 
         root.setOnLongClickListener {
-            selectItem(position, root, icon)
+            selectItem(position, root, icon, number)
             true
         }
 
         root.setOnClickListener {
             if (viewModel.isSelectedMode)
-                selectItem(position, root, icon)
+                selectItem(position, root, icon, number)
         }
 
+        number.text = (position + 1).toString()
         text.text = stringList[position]
     }
 
-    private fun selectItem(position: Int, root: MaterialCardView, icon: ImageView) {
+    private fun selectItem(position: Int, root: MaterialCardView, icon: ImageView, number: MaterialTextView) {
         selectedItems[position] = !selectedItems[position]
 
         if (selectedItems[position]) {
             val color = ContextCompat.getColor(context, R.color.light_green)
             root.setCardBackgroundColor(color)
             icon.visibility = View.VISIBLE
+            number.visibility = View.INVISIBLE
 
             viewModel.setSelectedMode(true)
         } else {
             root.setCardBackgroundColor(Color.TRANSPARENT)
             icon.visibility = View.INVISIBLE
+            number.visibility = View.VISIBLE
         }
 
         if (!selectedItems.contains(true)) {
