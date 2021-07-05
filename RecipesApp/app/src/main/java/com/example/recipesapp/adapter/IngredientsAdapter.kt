@@ -64,7 +64,12 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         text.text = stringList[position]
     }
 
-    private fun selectItem(position: Int, root: MaterialCardView, icon: ImageView, number: MaterialTextView) {
+    private fun selectItem(
+        position: Int,
+        root: MaterialCardView,
+        icon: ImageView,
+        number: MaterialTextView
+    ) {
         selectedItems[position] = !selectedItems[position]
         val isSelected = selectedItems[position]
         changeSelected(isSelected, root, icon, number)
@@ -73,9 +78,15 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         if (!selectedItems.contains(true)) {
             viewModel.setSelectedMode(false)
         }
+        viewModel.setAllSelected(!selectedItems.contains(false))
     }
 
-    private fun changeSelected(isSelected: Boolean, root: MaterialCardView, icon: ImageView, number: MaterialTextView) {
+    private fun changeSelected(
+        isSelected: Boolean,
+        root: MaterialCardView,
+        icon: ImageView,
+        number: MaterialTextView
+    ) {
         val color: Int
         if (isSelected) {
             color = ContextCompat.getColor(context, R.color.light_green)
@@ -91,6 +102,7 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
 
     fun selectAll() {
         val bool = selectedItems.contains(false)
+        viewModel.setAllSelected(bool)
         selectedItems.fill(bool)
         viewModel.setSelectedMode(bool)
         selectedItems.forEachIndexed { index, _ ->

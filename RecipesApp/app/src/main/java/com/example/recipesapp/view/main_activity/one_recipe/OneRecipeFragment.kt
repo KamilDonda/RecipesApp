@@ -92,6 +92,11 @@ class OneRecipeFragment : Fragment() {
         oneRecipeViewModel.isSelectedMode.observe(viewLifecycleOwner) {
             select_all_button.visibility = if (it) View.VISIBLE else View.INVISIBLE
         }
+
+        oneRecipeViewModel.allSelected.observe(viewLifecycleOwner) {
+            select_all_button.text =
+                if (it) getString(R.string.unselect_all) else getString(R.string.select_all)
+        }
     }
 
     private fun setupPublicClick() {

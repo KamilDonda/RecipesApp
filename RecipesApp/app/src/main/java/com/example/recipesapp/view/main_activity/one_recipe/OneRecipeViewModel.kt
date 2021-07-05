@@ -26,14 +26,20 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         _visiblePreparation.value = !_visiblePreparation.value!!
     }
 
-    init {
-        _visibleIngredients.value = true
-        _visiblePreparation.value = true
-    }
-
     private var _isSelectedMode: MutableLiveData<Boolean> = MutableLiveData()
     val isSelectedMode: LiveData<Boolean> get() =_isSelectedMode
     fun setSelectedMode(mode: Boolean) {
         _isSelectedMode.value = mode
+    }
+
+    private var _allSelected: MutableLiveData<Boolean> = MutableLiveData()
+    val allSelected: LiveData<Boolean> get() =_allSelected
+    fun setAllSelected(selected: Boolean) {
+        _allSelected.value = selected
+    }
+
+    init {
+        _visibleIngredients.value = true
+        _visiblePreparation.value = true
     }
 }
