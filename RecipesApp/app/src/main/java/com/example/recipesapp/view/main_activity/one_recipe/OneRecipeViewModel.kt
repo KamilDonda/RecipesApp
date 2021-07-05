@@ -30,4 +30,10 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         _visibleIngredients.value = true
         _visiblePreparation.value = true
     }
+
+    var isSelectedMode = false
+        private set
+    fun setSelectedMode(mode: Boolean) {
+        isSelectedMode = mode
+    }
 }

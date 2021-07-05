@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipesapp.R
+import com.example.recipesapp.adapter.IngredientsAdapter
 import com.example.recipesapp.adapter.ListAdapter
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
@@ -28,8 +29,9 @@ class OneRecipeFragment : Fragment() {
     private lateinit var oneRecipeViewModel: OneRecipeViewModel
     private lateinit var editRecipeViewModel: EditRecipeViewModel
 
-    private val ingredientsListAdapter = ListAdapter { oneRecipeViewModel.changeVisibilityOfIngredients() }
-    private val preparationListAdapter = ListAdapter { oneRecipeViewModel.changeVisibilityOfPreparation() }
+    private lateinit var ingredientsListAdapter: IngredientsAdapter
+    private val preparationListAdapter =
+        ListAdapter { oneRecipeViewModel.changeVisibilityOfPreparation() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -39,6 +41,8 @@ class OneRecipeFragment : Fragment() {
             ViewModelProvider(requireActivity()).get(OneRecipeViewModel::class.java)
         editRecipeViewModel =
             ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
+
+        ingredientsListAdapter = IngredientsAdapter(requireContext(), oneRecipeViewModel)
 
         return inflater.inflate(R.layout.fragment_one_recipe, container, false)
     }
@@ -59,7 +63,6 @@ class OneRecipeFragment : Fragment() {
         preparation_recyclerView.adapter = preparationListAdapter
 
         DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
-            ingredients_recyclerView.addItemDecoration(this)
             preparation_recyclerView.addItemDecoration(this)
         }
     }
