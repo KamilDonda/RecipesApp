@@ -109,4 +109,12 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
             changeSelected(bool, items[index].first, items[index].second, items[index].third)
         }
     }
+
+    fun getSelectedList(): ArrayList<String> {
+        val arrayList = ArrayList<String>()
+        stringList.forEachIndexed { index, s ->
+            if (selectedItems[index]) arrayList.add(s)
+        }
+        return arrayList
+    }
 }

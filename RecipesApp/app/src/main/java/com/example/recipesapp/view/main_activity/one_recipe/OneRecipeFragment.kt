@@ -2,6 +2,7 @@ package com.example.recipesapp.view.main_activity.one_recipe
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,7 @@ class OneRecipeFragment : Fragment() {
         setupIngredientsObserver()
         setupPreparationObserver()
         setupSelectAllClick()
+        setupFabClick()
 
         ingredients_recyclerView.adapter = ingredientsListAdapter
         preparation_recyclerView.adapter = preparationListAdapter
@@ -84,6 +86,7 @@ class OneRecipeFragment : Fragment() {
 
         oneRecipeViewModel.isSelectedMode.observe(viewLifecycleOwner) {
             select_all_button.visibility = if (it) View.VISIBLE else View.INVISIBLE
+            addToBasket_fab.visibility = if (it) View.VISIBLE else View.GONE
         }
 
         oneRecipeViewModel.allSelected.observe(viewLifecycleOwner) {
@@ -134,6 +137,13 @@ class OneRecipeFragment : Fragment() {
     private fun setupSelectAllClick() {
         select_all_button.setOnClickListener {
             ingredientsListAdapter.selectAll()
+        }
+    }
+
+    private fun setupFabClick() {
+        addToBasket_fab.setOnClickListener {
+            // TODO
+            Log.v("test", ingredientsListAdapter.getSelectedList().toString())
         }
     }
 }
