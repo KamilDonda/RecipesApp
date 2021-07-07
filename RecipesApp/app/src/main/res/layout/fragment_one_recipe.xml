@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -223,6 +222,23 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/copyIngredients_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/medium_space"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ingredients_textView"
+                        app:layout_constraintStart_toEndOf="@+id/ingredients_textView"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium_size"
+                            android:layout_height="@dimen/icon_medium_size"
+                            android:layout_margin="@dimen/small_space"
+                            android:src="@drawable/ic_copy" />
+                    </com.google.android.material.card.MaterialCardView>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ingredients_recyclerView"
                         android:layout_width="match_parent"
@@ -258,6 +274,23 @@
                         android:textSize="@dimen/title_text_size"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/copyPreparation_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/medium_space"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/preparation_textView"
+                        app:layout_constraintStart_toEndOf="@+id/preparation_textView"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium_size"
+                            android:layout_height="@dimen/icon_medium_size"
+                            android:layout_margin="@dimen/small_space"
+                            android:src="@drawable/ic_copy" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/preparation_recyclerView"

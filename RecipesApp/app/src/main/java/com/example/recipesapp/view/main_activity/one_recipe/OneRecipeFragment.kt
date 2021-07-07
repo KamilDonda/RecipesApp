@@ -25,6 +25,7 @@ import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
 
@@ -146,27 +147,25 @@ class OneRecipeFragment : Fragment() {
     }
 
     private fun setupCopyClick() {
-        ingredients_constraintLayout.setOnLongClickListener {
+        copyIngredients_button.setOnClickListener {
             context?.copyToClipboard(
                 Recipe.currentRecipe.value!!.ingredients.joinToString(
                     prefix = "[",
                     postfix = "]"
                 )
             )
-            true
+            Log.v("test", "Click")
         }
-        preparation_constraintLayout.setOnLongClickListener {
+        copyPreparation_button.setOnClickListener {
             context?.copyToClipboard(Recipe.currentRecipe.value!!.preparation.mapIndexed { index, s ->
                 "${index + 1}. $s"
             }.joinToString(separator = "\n"))
-            true
         }
     }
 
     private fun Context.copyToClipboard(text: CharSequence) {
         val clipboard = ContextCompat.getSystemService(this, ClipboardManager::class.java)
         clipboard?.setPrimaryClip(ClipData.newPlainText("", text))
-        Log.v("test", text.toString())
-        Toast.makeText(this, getString(R.string.copied), Toast.LENGTH_LONG).show()
+        Snackbar.make(requireView(), getString(R.string.copied), Snackbar.LENGTH_SHORT).show()
     }
 }
