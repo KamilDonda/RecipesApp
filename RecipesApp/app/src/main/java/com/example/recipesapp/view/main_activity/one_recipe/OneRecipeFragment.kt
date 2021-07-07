@@ -62,6 +62,7 @@ class OneRecipeFragment : Fragment() {
         setupVisibilityObservers()
         setupSelectAllClick()
         setupFabClick()
+        setupTooltipClick()
         setupCopyClick()
 
         ingredients_recyclerView.adapter = ingredientsListAdapter
@@ -92,6 +93,7 @@ class OneRecipeFragment : Fragment() {
         oneRecipeViewModel.isSelectedMode.observe(viewLifecycleOwner) {
             select_all_button.visibility = if (it) View.VISIBLE else View.INVISIBLE
             addToBasket_fab.visibility = if (it) View.VISIBLE else View.GONE
+            ingredientsInfo_imageView.visibility = if (it) View.GONE else View.VISIBLE
         }
 
         oneRecipeViewModel.allSelected.observe(viewLifecycleOwner) {
@@ -146,6 +148,12 @@ class OneRecipeFragment : Fragment() {
         }
     }
 
+    private fun setupTooltipClick() {
+        ingredientsInfo_imageView.setOnClickListener {
+            ingredientsInfo_imageView.performLongClick()
+        }
+    }
+
     private fun setupCopyClick() {
         copyIngredients_button.setOnClickListener {
             context?.copyToClipboard(
@@ -154,7 +162,6 @@ class OneRecipeFragment : Fragment() {
                     postfix = "]"
                 )
             )
-            Log.v("test", "Click")
         }
         copyPreparation_button.setOnClickListener {
             context?.copyToClipboard(Recipe.currentRecipe.value!!.preparation.mapIndexed { index, s ->

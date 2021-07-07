@@ -29,6 +29,7 @@
     <string name="empty_ingredients_list">The ingredients list cannot be empty!</string>
     <string name="empty_preparation_list">The preparation list cannot be empty!</string>
     <string name="copied">Copied to clipboard!</string>
+    <string name="ingredients_info">Hold an ingredient to select. You can add selected ingredients to the basket.</string>
 
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
