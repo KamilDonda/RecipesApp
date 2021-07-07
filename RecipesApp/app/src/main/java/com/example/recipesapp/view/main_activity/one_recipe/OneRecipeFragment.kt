@@ -149,9 +149,9 @@ class OneRecipeFragment : Fragment() {
     }
 
     private fun setupTooltipClick() {
-        ingredientsInfo_imageView.setOnClickListener {
-            ingredientsInfo_imageView.performLongClick()
-        }
+        val views = listOf(ingredientsInfo_imageView, level_layout, time_layout, meals_layout, author_textView, rating_linearLayout)
+        for (v in views)
+            v.setOnClickListener { it.performLongClick()  }
     }
 
     private fun setupCopyClick() {
