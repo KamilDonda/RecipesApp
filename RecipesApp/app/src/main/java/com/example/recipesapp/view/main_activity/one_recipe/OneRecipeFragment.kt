@@ -110,8 +110,8 @@ class OneRecipeFragment : Fragment() {
     }
 
     private fun setupEditClick() {
-        editRecipeViewModel.resetRecipe()
         editRecipe_button.setOnClickListener {
+            editRecipeViewModel.resetRecipe()
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
         }
     }
