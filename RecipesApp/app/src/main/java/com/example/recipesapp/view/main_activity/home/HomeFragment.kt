@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
         setupRefreshAction()
 
         User.currentUser.observe(viewLifecycleOwner) {
-            homeViewModel.myRecipes(it.recipes)
+            homeViewModel.userRecipes(it.recipes)
                 .observe(viewLifecycleOwner) { list ->
                     myRecipesAdapter.setRecipes(list)
                 }

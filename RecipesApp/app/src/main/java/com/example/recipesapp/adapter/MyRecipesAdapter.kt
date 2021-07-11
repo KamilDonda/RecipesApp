@@ -65,7 +65,7 @@ class MyRecipesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_RECIPE) {
-            RecipesHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_my_recipe, parent, false))
+            RecipesHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_user_recipe, parent, false))
         } else {
             AddRecipeHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_add, parent, false))
         }

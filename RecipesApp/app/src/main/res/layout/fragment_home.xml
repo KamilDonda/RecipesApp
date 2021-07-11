@@ -67,7 +67,7 @@
                 android:padding="@dimen/very_small_space"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_my_recipe" />
+                tools:listitem="@layout/item_user_recipe" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mostPopular_textView"

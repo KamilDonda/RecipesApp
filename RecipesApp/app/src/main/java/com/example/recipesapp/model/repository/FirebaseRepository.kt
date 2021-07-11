@@ -47,42 +47,46 @@ class FirebaseRepository {
     }
 
     // Get user's recipes
-    fun getUserRecipes(list: ArrayList<String>): LiveData<List<Recipe>> {
-        val result = MutableLiveData<List<Recipe>>()
-        cloud.collection(PATH_RECIPES)
-            .whereIn(FIELD_ID, list)
-            .orderBy(FIELD_NAME)
-            .get()
-            .addOnSuccessListener {
-                val recipes = it.toObjects(Recipe::class.java)
-                result.postValue(recipes)
-            }
+    fun getUserRecipes(list: ArrayList<String>): LiveData<ArrayList<Recipe>> {
+        val result = MutableLiveData<ArrayList<Recipe>>()
+        if (list.isNotEmpty()) {
+            cloud.collection(PATH_RECIPES)
+                .whereIn(FIELD_ID, list)
+                .orderBy(FIELD_NAME)
+                .get()
+                .addOnSuccessListener {
+                    val recipes = it.toObjects(Recipe::class.java) as ArrayList<Recipe>?
+                    result.postValue(recipes)
+                }
+        } else {
+            result.postValue(ArrayList())
+        }
         return result
     }
 
     // Get most popular recipes
-    fun getMostPopular(): LiveData<List<Recipe>> {
-        val result = MutableLiveData<List<Recipe>>()
+    fun getMostPopular(): LiveData<ArrayList<Recipe>> {
+        val result = MutableLiveData<ArrayList<Recipe>>()
         cloud.collection(PATH_RECIPES)
             .whereEqualTo(FIELD_PUBLIC, true)
             .orderBy(FIELD_RATING, Query.Direction.DESCENDING)
             .limit(10)
             .get()
             .addOnSuccessListener {
-                val recipes = it.toObjects(Recipe::class.java)
+                val recipes = it.toObjects(Recipe::class.java) as ArrayList<Recipe>?
                 result.postValue(recipes)
             }
         return result
     }
 
     // Get public recipes
-    fun getPublicRecipes(): LiveData<List<Recipe>> {
-        val result = MutableLiveData<List<Recipe>>()
+    fun getPublicRecipes(): LiveData<ArrayList<Recipe>> {
+        val result = MutableLiveData<ArrayList<Recipe>>()
         cloud.collection(PATH_RECIPES)
             .whereEqualTo(FIELD_PUBLIC, true)
             .get()
             .addOnSuccessListener {
-                val recipes = it.toObjects(Recipe::class.java)
+                val recipes = it.toObjects(Recipe::class.java) as ArrayList<Recipe>?
                 result.postValue(recipes)
             }
         return result
@@ -118,7 +122,7 @@ class FirebaseRepository {
         cloud.collection(PATH_USER).document(user.uid).set(user)
     }
 
-    fun updateUserRecipes(uid: String, idsOfRecipes: List<String>) {
+    fun updateUserRecipes(uid: String, idsOfRecipes: ArrayList<String>) {
         cloud.collection(PATH_USER).document(uid).update(FIELD_RECIPES, idsOfRecipes)
     }
 
