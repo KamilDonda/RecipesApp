@@ -2,15 +2,16 @@ package com.example.recipesapp.model.entity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.recipesapp.utils.TimeConverter
 import java.io.Serializable
 
 data class Recipe(
     var id: String,
     var name: String,
     var author: String = "",
-    var level: Int = 0,
-    var time: Long = 0,
-    var meals: Int = 0,
+    var level: Int = Level.EASY.number,
+    var time: Long = TimeConverter.hourAndMinuteToLong(0, 30),
+    var meals: Int = 1,
     var ingredients: ArrayList<String> = ArrayList(),
     var preparation: ArrayList<String> = ArrayList(),
     var public: Boolean = false,
@@ -20,7 +21,7 @@ data class Recipe(
     var image: String = ""
 ) : Serializable {
 
-    constructor() : this("", "", "", 0, 0, 0, ArrayList(), ArrayList(), false, 0, 0, 0f, "")
+    constructor() : this("", "", "", Level.EASY.number, TimeConverter.hourAndMinuteToLong(0, 30), 1, ArrayList(), ArrayList(), false, 0, 0, 0f, "")
 
     companion object {
         private var _currentRecipe: MutableLiveData<Recipe> = MutableLiveData()
@@ -28,8 +29,14 @@ data class Recipe(
         fun setCurrentRecipe(recipe: Recipe) {
             _currentRecipe.value = recipe
         }
-        fun resetCurrentRecipe() {
-            _currentRecipe.value = Recipe()
+
+        private var _editRecipe: MutableLiveData<Recipe> = MutableLiveData()
+        val editRecipe: LiveData<Recipe> get() = _editRecipe
+        fun setEditRecipe(recipe: Recipe) {
+            _editRecipe.value = recipe
+        }
+        fun resetEditRecipe() {
+            _editRecipe.value = Recipe()
         }
     }
 }

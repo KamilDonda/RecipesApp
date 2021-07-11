@@ -4,32 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.model.repository.FirebaseRepository
-import com.example.recipesapp.utils.TimeConverter
 import com.google.firebase.auth.FirebaseAuth
 
 class EditRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
     val auth = FirebaseAuth.getInstance()
-
-    private var _recipe = MutableLiveData<Recipe>(Recipe.currentRecipe.value)
-    val recipe: LiveData<Recipe> get() = _recipe
-    fun setRecipe(recipe: Recipe) {
-        _recipe.value = recipe
-    }
-
-    fun resetRecipe() {
-        _recipe = MutableLiveData<Recipe>(Recipe.currentRecipe.value?.apply {
-            if (this.id.isEmpty()) {
-                level = Level.EASY.number
-                time = TimeConverter.hourAndMinuteToLong(0, 30)
-                meals = 1
-            }
-        })
-    }
 
     fun addOrUpdateRecipe(recipe: Recipe, updateRecipes: Boolean) {
         if (updateRecipes) {
@@ -46,25 +28,25 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun updateIngredients(position: Int, text: String) {
-        setRecipe(_recipe.value!!.apply {
+        Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
             this.ingredients[position] = text
         })
     }
 
     fun updatePreparation(position: Int, text: String) {
-        setRecipe(_recipe.value!!.apply {
+        Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
             this.preparation[position] = text
         })
     }
 
     fun deleteIngredient(position: Int) {
-        setRecipe(_recipe.value!!.apply {
+        Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
             this.ingredients.removeAt(position)
         })
     }
 
     fun deletePreparation(position: Int) {
-        setRecipe(_recipe.value!!.apply {
+        Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
             this.preparation.removeAt(position)
         })
     }

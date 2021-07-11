@@ -24,7 +24,6 @@ import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
-import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
 
@@ -32,7 +31,6 @@ import kotlinx.android.synthetic.main.fragment_one_recipe.*
 class OneRecipeFragment : Fragment() {
 
     private lateinit var oneRecipeViewModel: OneRecipeViewModel
-    private lateinit var editRecipeViewModel: EditRecipeViewModel
 
     private lateinit var ingredientsListAdapter: IngredientsAdapter
     private val preparationListAdapter = PreparationAdapter()
@@ -43,8 +41,6 @@ class OneRecipeFragment : Fragment() {
 
         oneRecipeViewModel =
             ViewModelProvider(requireActivity()).get(OneRecipeViewModel::class.java)
-        editRecipeViewModel =
-            ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
 
         ingredientsListAdapter = IngredientsAdapter(requireContext(), oneRecipeViewModel)
 
@@ -111,7 +107,7 @@ class OneRecipeFragment : Fragment() {
 
     private fun setupEditClick() {
         editRecipe_button.setOnClickListener {
-            editRecipeViewModel.resetRecipe()
+            Recipe.setEditRecipe(Recipe.currentRecipe.value!!)
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
         }
     }

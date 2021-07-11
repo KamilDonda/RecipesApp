@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.EditTextAdapter
 import com.example.recipesapp.model.entity.Level
+import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RecipeMenu
 import com.example.recipesapp.utils.TimeConverter
@@ -129,7 +130,7 @@ class EditRecipeFragment : BaseFragment() {
     }
 
     private fun setupData() {
-        editRecipeViewModel.recipe.observe(viewLifecycleOwner) {
+        Recipe.editRecipe.observe(viewLifecycleOwner) {
             try {
                 if (name_textInput.text.toString() != it.name)
                     name_textInput.setText(it.name)
@@ -153,14 +154,12 @@ class EditRecipeFragment : BaseFragment() {
             requireContext(),
             level_button,
             Level.values().map { getString(it.id) },
-            editRecipeViewModel,
             "level"
         )
         mealsMenu = RecipeMenu(
             requireContext(),
             meals_button,
             (1..10).toList(),
-            editRecipeViewModel,
             "meals"
         )
     }
@@ -178,7 +177,7 @@ class EditRecipeFragment : BaseFragment() {
 
     private fun setupSaveButtonClick() {
         save_button.setOnClickListener {
-            var recipe = editRecipeViewModel.recipe.value!!
+            var recipe = Recipe.editRecipe.value!!
 
             if (recipe.name.length >= 6) {
                 when {
@@ -213,7 +212,6 @@ class EditRecipeFragment : BaseFragment() {
 
                         showSnackbar(getString(R.string.saved_successfully))
                         findNavController().popBackStack()
-                        findNavController().popBackStack()
                     }
                 }
             } else showSnackbar(getString(R.string.name_too_short))
@@ -228,8 +226,8 @@ class EditRecipeFragment : BaseFragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!name_textInput.text.isNullOrEmpty()) {
-                    editRecipeViewModel.recipe.value?.copy(name = name_textInput.text.toString())
-                        ?.let { editRecipeViewModel.setRecipe(it) }
+                    Recipe.editRecipe.value?.copy(name = name_textInput.text.toString())
+                        ?.let { Recipe.setEditRecipe(it) }
                 }
             }
         })
@@ -256,8 +254,8 @@ class EditRecipeFragment : BaseFragment() {
                 val m = picker.minute
                 val time = TimeConverter.hourAndMinuteToLong(h, m)
 
-                editRecipeViewModel.recipe.value?.copy(time = time)?.let {
-                    editRecipeViewModel.setRecipe(it)
+                Recipe.editRecipe.value?.copy(time = time)?.let {
+                    Recipe.setEditRecipe(it)
                 }
             }
 
@@ -273,18 +271,18 @@ class EditRecipeFragment : BaseFragment() {
 
     private fun setupIngredientsAddClick() {
         addIngredient_button.setOnClickListener {
-            val temp = editRecipeViewModel.recipe.value!!.ingredients
+            val temp = Recipe.editRecipe.value!!.ingredients
             temp.add("")
-            editRecipeViewModel.setRecipe(editRecipeViewModel.recipe.value!!.copy(ingredients = temp))
+            Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(ingredients = temp))
             ingredientsListAdapter.notifyItemInserted(temp.size - 1)
         }
     }
 
     private fun setupPreparationAddClick() {
         addPreparation_button.setOnClickListener {
-            val temp = editRecipeViewModel.recipe.value!!.preparation
+            val temp = Recipe.editRecipe.value!!.preparation
             temp.add("")
-            editRecipeViewModel.setRecipe(editRecipeViewModel.recipe.value!!.copy(preparation = temp))
+            Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(preparation = temp))
             preparationListAdapter.notifyItemInserted(temp.size - 1)
         }
     }

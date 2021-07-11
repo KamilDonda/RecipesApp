@@ -1,7 +1,6 @@
 package com.example.recipesapp.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,11 @@ import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.TimeConverter
-import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
 class MyRecipesAdapter(
-    private val context: Context,
-    private val viewModel: EditRecipeViewModel
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -51,8 +48,7 @@ class MyRecipesAdapter(
     inner class AddRecipeHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
             itemView.setOnClickListener {
-                Recipe.resetCurrentRecipe()
-                viewModel.resetRecipe()
+                Recipe.resetEditRecipe()
                 it.findNavController().navigate(R.id.action_home_to_editRecipeFragment)
             }
         }

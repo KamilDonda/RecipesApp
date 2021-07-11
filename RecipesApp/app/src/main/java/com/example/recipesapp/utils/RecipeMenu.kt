@@ -7,14 +7,13 @@ import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Level
-import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
+import com.example.recipesapp.model.entity.Recipe
 import com.google.android.material.button.MaterialButton
 
 class RecipeMenu(
     context: Context,
     button: MaterialButton,
     private val list: List<Any>,
-    private val viewModel: EditRecipeViewModel,
     element: String
 ) {
 
@@ -44,10 +43,10 @@ class RecipeMenu(
     }
 
     private fun setLevel(level: Int) {
-        viewModel.recipe.value?.copy(level = level)?.let { viewModel.setRecipe(it) }
+        Recipe.editRecipe.value?.copy(level = level)?.let { Recipe.setEditRecipe(it) }
     }
 
     private fun setMeals(meals: Int) {
-        viewModel.recipe.value?.copy(meals = meals)?.let { viewModel.setRecipe(it) }
+        Recipe.editRecipe.value?.copy(meals = meals)?.let { Recipe.setEditRecipe(it) }
     }
 }
