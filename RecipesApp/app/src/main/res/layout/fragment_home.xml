@@ -59,15 +59,26 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/myRecipes_recyclerView"
+                android:id="@+id/userRecipes_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/userRecipe_height"
                 android:orientation="horizontal"
                 android:overScrollMode="never"
                 android:padding="@dimen/very_small_space"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_user_recipe" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/userRecipes_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="@+id/userRecipes_recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/userRecipes_recyclerView" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mostPopular_textView"
@@ -79,18 +90,29 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/title_text_size"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/myRecipes_recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/userRecipes_recyclerView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mostPopular_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/userRecipe_height"
                 android:orientation="horizontal"
                 android:overScrollMode="never"
                 android:padding="@dimen/very_small_space"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/mostPopular_textView"
                 tools:listitem="@layout/item_most_popular" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/mostPopular_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="@+id/mostPopular_recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mostPopular_recyclerView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

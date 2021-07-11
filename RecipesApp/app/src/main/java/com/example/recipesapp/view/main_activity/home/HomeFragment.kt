@@ -41,18 +41,20 @@ class HomeFragment : Fragment() {
             homeViewModel.userRecipes(it.recipes)
                 .observe(viewLifecycleOwner) { list ->
                     myRecipesAdapter.setRecipes(list)
+                    userRecipes_indicator.visibility = View.INVISIBLE
                 }
         }
 
         homeViewModel.mostPopular.observe(viewLifecycleOwner) {
             mostPopularAdapter.setRecipes(it)
+            mostPopular_indicator.visibility = View.INVISIBLE
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myRecipes_recyclerView.adapter = myRecipesAdapter
+        userRecipes_recyclerView.adapter = myRecipesAdapter
         mostPopular_recyclerView.adapter = mostPopularAdapter
 
 //        // TODO
