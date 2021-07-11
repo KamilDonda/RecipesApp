@@ -11,11 +11,13 @@ import com.example.recipesapp.R
 import com.example.recipesapp.adapter.MostPopularAdapter
 import com.example.recipesapp.adapter.MyRecipesAdapter
 import com.example.recipesapp.model.entity.User
+import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var editRecipeViewModel: EditRecipeViewModel
 
     private lateinit var myRecipesAdapter: MyRecipesAdapter
     private lateinit var mostPopularAdapter: MostPopularAdapter
@@ -25,8 +27,9 @@ class HomeFragment : Fragment() {
     ): View? {
 
         homeViewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+        editRecipeViewModel = ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
 
-        myRecipesAdapter = MyRecipesAdapter(requireContext())
+        myRecipesAdapter = MyRecipesAdapter(requireContext(), editRecipeViewModel)
         mostPopularAdapter = MostPopularAdapter(requireContext())
 
         return inflater.inflate(R.layout.fragment_home, container, false)
