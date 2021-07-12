@@ -106,7 +106,11 @@ class OneRecipeFragment : Fragment() {
 
     private fun setupEditClick() {
         editRecipe_button.setOnClickListener {
-            Recipe.setEditRecipe(Recipe.currentRecipe.value!!)
+            val recipe = Recipe.currentRecipe.value!!.copy(
+                ingredients = ArrayList(Recipe.currentRecipe.value!!.ingredients),
+                preparation = ArrayList(Recipe.currentRecipe.value!!.preparation)
+            )
+            Recipe.setEditRecipe(recipe)
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
         }
     }
@@ -144,9 +148,12 @@ class OneRecipeFragment : Fragment() {
     }
 
     private fun setupTooltipClick() {
-        val views = listOf(ingredientsInfo_imageView, level_layout, time_layout, meals_layout, author_textView, rating_linearLayout)
+        val views = listOf(
+            ingredientsInfo_imageView, level_layout, time_layout, meals_layout,
+            author_textView, rating_linearLayout
+        )
         for (v in views)
-            v.setOnClickListener { it.performLongClick()  }
+            v.setOnClickListener { it.performLongClick() }
     }
 
     private fun setupCopyClick() {
