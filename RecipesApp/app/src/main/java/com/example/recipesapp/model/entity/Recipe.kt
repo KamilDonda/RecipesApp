@@ -21,7 +21,21 @@ data class Recipe(
     var image: String = ""
 ) : Serializable {
 
-    constructor() : this("", "", "", Level.EASY.number, TimeConverter.hourAndMinuteToLong(0, 30), 1, ArrayList(), ArrayList(), false, 0, 0, 0f, "")
+    constructor() : this(
+        "",
+        "",
+        "",
+        Level.EASY.number,
+        TimeConverter.hourAndMinuteToLong(0, 30),
+        1,
+        ArrayList(),
+        ArrayList(),
+        false,
+        0,
+        0,
+        0f,
+        ""
+    )
 
     companion object {
         private var _currentRecipe: MutableLiveData<Recipe> = MutableLiveData()
