@@ -60,13 +60,13 @@
 
             <ImageView
                 android:id="@+id/imageView_2"
-                android:layout_width="@dimen/icon_small_size"
-                android:layout_height="@dimen/icon_small_size"
+                android:layout_width="@dimen/icon_medium_size"
+                android:layout_height="@dimen/icon_medium_size"
                 android:layout_margin="@dimen/very_small_space"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toStartOf="@+id/meals_textView"
                 app:layout_constraintTop_toTopOf="@+id/imageView"
-                app:srcCompat="@drawable/ic_md_restaurant"
+                app:srcCompat="@drawable/ic_meals"
                 app:tint="@color/text_color_dark" />
 
             <com.google.android.material.textview.MaterialTextView
