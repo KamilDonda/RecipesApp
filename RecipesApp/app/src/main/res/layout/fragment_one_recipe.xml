@@ -19,20 +19,20 @@
                 android:id="@+id/ingredients_cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/small_space"
+                android:layout_margin="@dimen/very_small_space"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/small_space">
+                    android:layout_margin="@dimen/very_small_space">
 
                     <ImageView
                         android:id="@+id/imageView_one_recipe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:padding="@dimen/small_space"
+                        android:padding="@dimen/very_small_space"
                         android:src="@drawable/meal_example"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
                             android:id="@+id/editRecipe_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/small_space"
+                            android:layout_marginStart="@dimen/very_small_space"
                             android:text="@string/edit"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
                         android:id="@+id/name_textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/small_space"
+                        android:layout_margin="@dimen/very_small_space"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title_text_size"
                         android:textStyle="bold"
@@ -80,7 +80,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/medium_space"
+                        android:layout_margin="@dimen/very_small_space"
                         app:layout_constraintTop_toBottomOf="@+id/name_textView">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,8 +117,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tooltipText="@string/time_info"
-                            app:layout_constraintHorizontal_bias="0.35"
                             app:layout_constraintEnd_toStartOf="@+id/meals_layout"
+                            app:layout_constraintHorizontal_bias="0.35"
                             app:layout_constraintStart_toEndOf="@+id/level_layout"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -189,8 +189,8 @@
                             android:orientation="horizontal"
                             android:tooltipText="@string/rating_info"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/author_textView" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/author_textView" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -203,20 +203,20 @@
                 android:id="@+id/materialCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/small_space"
+                android:layout_margin="@dimen/very_small_space"
                 app:layout_constraintTop_toBottomOf="@+id/ingredients_cardView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredients_constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp">
+                    android:layout_margin="@dimen/very_small_space">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/ingredients_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/small_space"
+                        android:padding="@dimen/very_small_space"
                         android:text="@string/ingredients"
                         android:textSize="@dimen/title_text_size"
                         app:layout_constraintStart_toStartOf="parent"
@@ -257,7 +257,7 @@
                         android:id="@+id/ingredientsInfo_imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/small_space"
+                        android:padding="@dimen/very_small_space"
                         android:src="@drawable/ic_info"
                         android:tooltipText="@string/ingredients_info"
                         app:layout_constraintBottom_toBottomOf="@+id/ingredients_textView"
@@ -280,7 +280,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/small_space"
+                android:layout_margin="@dimen/very_small_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
@@ -288,13 +288,13 @@
                     android:id="@+id/preparation_constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/small_space">
+                    android:layout_margin="@dimen/very_small_space">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/preparation_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/small_space"
+                        android:padding="@dimen/very_small_space"
                         android:text="@string/preparation"
                         android:textSize="@dimen/title_text_size"
                         app:layout_constraintStart_toStartOf="parent"
