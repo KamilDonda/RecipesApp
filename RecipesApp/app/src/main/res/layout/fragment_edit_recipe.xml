@@ -15,13 +15,13 @@
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_space"
+            android:layout_margin="@dimen/very_small_space"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/small_space">
+                android:layout_margin="@dimen/very_small_space">
 
                 <ImageView
                     android:id="@+id/imageView_edit_recipe"
@@ -214,14 +214,14 @@
             android:id="@+id/ingredients_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_space"
+            android:layout_margin="@dimen/very_small_space"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ingredients_constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/small_space">
+                android:padding="@dimen/very_small_space">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/ingredients_textView"
@@ -263,7 +263,7 @@
             android:id="@+id/preparation_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_space"
+            android:layout_margin="@dimen/very_small_space"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ingredients_cardView">
 
@@ -271,7 +271,7 @@
                 android:id="@+id/preparation_constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/small_space">
+                android:padding="@dimen/very_small_space">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/preparation_textView"

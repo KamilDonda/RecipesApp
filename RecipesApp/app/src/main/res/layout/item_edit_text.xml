@@ -24,7 +24,7 @@
         android:layout_width="@dimen/big_space"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:paddingHorizontal="@dimen/small_space"
+        android:paddingHorizontal="@dimen/very_small_space"
         android:textSize="@dimen/v_small_text_size"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
