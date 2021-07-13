@@ -72,7 +72,7 @@ class OneRecipeFragment : Fragment() {
                 getString(Level.values().find { level -> level.number == it.level }!!.id)
             time_textView.text = TimeConverter.longToString(it.time)
             meals_textView.text = it.meals.toString()
-            RatingSystem.displayStars(requireContext(), rating_linearLayout, it.rating)
+            RatingSystem.displayStars(requireContext(), rating_linearLayout, it.rating, 25f)
             Photo.setPhoto(it.image, requireContext(), imageView_one_recipe)
             publicRecipe_button.isEnabled = !it.public
 
