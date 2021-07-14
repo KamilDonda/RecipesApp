@@ -26,6 +26,7 @@ class FirebaseRepository {
     private val FIELD_RATING = "rating"
     private val FIELD_IMAGE = "image"
     private val FIELD_RECIPES = "recipes"
+    private val FIELD_FAVOURITES = "favourites"
     private val FIELD_NAME = "name"
 
     // Create new user
@@ -124,6 +125,10 @@ class FirebaseRepository {
 
     fun updateUserRecipes(uid: String, idsOfRecipes: ArrayList<String>) {
         cloud.collection(PATH_USER).document(uid).update(FIELD_RECIPES, idsOfRecipes)
+    }
+
+    fun updateUserFavourites(uid: String, idsOfFavourites: ArrayList<String>) {
+        cloud.collection(PATH_USER).document(uid).update(FIELD_FAVOURITES, idsOfFavourites)
     }
 
     fun getUser(uid: String): LiveData<User?> {

@@ -98,6 +98,7 @@ class OneRecipeFragment : Fragment() {
             User.currentUser.observe(viewLifecycleOwner) { user ->
                 buttons_constraintLayout.visibility =
                     if (user.recipes.contains(it.id)) View.VISIBLE else View.GONE
+                favourites_checkBox.isChecked = user.favourites.contains(it.id)
             }
         }
 
@@ -132,8 +133,8 @@ class OneRecipeFragment : Fragment() {
     }
 
     private fun setupFavouritesClick() {
-        favourites_imageView.setOnClickListener {
-
+        favourites_checkBox.setOnClickListener {
+            oneRecipeViewModel.changeFavouritesStatus(Recipe.currentRecipe.value!!)
         }
     }
 
