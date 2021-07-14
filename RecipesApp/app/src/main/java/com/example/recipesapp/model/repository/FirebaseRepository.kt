@@ -47,8 +47,8 @@ class FirebaseRepository {
             }
     }
 
-    // Get user's recipes
-    fun getUserRecipes(list: ArrayList<String>): LiveData<ArrayList<Recipe>> {
+    // Get user's recipes or favourites recipes
+    fun getRecipesByIDs(list: ArrayList<String>): LiveData<ArrayList<Recipe>> {
         val result = MutableLiveData<ArrayList<Recipe>>()
         if (list.isNotEmpty()) {
             cloud.collection(PATH_RECIPES)
