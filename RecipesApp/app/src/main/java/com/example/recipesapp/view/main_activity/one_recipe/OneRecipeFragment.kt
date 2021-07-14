@@ -96,8 +96,13 @@ class OneRecipeFragment : Fragment() {
             preparationListAdapter.setList(it.preparation)
 
             User.currentUser.observe(viewLifecycleOwner) { user ->
-                buttons_constraintLayout.visibility =
-                    if (user.recipes.contains(it.id)) View.VISIBLE else View.GONE
+                if (user.recipes.contains(it.id)) {
+                    buttons_constraintLayout.visibility = View.VISIBLE
+                    favourites_checkBox.visibility = View.GONE
+                } else {
+                    buttons_constraintLayout.visibility = View.GONE
+                    favourites_checkBox.visibility = View.VISIBLE
+                }
                 favourites_checkBox.isChecked = user.favourites.contains(it.id)
             }
         }
