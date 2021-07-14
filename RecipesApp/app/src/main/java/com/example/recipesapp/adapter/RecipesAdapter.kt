@@ -68,7 +68,7 @@ class RecipesAdapter(
 
         root.setOnClickListener {
             Recipe.setCurrentRecipe(item)
-            it.findNavController().navigate(R.id.action_recipes_to_oneRecipeFragment)
+            it.findNavController().navigate(R.id.oneRecipeFragment)
         }
     }
 }
