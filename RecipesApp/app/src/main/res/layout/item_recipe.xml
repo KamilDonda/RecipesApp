@@ -5,7 +5,7 @@
     android:id="@+id/recipe_row_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/medium_space"
+    android:layout_marginHorizontal="@dimen/small_space"
     android:layout_marginVertical="@dimen/small_space"
     app:cardBackgroundColor="@color/transparent_white">
 

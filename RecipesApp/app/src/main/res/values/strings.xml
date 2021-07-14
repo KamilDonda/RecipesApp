@@ -59,6 +59,7 @@
     <string name="save">Save</string>
     <string name="add_new_item">Add new item</string>
     <string name="add_to_basket">Add to basket</string>
+    <string name="advanced_search">Advanced</string>
 
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
