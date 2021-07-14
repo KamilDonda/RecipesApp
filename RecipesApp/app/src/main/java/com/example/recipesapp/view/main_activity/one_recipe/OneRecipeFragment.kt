@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -24,7 +25,17 @@ import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
+import kotlinx.android.synthetic.main.fragment_one_recipe.buttons_constraintLayout
+import kotlinx.android.synthetic.main.fragment_one_recipe.ingredients_constraintLayout
+import kotlinx.android.synthetic.main.fragment_one_recipe.ingredients_recyclerView
+import kotlinx.android.synthetic.main.fragment_one_recipe.level_imageView
+import kotlinx.android.synthetic.main.fragment_one_recipe.level_textView
+import kotlinx.android.synthetic.main.fragment_one_recipe.meals_textView
+import kotlinx.android.synthetic.main.fragment_one_recipe.preparation_constraintLayout
+import kotlinx.android.synthetic.main.fragment_one_recipe.preparation_recyclerView
+import kotlinx.android.synthetic.main.fragment_one_recipe.time_textView
 
 
 class OneRecipeFragment : Fragment() {
@@ -68,8 +79,11 @@ class OneRecipeFragment : Fragment() {
         Recipe.currentRecipe.observe(viewLifecycleOwner) {
             name_textView.text = it.name
             author_textView.text = it.author
-            level_textView.text =
-                getString(Level.values().find { level -> level.number == it.level }!!.id)
+            val lvl = Level.values().find { lvl -> lvl.number == it.level }!!
+            level_textView.text = getString(lvl.text_id)
+            level_imageView.setImageDrawable(
+                AppCompatResources.getDrawable(requireContext(), lvl.icon_id)
+            )
             time_textView.text = TimeConverter.longToString(it.time)
             meals_textView.text = it.meals.toString()
             RatingSystem.displayStars(requireContext(), rating_linearLayout, it.rating, 25f)

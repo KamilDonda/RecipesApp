@@ -94,9 +94,7 @@
                             android:layout_height="@dimen/icon_size"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_chef_hat"
-                            app:tint="@color/text_color_dark" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/level_textView"

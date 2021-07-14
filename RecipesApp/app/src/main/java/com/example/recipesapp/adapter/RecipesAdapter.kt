@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
@@ -43,6 +45,7 @@ class RecipesAdapter(
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.recipe_row_root)
         val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)
         val level = holder.itemView.findViewById<MaterialTextView>(R.id.level_textView)
+        val level_imageView = holder.itemView.findViewById<ImageView>(R.id.level_imageView)
         val time = holder.itemView.findViewById<MaterialTextView>(R.id.time_textView)
         val meals = holder.itemView.findViewById<MaterialTextView>(R.id.meals_textView)
         val author = holder.itemView.findViewById<MaterialTextView>(R.id.author_textView)
@@ -52,9 +55,9 @@ class RecipesAdapter(
         val item = recipesList[position]
 
         name.text = item.name
-        level.text = context.getString(
-            (Level.values().find { lvl -> lvl.number == item.level }!!.id)
-        )
+        val lvl = Level.values().find { lvl -> lvl.number == item.level }!!
+        level.text = context.getString(lvl.text_id)
+        level_imageView.setImageDrawable(AppCompatResources.getDrawable(context, lvl.icon_id))
         time.text = TimeConverter.longToString(item.time)
         meals.text = item.meals.toString()
         author.text = item.author

@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -134,8 +135,11 @@ class EditRecipeFragment : BaseFragment() {
             try {
                 if (name_textInput.text.toString() != it.name)
                     name_textInput.setText(it.name)
-                level_textView.text =
-                    getString((Level.values().find { level -> level.number == it.level })!!.id)
+                val lvl = Level.values().find { lvl -> lvl.number == it.level }!!
+                level_textView.text = getString(lvl.text_id)
+                level_imageView.setImageDrawable(
+                    AppCompatResources.getDrawable(requireContext(), lvl.icon_id)
+                )
                 time_textView.text = TimeConverter.longToString(it.time)
                 meals_textView.text = it.meals.toString()
                 if (photo == null)
@@ -153,7 +157,7 @@ class EditRecipeFragment : BaseFragment() {
         levelMenu = RecipeMenu(
             requireContext(),
             level_button,
-            Level.values().map { getString(it.id) },
+            Level.values().map { getString(it.text_id) },
             "level"
         )
         mealsMenu = RecipeMenu(
