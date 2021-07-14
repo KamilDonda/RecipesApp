@@ -50,6 +50,7 @@ class RecipesAdapter(
         val meals = holder.itemView.findViewById<MaterialTextView>(R.id.meals_textView)
         val author = holder.itemView.findViewById<MaterialTextView>(R.id.author_textView)
         val ratingLayout = holder.itemView.findViewById<LinearLayout>(R.id.rating_linearLayout)
+        val rating = holder.itemView.findViewById<MaterialTextView>(R.id.rating_textView)
         val imageView = holder.itemView.findViewById<ShapeableImageView>(R.id.imageView_recipe)
 
         val item = recipesList[position]
@@ -62,6 +63,7 @@ class RecipesAdapter(
         meals.text = item.meals.toString()
         author.text = item.author
         RatingSystem.displayStars(context, ratingLayout, item.rating)
+        rating.text = item.rating.toString()
         Photo.setPhoto(item.image, context, imageView)
 
         root.setOnClickListener {

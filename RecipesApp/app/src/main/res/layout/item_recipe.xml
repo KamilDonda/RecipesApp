@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recipe_row_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -135,6 +136,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/author_textView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rating_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/very_small_space"
+                app:layout_constraintBottom_toBottomOf="@+id/rating_linearLayout"
+                app:layout_constraintStart_toEndOf="@+id/rating_linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/rating_linearLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
