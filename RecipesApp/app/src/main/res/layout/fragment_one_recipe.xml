@@ -199,6 +199,18 @@
                             app:layout_constraintStart_toEndOf="@+id/rating_linearLayout"
                             app:layout_constraintTop_toTopOf="@+id/rating_linearLayout" />
 
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/favourites_imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/heart_inset"
+                            android:buttonTint="@color/selector_color"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

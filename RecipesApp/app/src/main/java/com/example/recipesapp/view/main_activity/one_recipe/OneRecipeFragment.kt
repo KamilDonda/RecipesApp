@@ -64,6 +64,7 @@ class OneRecipeFragment : Fragment() {
         setupData()
         setupPublicClick()
         setupEditClick()
+        setupFavouritesClick()
         setupVisibilityClick()
         setupVisibilityObservers()
         setupSelectAllClick()
@@ -127,6 +128,12 @@ class OneRecipeFragment : Fragment() {
             )
             Recipe.setEditRecipe(recipe)
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
+        }
+    }
+
+    private fun setupFavouritesClick() {
+        favourites_imageView.setOnClickListener {
+
         }
     }
 
