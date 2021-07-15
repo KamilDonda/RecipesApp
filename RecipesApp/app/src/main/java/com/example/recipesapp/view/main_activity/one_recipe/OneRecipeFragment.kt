@@ -195,10 +195,8 @@ class OneRecipeFragment : Fragment() {
     private fun setupCopyClick() {
         copyIngredients_button.setOnClickListener {
             context?.copyToClipboard(
-                Recipe.currentRecipe.value!!.ingredients.joinToString(
-                    prefix = "[",
-                    postfix = "]"
-                )
+                Recipe.currentRecipe.value!!.ingredients.mapIndexed { _, s -> s }
+                    .joinToString(separator = ", ")
             )
         }
         copyPreparation_button.setOnClickListener {
