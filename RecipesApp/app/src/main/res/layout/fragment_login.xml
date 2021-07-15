@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.login_activity.login.LoginFragment">
 
-    <include layout="@layout/background"/>
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView_top"
         android:layout_width="wrap_content"
@@ -22,7 +20,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedBoxStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/field_height"
         android:layout_marginHorizontal="@dimen/horizontal_margin"
@@ -39,7 +37,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedBoxStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/field_height"
         android:layout_marginHorizontal="@dimen/horizontal_margin"

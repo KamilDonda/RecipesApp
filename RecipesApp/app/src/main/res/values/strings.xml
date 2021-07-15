@@ -40,6 +40,7 @@
     <string name="select_time_desc">Select preparation time</string>
     <string name="select_meals_desc">Select meals count</string>
 
+    <string name="todays_recipe">Today\'s recipe</string>
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
     <string name="my_recipes">My recipes</string>

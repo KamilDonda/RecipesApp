@@ -18,11 +18,13 @@
     </style>
 
     <style name="TextInputStyle">
-        <item name="android:backgroundTint">@color/white</item>
-        <item name="android:backgroundTintMode">src_over</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="OutlinedBoxStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/transparent_white</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius" parent="">
@@ -38,7 +40,7 @@
     <style name="Widget.MaterialComponents.TextView.PageName">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/dark</item>
@@ -85,7 +87,7 @@
     <style name="Base.Widget.MaterialComponents.TextView.ItemTitle.Big">
         <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:ellipsize">none</item>
-        <item name="android:lines">2</item>
+        <item name="android:maxLines">2</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">0dp</item>
     </style>

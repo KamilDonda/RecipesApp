@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.main_activity.favourites.FavouritesFragment">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/background_favourites" />
-
     <com.google.android.material.textview.MaterialTextView
         style="@style/Widget.MaterialComponents.TextView.PageName"
         android:text="@string/favourites"
