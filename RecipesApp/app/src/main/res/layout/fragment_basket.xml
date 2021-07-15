@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.main_activity.basket.BasketFragment">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/background_basket" />
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView5"
         style="@style/Widget.MaterialComponents.TextView.PageName"
