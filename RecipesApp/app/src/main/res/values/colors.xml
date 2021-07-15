@@ -9,8 +9,11 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="green">#4CAF50</color>
+    <color name="light_green">#BFE8F5E9</color>
     <color name="dark">#1d1d1d</color>
     <color name="medium">#C6C6C6</color>
     <color name="light">#f3f3f3</color>
     <color name="transparent_white">#F2FFFFFF</color>
+    <color name="gold">#FDD835</color>
+    <color name="red">#E53935</color>
 </resources>

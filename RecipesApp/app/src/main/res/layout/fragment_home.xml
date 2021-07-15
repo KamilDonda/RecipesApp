@@ -5,64 +5,116 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never"
-    tools:context=".view.HomeFragment">
+    tools:context=".view.main_activity.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/background_home" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView3"
-            style="@style/Widget.MaterialComponents.TextView.PageName"
-            android:text="@string/home"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/myRecipes_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_recipes"
-            style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle"
-            app:layout_constraintBottom_toBottomOf="@+id/include"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myRecipes_recyclerView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:overScrollMode="never"
-            android:padding="@dimen/very_small_space"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/myRecipes_textView"
-            tools:listitem="@layout/my_recipe_row" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mostPopular_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/most_popular"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_text_size"
-            android:layout_marginTop="@dimen/medium_space"
-            app:layout_constraintStart_toStartOf="@+id/myRecipes_textView"
-            app:layout_constraintTop_toBottomOf="@+id/myRecipes_recyclerView" />
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/mainImage_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mostPopular_recyclerView"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/include"
+                        layout="@layout/background_home" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/Widget.MaterialComponents.TextView.PageName"
+                        android:text="@string/home"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/myRecipes_textView"
+                        style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_recipes"
+                        app:layout_constraintBottom_toBottomOf="@+id/include"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:overScrollMode="never"
-            android:padding="@dimen/very_small_space"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/mostPopular_textView"
-            tools:listitem="@layout/most_popular_row" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/userRecipes_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/userRecipe_height"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:padding="@dimen/very_small_space"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_user_recipe" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/userRecipes_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="@+id/userRecipes_recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/userRecipes_recyclerView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mostPopular_textView"
+                style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_space"
+                android:text="@string/most_popular"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userRecipes_recyclerView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mostPopular_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/userRecipe_height"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:padding="@dimen/very_small_space"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/mostPopular_textView"
+                tools:listitem="@layout/item_most_popular" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/mostPopular_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="@+id/mostPopular_recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mostPopular_recyclerView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

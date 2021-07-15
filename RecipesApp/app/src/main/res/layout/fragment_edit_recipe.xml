@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.EditRecipeFragment">
+    tools:context=".view.main_activity.edit_recipe.EditRecipeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,17 +15,17 @@
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_space"
+            android:layout_margin="@dimen/very_small_space"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/small_space">
+                android:layout_margin="@dimen/very_small_space">
 
                 <ImageView
                     android:id="@+id/imageView_edit_recipe"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:padding="@dimen/small_space"
@@ -94,9 +94,7 @@
                             android:layout_height="@dimen/icon_size"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_chef_hat"
-                            app:tint="@color/text_color_dark" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/level_textView"
@@ -172,12 +170,12 @@
 
                         <ImageView
                             android:id="@+id/meals_imageView"
-                            android:layout_width="@dimen/icon_size"
-                            android:layout_height="@dimen/icon_size"
+                            android:layout_width="@dimen/icon_big_size"
+                            android:layout_height="@dimen/icon_big_size"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_md_restaurant"
+                            app:srcCompat="@drawable/ic_meals"
                             app:tint="@color/text_color_dark" />
 
                         <com.google.android.material.textview.MaterialTextView
@@ -214,14 +212,14 @@
             android:id="@+id/ingredients_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_space"
+            android:layout_margin="@dimen/very_small_space"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ingredients_constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/small_space">
+                android:padding="@dimen/very_small_space">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/ingredients_textView"
@@ -250,7 +248,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
-                    tools:listitem="@layout/edit_text_row"
+                    tools:listitem="@layout/item_edit_text"
                     tools:itemCount="1"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/ingredients_textView" />
@@ -263,7 +261,7 @@
             android:id="@+id/preparation_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_space"
+            android:layout_margin="@dimen/very_small_space"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ingredients_cardView">
 
@@ -271,7 +269,7 @@
                 android:id="@+id/preparation_constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/small_space">
+                android:padding="@dimen/very_small_space">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/preparation_textView"
@@ -300,7 +298,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
-                    tools:listitem="@layout/edit_text_row"
+                    tools:listitem="@layout/item_edit_text"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/preparation_textView" />
 

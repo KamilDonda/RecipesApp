@@ -1,0 +1,6 @@
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_heart"
+    android:insetLeft="@dimen/very_small_space"
+    android:insetTop="@dimen/very_small_space"
+    android:insetRight="@dimen/very_small_space"
+    android:insetBottom="@dimen/very_small_space" />

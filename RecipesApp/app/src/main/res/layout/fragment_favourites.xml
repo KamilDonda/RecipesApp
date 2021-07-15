@@ -5,17 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.FavouritesFragment">
+    tools:context=".view.main_activity.favourites.FavouritesFragment">
 
     <include
         android:id="@+id/include"
         layout="@layout/background_favourites" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView3"
         style="@style/Widget.MaterialComponents.TextView.PageName"
         android:text="@string/favourites"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favourites_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:overScrollMode="never"
+        android:src="@drawable/meal_example"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_recipe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,17 @@
     <string name="empty_preparation">The preparation section cannot contain an empty element!</string>
     <string name="empty_ingredients_list">The ingredients list cannot be empty!</string>
     <string name="empty_preparation_list">The preparation list cannot be empty!</string>
+    <string name="copied">Copied to clipboard!</string>
+
+    <string name="ingredients_info">Hold an ingredient to select. You can add selected ingredients to the basket.</string>
+    <string name="author_info">Author of recipe</string>
+    <string name="rating_info">Rating of recipe</string>
+    <string name="level_info">Level of difficulty</string>
+    <string name="time_info">Time of preparation</string>
+    <string name="meals_info">Count of meals</string>
+    <string name="select_level_desc">Select difficulty level</string>
+    <string name="select_time_desc">Select preparation time</string>
+    <string name="select_meals_desc">Select meals count</string>
 
     <string name="ingredients">Ingredients</string>
     <string name="preparation">Preparation</string>
@@ -39,15 +50,16 @@
     <string name="pick_image">Pick image</string>
     <string name="name_desc">Enter a name for the recipe</string>
     <string name="select_level">Select level</string>
-    <string name="select_level_desc">Select difficulty level</string>
     <string name="select_time">Select time</string>
-    <string name="select_time_desc">Select preparation time</string>
     <string name="select_meals">Select count</string>
-    <string name="select_meals_desc">Select meals count</string>
+    <string name="select_all">Select all</string>
+    <string name="unselect_all">Unselect all</string>
     <string name="edit">Edit</string>
     <string name="public_recipe">Public</string>
     <string name="save">Save</string>
     <string name="add_new_item">Add new item</string>
+    <string name="add_to_basket">Add to basket</string>
+    <string name="advanced_search">Advanced</string>
 
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>

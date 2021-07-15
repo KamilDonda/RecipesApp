@@ -8,13 +8,15 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.example.recipesapp.R
 
 class Photo {
-    fun setPhoto(image: String, context: Context, imageView: ImageView) {
-        if (image == "") imageView.setImageDrawable(
-            ContextCompat.getDrawable(context, R.drawable.meal_example)!!
-        )
-        else
-            Glide.with(context).asBitmap().load(image).into(
-                BitmapImageViewTarget(imageView)
+    companion object {
+        fun setPhoto(image: String, context: Context, imageView: ImageView) {
+            if (image.isEmpty()) imageView.setImageDrawable(
+                ContextCompat.getDrawable(context, R.drawable.meal_example)!!
             )
+            else
+                Glide.with(context).asBitmap().load(image).into(
+                    BitmapImageViewTarget(imageView)
+                )
+        }
     }
 }
