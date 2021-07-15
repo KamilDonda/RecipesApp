@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.login_activity.login.LoginFragment">
 
-    <include layout="@layout/background"/>
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView_top"
         android:layout_width="wrap_content"

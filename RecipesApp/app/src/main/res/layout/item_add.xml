@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/medium"
+    app:cardBackgroundColor="@color/transparent_medium"
+    app:cardElevation="0dp"
     android:layout_margin="@dimen/very_small_space">
 
     <ImageView

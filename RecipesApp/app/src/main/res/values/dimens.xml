@@ -27,5 +27,5 @@
     <dimen name="account_icon_size">60dp</dimen>
     <dimen name="account_icon_size_small">50dp</dimen>
     <dimen name="icon_select_size">36dp</dimen>
-    <dimen name="userRecipe_height">170dp</dimen>
+    <dimen name="userRecipe_height">180dp</dimen>
 </resources>

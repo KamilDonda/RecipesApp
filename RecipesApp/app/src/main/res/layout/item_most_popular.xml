@@ -2,10 +2,12 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recipe_row_root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/recipe_row_root"
-    android:layout_margin="@dimen/very_small_space">
+    android:layout_margin="@dimen/very_small_space"
+    app:cardBackgroundColor="@color/transparent_white"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,13 +15,13 @@
 
         <ImageView
             android:id="@+id/imageView_most_popular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/meal_example" />
+            android:src="@drawable/meal_example"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,9 +34,9 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name_textView"
+                style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle.Small"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/Base.Widget.MaterialComponents.TextView.ItemTitle.Small"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -48,7 +50,7 @@
                 android:paddingHorizontal="@dimen/very_small_space"
                 app:layout_constraintEnd_toEndOf="@+id/name_textView"
                 app:layout_constraintStart_toStartOf="@+id/name_textView"
-                app:layout_constraintTop_toBottomOf="@+id/name_textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/name_textView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
