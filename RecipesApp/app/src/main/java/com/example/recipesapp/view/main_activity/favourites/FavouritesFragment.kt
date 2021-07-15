@@ -35,6 +35,11 @@ class FavouritesFragment : Fragment() {
             favouritesViewModel.favourites(it.favourites)
                 .observe(viewLifecycleOwner) { list ->
                     recipesAdapter.setRecipes(list)
+
+                    val listOfIds = list.map { recipe -> recipe.id } as ArrayList
+                    if (listOfIds != it.favourites) {
+                        favouritesViewModel.updateUserFavourites(listOfIds)
+                    }
                 }
         }
     }
