@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -45,7 +46,7 @@ class EditRecipeFragment : BaseFragment() {
     private lateinit var ingredientsListAdapter: EditTextAdapter
     private lateinit var preparationListAdapter: EditTextAdapter
 
-    val auth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     private var photo: Bitmap? = null
     private val GALLERY_REQUEST_CODE = 100
@@ -78,6 +79,7 @@ class EditRecipeFragment : BaseFragment() {
         setupMenus()
 
         setupPickClick()
+        setupResetClick()
         setupSaveButtonClick()
         setupNameTextChange()
         setupLevelClick()
@@ -179,6 +181,13 @@ class EditRecipeFragment : BaseFragment() {
         }
     }
 
+    private fun setupResetClick() {
+        resetImage_button.setOnClickListener {
+            imageView_edit_recipe.setImageResource(R.drawable.meal_example)
+            Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(image = ""))
+        }
+    }
+
     private fun setupSaveButtonClick() {
         save_button.setOnClickListener {
             var recipe = Recipe.editRecipe.value!!
@@ -212,6 +221,11 @@ class EditRecipeFragment : BaseFragment() {
                             val result = photo!!.compress(Bitmap.CompressFormat.JPEG, 90, stream)
                             val byteArray = stream.toByteArray()
                             if (result) editRecipeViewModel.uploadPhoto(recipe.id, byteArray)
+                        }
+
+                        // Delete photo
+                        if (recipe.image.isEmpty()) {
+                            editRecipeViewModel.deletePhoto(recipe.id)
                         }
 
                         showSnackbar(getString(R.string.saved_successfully))

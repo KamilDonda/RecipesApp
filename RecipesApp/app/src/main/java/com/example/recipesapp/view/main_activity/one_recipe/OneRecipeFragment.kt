@@ -64,6 +64,7 @@ class OneRecipeFragment : Fragment() {
         setupData()
         setupPublicClick()
         setupEditClick()
+        setupDeleteClick()
         setupFavouritesClick()
         setupVisibilityClick()
         setupVisibilityObservers()
@@ -134,6 +135,13 @@ class OneRecipeFragment : Fragment() {
             )
             Recipe.setEditRecipe(recipe)
             findNavController().navigate(R.id.action_oneRecipeFragment_to_editRecipeFragment)
+        }
+    }
+
+    private fun setupDeleteClick() {
+        deleteRecipe_button.setOnClickListener {
+            oneRecipeViewModel.deleteRecipe(Recipe.currentRecipe.value!!)
+            findNavController().popBackStack()
         }
     }
 

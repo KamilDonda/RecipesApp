@@ -11,10 +11,19 @@ import com.google.firebase.auth.FirebaseAuth
 
 class OneRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
-    val auth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     fun setRecipeAsPublic(recipe: Recipe) {
         repository.addOrUpdateRecipe(recipe.copy(public = true))
+    }
+
+    fun deleteRecipe(recipe: Recipe) {
+        repository.deleteRecipe(recipe)
+        val user = User.currentUser.value!!
+        user.recipes.apply {
+            this.remove(recipe.id)
+        }
+        repository.updateUser(user)
     }
 
     fun changeFavouritesStatus(recipe: Recipe) {

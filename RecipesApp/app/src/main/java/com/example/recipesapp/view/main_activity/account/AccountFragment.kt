@@ -18,7 +18,7 @@ class AccountFragment : Fragment() {
 
     private lateinit var accountViewModel: AccountViewModel
 
-    val auth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

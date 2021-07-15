@@ -41,7 +41,7 @@
                         android:id="@+id/buttons_constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+
                         app:layout_constraintTop_toBottomOf="@+id/imageView_one_recipe">
 
                         <com.google.android.material.button.MaterialButton
@@ -54,10 +54,20 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/deleteRecipe_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/delete_recipe"
+                            android:backgroundTint="@color/red"
+                            app:layout_constraintEnd_toStartOf="@+id/publicRecipe_button"
+                            app:layout_constraintStart_toEndOf="@+id/editRecipe_button"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/publicRecipe_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/small_space"
+                            android:layout_marginEnd="@dimen/very_small_space"
                             android:text="@string/public_recipe"
                             app:icon="@drawable/ic_arrow_right"
                             app:iconGravity="end"

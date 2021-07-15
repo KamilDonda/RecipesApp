@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class EditRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
-    val auth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     fun addOrUpdateRecipe(recipe: Recipe, updateRecipes: Boolean) {
         if (updateRecipes) {
@@ -25,6 +25,10 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
 
     fun uploadPhoto(id: String, bytes: ByteArray) {
         repository.uploadPhoto(id, bytes)
+    }
+
+    fun deletePhoto(id: String) {
+        repository.deletePhoto(id)
     }
 
     fun updateIngredients(position: Int, text: String) {
