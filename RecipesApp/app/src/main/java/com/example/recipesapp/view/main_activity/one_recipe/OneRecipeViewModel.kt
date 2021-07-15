@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class OneRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
-    val auth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     fun setRecipeAsPublic(recipe: Recipe) {
         repository.addOrUpdateRecipe(recipe.copy(public = true))

@@ -46,7 +46,7 @@ class EditRecipeFragment : BaseFragment() {
     private lateinit var ingredientsListAdapter: EditTextAdapter
     private lateinit var preparationListAdapter: EditTextAdapter
 
-    val auth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     private var photo: Bitmap? = null
     private val GALLERY_REQUEST_CODE = 100
