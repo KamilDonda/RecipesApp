@@ -56,6 +56,7 @@
     <string name="select_all">Select all</string>
     <string name="unselect_all">Unselect all</string>
     <string name="edit">Edit</string>
+    <string name="delete_recipe">Delete recipe</string>
     <string name="public_recipe">Public</string>
     <string name="save">Save</string>
     <string name="add_new_item">Add new item</string>
