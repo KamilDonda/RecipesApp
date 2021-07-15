@@ -18,7 +18,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedBoxStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/field_height"
         android:layout_marginStart="@dimen/small_space"

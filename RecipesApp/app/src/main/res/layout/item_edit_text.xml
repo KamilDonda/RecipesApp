@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
     android:padding="@dimen/small_space"
     android:paddingStart="0dp"
     tools:ignore="RtlSymmetry">
@@ -35,7 +36,6 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="@color/white"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/number_textView"
@@ -44,6 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInput"
             style="@style/TextInputStyle"
+            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

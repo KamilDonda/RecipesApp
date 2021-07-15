@@ -3,33 +3,34 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
-    android:minHeight="@dimen/icon_select_size"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="2dp">
+    android:layout_marginVertical="2dp"
+    android:background="@android:color/transparent"
+    android:minHeight="@dimen/icon_select_size">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/number_preparation_textView"
-            android:layout_width="@dimen/icon_select_size"
-            android:layout_height="@dimen/icon_select_size"
-            android:background="@drawable/bg_green_circle"
-            android:backgroundTint="@color/light"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_marginVertical="@dimen/very_small_space"
-            android:layout_marginStart="@dimen/very_small_space"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/number_preparation_textView"
+        android:layout_width="@dimen/icon_select_size"
+        android:layout_height="@dimen/icon_select_size"
+        android:layout_marginVertical="@dimen/very_small_space"
+        android:layout_marginStart="@dimen/very_small_space"
+        android:background="@drawable/bg_green_circle"
+        android:backgroundTint="@color/light"
+        android:gravity="center"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_space"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/number_preparation_textView"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_space"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/number_preparation_textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
