@@ -27,6 +27,10 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
         repository.uploadPhoto(id, bytes)
     }
 
+    fun deletePhoto(id: String) {
+        repository.deletePhoto(id)
+    }
+
     fun updateIngredients(position: Int, text: String) {
         Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
             this.ingredients[position] = text

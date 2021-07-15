@@ -108,6 +108,14 @@ class FirebaseRepository {
             }
     }
 
+    // Delete photo from storage
+    fun deletePhoto(id: String) {
+        storage.getReference(PATH_IMAGES)
+            .child(id)
+            .delete()
+    }
+
+    // Get photo from storage
     private fun getPhotoUrl(storage: StorageReference, id: String) {
         storage.downloadUrl
             .addOnSuccessListener {
@@ -115,6 +123,7 @@ class FirebaseRepository {
             }
     }
 
+    // Update field "image" in User
     private fun updatePhoto(url: String?, id: String) {
         cloud.collection(PATH_RECIPES).document(id).update(FIELD_IMAGE, url)
     }
@@ -123,14 +132,17 @@ class FirebaseRepository {
         cloud.collection(PATH_USER).document(user.uid).set(user)
     }
 
+    // Update field "recipes" in User
     fun updateUserRecipes(uid: String, idsOfRecipes: ArrayList<String>) {
         cloud.collection(PATH_USER).document(uid).update(FIELD_RECIPES, idsOfRecipes)
     }
 
+    // Update field "favourites" in User
     fun updateUserFavourites(uid: String, idsOfFavourites: ArrayList<String>) {
         cloud.collection(PATH_USER).document(uid).update(FIELD_FAVOURITES, idsOfFavourites)
     }
 
+    // Get User's data
     fun getUser(uid: String): LiveData<User?> {
         val currentUser: MutableLiveData<User> = MutableLiveData()
         cloud.collection(PATH_USER).document(uid)
