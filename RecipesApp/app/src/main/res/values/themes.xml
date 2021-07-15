@@ -87,7 +87,7 @@
     <style name="Base.Widget.MaterialComponents.TextView.ItemTitle.Big">
         <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:ellipsize">none</item>
-        <item name="android:lines">2</item>
+        <item name="android:maxLines">2</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">0dp</item>
     </style>
