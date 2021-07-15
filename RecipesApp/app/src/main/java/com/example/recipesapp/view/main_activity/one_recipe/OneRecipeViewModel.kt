@@ -17,6 +17,15 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         repository.addOrUpdateRecipe(recipe.copy(public = true))
     }
 
+    fun deleteRecipe(recipe: Recipe) {
+        repository.deleteRecipe(recipe)
+        val user = User.currentUser.value!!
+        user.recipes.apply {
+            this.remove(recipe.id)
+        }
+        repository.updateUser(user)
+    }
+
     fun changeFavouritesStatus(recipe: Recipe) {
         val user = User.currentUser.value!!
         val favourites = user.favourites

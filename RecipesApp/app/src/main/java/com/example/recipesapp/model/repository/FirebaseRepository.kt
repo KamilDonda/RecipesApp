@@ -98,6 +98,10 @@ class FirebaseRepository {
         cloud.collection(PATH_RECIPES).document(recipe.id).set(recipe)
     }
 
+    fun deleteRecipe(recipe: Recipe) {
+        cloud.collection(PATH_RECIPES).document(recipe.id).delete()
+    }
+
     // Upload photo to storage
     fun uploadPhoto(id: String, bytes: ByteArray) {
         storage.getReference(PATH_IMAGES)
