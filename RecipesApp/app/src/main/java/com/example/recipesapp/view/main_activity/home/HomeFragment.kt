@@ -8,10 +8,12 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.MostPopularAdapter
 import com.example.recipesapp.adapter.MyRecipesAdapter
 import com.example.recipesapp.model.entity.Level
+import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
@@ -60,6 +62,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupData()
+        setupRecipeClick()
 
 //        // TODO
 //        val navBar = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
@@ -98,6 +101,13 @@ class HomeFragment : Fragment() {
 
             todayRecipe_cardView.visibility = View.VISIBLE
             todayRecipe_indicator.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun setupRecipeClick() {
+        todayRecipe_cardView.setOnClickListener {
+            Recipe.setCurrentRecipe(homeViewModel.todayRecipe.value!!)
+            it.findNavController().navigate(R.id.action_home_to_oneRecipeFragment)
         }
     }
 }
