@@ -19,6 +19,7 @@ class FirebaseRepository {
     private val PATH_USER = "users"
     private val PATH_RECIPES = "recipes"
     private val PATH_IMAGES = "images"
+    private val PATH_TODAY_RECIPE = "today_recipe"
 
     private val FIELD_ID = "id"
     private val FIELD_UID = "uid"
@@ -89,6 +90,23 @@ class FirebaseRepository {
             .addOnSuccessListener {
                 val recipes = it.toObjects(Recipe::class.java) as ArrayList<Recipe>?
                 result.postValue(recipes)
+            }
+        return result
+    }
+
+    // Get today's recipe
+    fun getTodayRecipe(): LiveData<Recipe> {
+        val result = MutableLiveData<Recipe>()
+        cloud.collection(PATH_TODAY_RECIPE)
+            .document(PATH_TODAY_RECIPE)
+            .get()
+            .addOnSuccessListener {
+                cloud.collection(PATH_RECIPES)
+                    .whereEqualTo(FIELD_ID, it.data?.get(FIELD_ID))
+                    .get()
+                    .addOnSuccessListener {
+                        result.postValue((it.toObjects(Recipe::class.java) as ArrayList<Recipe>)[0])
+                    }
             }
         return result
     }

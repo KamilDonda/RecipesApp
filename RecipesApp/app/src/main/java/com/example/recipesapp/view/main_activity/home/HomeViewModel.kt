@@ -8,5 +8,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = FirebaseRepository()
 
     val mostPopular = repository.getMostPopular()
+
     fun userRecipes(list: ArrayList<String>) = repository.getRecipesByIDs(list)
+
+    val todayRecipe = repository.getTodayRecipe()
 }
