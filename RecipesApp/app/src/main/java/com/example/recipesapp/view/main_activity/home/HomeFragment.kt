@@ -95,6 +95,9 @@ class HomeFragment : Fragment() {
             todayRecipe_meals_textView.text = it.meals.toString()
             RatingSystem.displayStars(requireContext(), todayRecipe_rating_linearLayout, it.rating, 25f)
             todayRecipe_rating_textView.text = it.rating.toString()
+
+            todayRecipe_cardView.visibility = View.VISIBLE
+            todayRecipe_indicator.visibility = View.INVISIBLE
         }
     }
 }

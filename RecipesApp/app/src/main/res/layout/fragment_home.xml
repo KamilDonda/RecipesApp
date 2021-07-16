@@ -33,6 +33,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView4" />
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/todayRecipe_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="@+id/todayRecipe_cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/todayRecipe_cardView" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/todayRecipe_cardView"
                 android:layout_width="match_parent"
@@ -40,6 +50,7 @@
                 android:layout_margin="@dimen/small_space"
                 app:cardBackgroundColor="@color/transparent_white"
                 app:cardElevation="0dp"
+                android:visibility="invisible"
                 app:layout_constraintTop_toBottomOf="@+id/title_textView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,8 +61,8 @@
                         android:id="@+id/todayRecipe_imageView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:minHeight="@dimen/mainImage_height"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/meal_example"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -65,11 +76,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/todayRecipe_imageView" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/info_constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/very_small_space"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/todayRecipe_name_textView">
+                        app:layout_constraintTop_toBottomOf="@+id/todayRecipe_name_textView"
+                        tools:layout_editor_absoluteX="6dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/todayRecipe_level_layout"
