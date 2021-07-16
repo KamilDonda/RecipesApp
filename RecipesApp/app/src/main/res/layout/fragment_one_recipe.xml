@@ -130,7 +130,6 @@
                             android:layout_height="wrap_content"
                             android:tooltipText="@string/time_info"
                             app:layout_constraintEnd_toStartOf="@+id/meals_layout"
-                            app:layout_constraintHorizontal_bias="0.35"
                             app:layout_constraintStart_toEndOf="@+id/level_layout"
                             app:layout_constraintTop_toTopOf="parent">
 
