@@ -28,6 +28,8 @@
     <string name="empty_preparation">The preparation section cannot contain an empty element!</string>
     <string name="empty_ingredients_list">The ingredients list cannot be empty!</string>
     <string name="empty_preparation_list">The preparation list cannot be empty!</string>
+    <string name="empty_ingredient_name">The ingredient name cannot be empty!</string>
+    <string name="empty_ingredient_count">The ingredient amount cannot be empty!</string>
     <string name="copied">Copied to clipboard!</string>
 
     <string name="ingredients_info">Hold an ingredient to select. You can add selected ingredients to the basket.</string>
