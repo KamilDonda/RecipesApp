@@ -71,5 +71,14 @@
         android:id="@+id/editRecipeFragment"
         android:name="com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeFragment"
         android:label="fragment_edit_recipe"
-        tools:layout="@layout/fragment_edit_recipe" />
+        tools:layout="@layout/fragment_edit_recipe" >
+        <action
+            android:id="@+id/action_editRecipeFragment_to_ingredientDialogFragment"
+            app:destination="@id/ingredientDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/ingredientDialogFragment"
+        android:name="com.example.recipesapp.view.main_activity.edit_recipe.ingredient.IngredientDialogFragment"
+        android:label="dialog_fragment_ingredient"
+        tools:layout="@layout/dialog_fragment_ingredient" />
 </navigation>

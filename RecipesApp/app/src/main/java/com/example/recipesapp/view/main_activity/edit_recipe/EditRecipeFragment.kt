@@ -290,10 +290,11 @@ class EditRecipeFragment : BaseFragment() {
 
     private fun setupIngredientsAddClick() {
         addIngredient_button.setOnClickListener {
-            val temp = Recipe.editRecipe.value!!.ingredients
-                temp.add(Ingredient())
-            Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(ingredients = temp))
-            ingredientsListAdapter.notifyItemInserted(temp.size - 1)
+//            val temp = Recipe.editRecipe.value!!.ingredients
+//                temp.add(Ingredient())
+//            Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(ingredients = temp))
+//            ingredientsListAdapter.notifyItemInserted(temp.size - 1)
+            findNavController().navigate(R.id.action_editRecipeFragment_to_ingredientDialogFragment)
         }
     }
 

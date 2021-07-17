@@ -63,6 +63,12 @@
     <string name="add_new_item">Add new item</string>
     <string name="add_to_basket">Add to basket</string>
     <string name="advanced_search">Advanced</string>
+    <string name="new_ingredient">Add new ingredient</string>
+    <string name="new_ingredient_name">Enter a name for the ingredient</string>
+    <string name="new_ingredient_amount">Enter the amount</string>
+    <string name="new_ingredient_unit">Select unit</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
