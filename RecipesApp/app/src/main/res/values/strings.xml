@@ -68,4 +68,11 @@
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
 
+    <string name="gram">gram</string>
+    <string name="g">g</string>
+    <string name="millilitre">millilitre</string>
+    <string name="ml">ml</string>
+    <string name="piece">piece</string>
+    <string name="pc">pc</string>
+
 </resources>

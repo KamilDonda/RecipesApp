@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.model.repository.FirebaseRepository
@@ -31,9 +32,9 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
         repository.deletePhoto(id)
     }
 
-    fun updateIngredients(position: Int, text: String) {
+    fun updateIngredients(position: Int, item: Ingredient) {
         Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
-            this.ingredients[position] = text
+            this.ingredients[position] = item
         })
     }
 

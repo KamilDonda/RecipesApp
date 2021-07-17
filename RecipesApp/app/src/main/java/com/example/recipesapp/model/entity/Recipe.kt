@@ -12,7 +12,7 @@ data class Recipe(
     var level: Int = Level.EASY.number,
     var time: Long = TimeConverter.hourAndMinuteToLong(0, 30),
     var meals: Int = 1,
-    var ingredients: ArrayList<String> = ArrayList(),
+    var ingredients: ArrayList<Ingredient> = ArrayList(),
     var preparation: ArrayList<String> = ArrayList(),
     var public: Boolean = false,
     var ratingCount: Int = 0,

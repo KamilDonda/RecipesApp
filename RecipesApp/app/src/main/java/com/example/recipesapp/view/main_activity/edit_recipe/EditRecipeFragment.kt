@@ -13,13 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
-import com.example.recipesapp.adapter.EditTextAdapter
+import com.example.recipesapp.adapter.EditIngredientAdapter
+import com.example.recipesapp.adapter.EditPrepAdapter
+import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.Photo
@@ -43,8 +44,8 @@ class EditRecipeFragment : BaseFragment() {
     private lateinit var levelMenu: RecipeMenu
     private lateinit var mealsMenu: RecipeMenu
 
-    private lateinit var ingredientsListAdapter: EditTextAdapter
-    private lateinit var preparationListAdapter: EditTextAdapter
+    private lateinit var ingredientsListAdapter: EditIngredientAdapter
+    private lateinit var preparationListAdapter: EditPrepAdapter
 
     private val auth = FirebaseAuth.getInstance()
 
@@ -59,12 +60,12 @@ class EditRecipeFragment : BaseFragment() {
             ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
 
         ingredientsListAdapter =
-            EditTextAdapter(
-                { p: Int, s: String -> editRecipeViewModel.updateIngredients(p, s) },
+            EditIngredientAdapter(
+                { p: Int, i: Ingredient -> editRecipeViewModel.updateIngredients(p, i) },
                 { editRecipeViewModel.deleteIngredient(it) }
             )
         preparationListAdapter =
-            EditTextAdapter(
+            EditPrepAdapter(
                 { p: Int, s: String -> editRecipeViewModel.updatePreparation(p, s) },
                 { editRecipeViewModel.deletePreparation(it) }
             )
@@ -198,7 +199,7 @@ class EditRecipeFragment : BaseFragment() {
                         showSnackbar(getString(R.string.empty_ingredients_list))
                     recipe.preparation.isEmpty() ->
                         showSnackbar(getString(R.string.empty_preparation_list))
-                    recipe.ingredients.contains("") ->
+                    recipe.ingredients.any { it.name.isBlank() } ->
                         showSnackbar(getString(R.string.empty_ingredients))
                     recipe.preparation.contains("") ->
                         showSnackbar(getString(R.string.empty_preparation))
@@ -290,7 +291,7 @@ class EditRecipeFragment : BaseFragment() {
     private fun setupIngredientsAddClick() {
         addIngredient_button.setOnClickListener {
             val temp = Recipe.editRecipe.value!!.ingredients
-            temp.add("")
+                temp.add(Ingredient())
             Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(ingredients = temp))
             ingredientsListAdapter.notifyItemInserted(temp.size - 1)
         }

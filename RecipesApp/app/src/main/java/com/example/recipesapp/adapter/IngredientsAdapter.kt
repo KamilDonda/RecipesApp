@@ -1,5 +1,6 @@
 package com.example.recipesapp.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
+import com.example.recipesapp.model.entity.Ingredient
+import com.example.recipesapp.model.entity.Unit
 import com.example.recipesapp.view.main_activity.one_recipe.OneRecipeViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
@@ -18,9 +21,9 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
 
     inner class ListHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    private val stringList = ArrayList<String>()
+    private val stringList = ArrayList<Ingredient>()
 
-    fun setList(list: List<String>) {
+    fun setList(list: List<Ingredient>) {
         stringList.clear()
         stringList.addAll(list)
         notifyDataSetChanged()
@@ -42,10 +45,12 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
 
     override fun getItemCount() = stringList.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ListHolder, position: Int) {
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.root)
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_ingredient_textView)
-        val text = holder.itemView.findViewById<MaterialTextView>(R.id.materialTextView)
+        val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)
+        val count = holder.itemView.findViewById<MaterialTextView>(R.id.count_textView)
         val icon = holder.itemView.findViewById<ImageView>(R.id.icon_circle)
         items.add(Triple(root, icon, number))
 
@@ -61,7 +66,11 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         }
 
         number.text = (position + 1).toString()
-        text.text = stringList[position]
+
+        val item = stringList[position]
+        name.text = item.name
+        val unit = context.getString(Unit.values().find { it.number == item.unit }!!.abbr_id)
+        count.text = "${isWhole(item.number)} $unit"
     }
 
     private fun selectItem(
@@ -110,11 +119,17 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         }
     }
 
-    fun getSelectedList(): ArrayList<String> {
-        val arrayList = ArrayList<String>()
+    fun getSelectedList(): ArrayList<Ingredient> {
+        val arrayList = ArrayList<Ingredient>()
         stringList.forEachIndexed { index, s ->
             if (selectedItems[index]) arrayList.add(s)
         }
         return arrayList
+    }
+
+    private fun isWhole(value: Float): String {
+        if (value - value.toInt() == 0f)
+            return value.toInt().toString()
+        return value.toString()
     }
 }
