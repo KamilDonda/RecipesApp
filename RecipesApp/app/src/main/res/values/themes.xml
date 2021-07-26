@@ -17,6 +17,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+<!--        <item name="android:windowMinWidthMinor">100%</item>-->
+    </style>
+
     <style name="TextInputStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

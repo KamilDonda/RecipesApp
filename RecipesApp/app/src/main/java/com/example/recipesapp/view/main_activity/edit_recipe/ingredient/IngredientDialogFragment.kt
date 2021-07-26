@@ -24,6 +24,12 @@ class IngredientDialogFragment : DialogFragment() {
 
     private lateinit var editRecipeViewModel: EditRecipeViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setStyle(STYLE_NO_TITLE, R.style.DialogStyle)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -63,7 +69,7 @@ class IngredientDialogFragment : DialogFragment() {
             ingredientAmount_textInput.setText(NumberConverter.isWhole(ingredient.amount))
             unit_radioGroup.check(ingredient.unit)
             materialTextView.text = getString(R.string.edit_ingredient)
-          }
+        }
     }
 
     private fun setupDismissButtons() {
@@ -109,4 +115,12 @@ class IngredientDialogFragment : DialogFragment() {
         super.dismiss()
         editRecipeViewModel.resetIngredient()
     }
+
+//    override fun onStart() {
+//        super.onStart()
+//        dialog?.window?.setLayout(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.MATCH_PARENT
+//        )
+//    }
 }
