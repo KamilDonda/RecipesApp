@@ -32,12 +32,6 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
         repository.deletePhoto(id)
     }
 
-    fun updateIngredients(position: Int, item: Ingredient) {
-        Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
-            this.ingredients[position] = item
-        })
-    }
-
     fun updatePreparation(position: Int, text: String) {
         Recipe.setEditRecipe(Recipe.editRecipe.value!!.apply {
             this.preparation[position] = text
@@ -66,6 +60,20 @@ class EditRecipeViewModel(application: Application) : AndroidViewModel(applicati
     val visiblePreparation: LiveData<Boolean> get() = _visiblePreparation
     fun changeVisibilityOfPreparation() {
         _visiblePreparation.value = !_visiblePreparation.value!!
+    }
+
+    private var _ingredientPosition = -1
+    val ingredientPosition get() = _ingredientPosition
+
+    private var _currentIngredient = Ingredient()
+    val currentIngredient: Ingredient get() = _currentIngredient
+    fun setCurrentIngredient(ingredient: Ingredient, position: Int) {
+        _currentIngredient = ingredient
+        _ingredientPosition = position
+    }
+    fun resetIngredient() {
+        _currentIngredient = Ingredient()
+        _ingredientPosition = -1
     }
 
     init {

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Unit
+import com.example.recipesapp.utils.NumberConverter
 import com.example.recipesapp.view.main_activity.one_recipe.OneRecipeViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
@@ -50,7 +51,7 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.root)
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_ingredient_textView)
         val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)
-        val count = holder.itemView.findViewById<MaterialTextView>(R.id.count_textView)
+        val amount = holder.itemView.findViewById<MaterialTextView>(R.id.amount_textView)
         val icon = holder.itemView.findViewById<ImageView>(R.id.icon_circle)
         items.add(Triple(root, icon, number))
 
@@ -70,7 +71,7 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         val item = stringList[position]
         name.text = item.name
         val unit = context.getString(Unit.values().find { it.number == item.unit }!!.abbr_id)
-        count.text = "${isWhole(item.number)} $unit"
+        amount.text = "${NumberConverter.isWhole(item.amount)} $unit"
     }
 
     private fun selectItem(
@@ -125,11 +126,5 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
             if (selectedItems[index]) arrayList.add(s)
         }
         return arrayList
-    }
-
-    private fun isWhole(value: Float): String {
-        if (value - value.toInt() == 0f)
-            return value.toInt().toString()
-        return value.toString()
     }
 }

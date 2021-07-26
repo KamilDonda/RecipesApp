@@ -46,7 +46,7 @@
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@color/light"
                 android:maxLines="3" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ingredientUnitHint_textView" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/ingredientCountHint_textView"
+            android:id="@+id/ingredientAmountHint_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/medium_space"
@@ -79,19 +79,20 @@
             app:layout_constraintTop_toBottomOf="@+id/ingredientName_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ingredientCount_layout"
+            android:id="@+id/ingredientAmount_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/medium_space"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="@+id/ingredientName_layout"
-            app:layout_constraintStart_toStartOf="@+id/ingredientCountHint_textView"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientCountHint_textView">
+            app:layout_constraintStart_toStartOf="@+id/ingredientAmountHint_textView"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientAmountHint_textView">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ingredientCount_textInput"
+                android:id="@+id/ingredientAmount_textInput"
                 style="@style/TextInputStyle"
-                android:background="@android:color/transparent"
+                android:textAlignment="center"
+                android:background="@color/light"
                 android:inputType="numberDecimal"
                 android:lines="1" />
 

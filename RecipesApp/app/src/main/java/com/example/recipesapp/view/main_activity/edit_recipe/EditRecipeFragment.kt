@@ -20,7 +20,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.EditIngredientAdapter
 import com.example.recipesapp.adapter.EditPrepAdapter
-import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.Photo
@@ -34,7 +33,6 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
 import java.util.*
 
 class EditRecipeFragment : BaseFragment() {
@@ -60,10 +58,8 @@ class EditRecipeFragment : BaseFragment() {
             ViewModelProvider(requireActivity()).get(EditRecipeViewModel::class.java)
 
         ingredientsListAdapter =
-            EditIngredientAdapter(
-                { p: Int, i: Ingredient -> editRecipeViewModel.updateIngredients(p, i) },
-                { editRecipeViewModel.deleteIngredient(it) }
-            )
+            EditIngredientAdapter(requireContext(), editRecipeViewModel)
+
         preparationListAdapter =
             EditPrepAdapter(
                 { p: Int, s: String -> editRecipeViewModel.updatePreparation(p, s) },
@@ -290,10 +286,6 @@ class EditRecipeFragment : BaseFragment() {
 
     private fun setupIngredientsAddClick() {
         addIngredient_button.setOnClickListener {
-//            val temp = Recipe.editRecipe.value!!.ingredients
-//                temp.add(Ingredient())
-//            Recipe.setEditRecipe(Recipe.editRecipe.value!!.copy(ingredients = temp))
-//            ingredientsListAdapter.notifyItemInserted(temp.size - 1)
             findNavController().navigate(R.id.action_editRecipeFragment_to_ingredientDialogFragment)
         }
     }
