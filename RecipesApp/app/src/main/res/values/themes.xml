@@ -33,6 +33,15 @@
         <item name="boxBackgroundColor">@color/transparent_white</item>
     </style>
 
+    <style name="CircleStyle">
+        <item name="android:layout_width">@dimen/icon_select_size</item>
+        <item name="android:layout_height">@dimen/icon_select_size</item>
+        <item name="android:background">@drawable/bg_green_circle</item>
+        <item name="android:backgroundTint">@color/transparent_medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius" parent="">
         <item name="cornerSizeBottomRight">100dp</item>
         <item name="cornerFamilyTopRight">rounded</item>
