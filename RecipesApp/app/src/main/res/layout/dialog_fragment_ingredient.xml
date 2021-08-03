@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/medium_space"
                 android:layout_marginVertical="@dimen/small_space"
+                style="@style/OutlinedBoxStyle"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +51,6 @@
                     style="@style/TextInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light"
                     android:maxLines="3" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,7 +86,8 @@
                 android:id="@+id/ingredientAmount_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/medium_space"
+                android:layout_marginVertical="@dimen/small_space"
+                style="@style/OutlinedBoxStyle"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="@+id/ingredientName_layout"
                 app:layout_constraintStart_toStartOf="@+id/ingredientAmountHint_textView"
@@ -95,7 +96,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ingredientAmount_textInput"
                     style="@style/TextInputStyle"
-                    android:background="@color/light"
                     android:inputType="numberDecimal"
                     android:lines="1"
                     android:textAlignment="center" />

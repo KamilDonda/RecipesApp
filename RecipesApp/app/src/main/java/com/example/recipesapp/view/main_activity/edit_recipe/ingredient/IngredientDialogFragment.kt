@@ -115,12 +115,4 @@ class IngredientDialogFragment : DialogFragment() {
         super.dismiss()
         editRecipeViewModel.resetIngredient()
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//        dialog?.window?.setLayout(
-//            ViewGroup.LayoutParams.MATCH_PARENT,
-//            ViewGroup.LayoutParams.MATCH_PARENT
-//        )
-//    }
 }

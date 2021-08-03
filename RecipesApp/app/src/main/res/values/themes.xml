@@ -17,10 +17,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="DialogStyle" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowMinWidthMajor">80%</item>
-<!--        <item name="android:windowMinWidthMinor">100%</item>-->
+        <item name="colorPrimary">@color/green</item>
     </style>
 
     <style name="TextInputStyle">
