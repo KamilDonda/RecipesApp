@@ -18,24 +18,19 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.IngredientsAdapter
 import com.example.recipesapp.adapter.PreparationAdapter
+import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
+import com.example.recipesapp.model.entity.Unit
 import com.example.recipesapp.model.entity.User
+import com.example.recipesapp.utils.NumberConverter
 import com.example.recipesapp.utils.Photo
 import com.example.recipesapp.utils.RatingSystem
 import com.example.recipesapp.utils.TimeConverter
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_edit_recipe.*
 import kotlinx.android.synthetic.main.fragment_one_recipe.*
-import kotlinx.android.synthetic.main.fragment_one_recipe.buttons_constraintLayout
-import kotlinx.android.synthetic.main.fragment_one_recipe.ingredients_constraintLayout
-import kotlinx.android.synthetic.main.fragment_one_recipe.ingredients_recyclerView
-import kotlinx.android.synthetic.main.fragment_one_recipe.level_imageView
-import kotlinx.android.synthetic.main.fragment_one_recipe.level_textView
-import kotlinx.android.synthetic.main.fragment_one_recipe.meals_textView
-import kotlinx.android.synthetic.main.fragment_one_recipe.preparation_constraintLayout
-import kotlinx.android.synthetic.main.fragment_one_recipe.preparation_recyclerView
-import kotlinx.android.synthetic.main.fragment_one_recipe.time_textView
+import kotlin.CharSequence
+import kotlin.String
 
 
 class OneRecipeFragment : Fragment() {
@@ -195,8 +190,9 @@ class OneRecipeFragment : Fragment() {
     private fun setupCopyClick() {
         copyIngredients_button.setOnClickListener {
             context?.copyToClipboard(
-                Recipe.currentRecipe.value!!.ingredients.mapIndexed { _, s -> s }
-                    .joinToString(separator = ", ")
+                Recipe.currentRecipe.value!!.ingredients.mapIndexed { _, s ->
+                    copiedIngredientText(s)
+                }.joinToString(separator = ",\n")
             )
         }
         copyPreparation_button.setOnClickListener {
@@ -210,5 +206,10 @@ class OneRecipeFragment : Fragment() {
         val clipboard = ContextCompat.getSystemService(this, ClipboardManager::class.java)
         clipboard?.setPrimaryClip(ClipData.newPlainText("", text))
         Snackbar.make(requireView(), getString(R.string.copied), Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun copiedIngredientText(ing: Ingredient): String {
+        val unit = getString(Unit.values().find { it.number == ing.unit }!!.abbr_id)
+        return "${ing.name} - ${NumberConverter.isWhole(ing.amount)} $unit"
     }
 }
