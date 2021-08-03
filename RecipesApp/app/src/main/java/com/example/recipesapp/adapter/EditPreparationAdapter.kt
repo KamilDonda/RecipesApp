@@ -10,11 +10,11 @@ import com.example.recipesapp.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 
-class EditPrepAdapter(
+class EditPreparationAdapter(
     private val updateItem: (Int, String) -> Unit,
     private val deleteItem: (Int) -> Unit
 ) :
-    RecyclerView.Adapter<EditPrepAdapter.EditPrepHolder>() {
+    RecyclerView.Adapter<EditPreparationAdapter.EditPrepHolder>() {
 
     inner class EditPrepHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -27,7 +27,7 @@ class EditPrepAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditPrepHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_edit_text, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_preparation_edit, parent, false)
         return EditPrepHolder(view)
     }
 
@@ -39,7 +39,7 @@ class EditPrepAdapter(
 
     override fun onBindViewHolder(holder: EditPrepHolder, position: Int) {
         val text = holder.itemView.findViewById<TextInputEditText>(R.id.textInput)
-        val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_textView)
+        val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_preparation_textView)
         val deleteButton = holder.itemView.findViewById<ImageButton>(R.id.delete_button)
 
         number.text = (position + 1).toString()

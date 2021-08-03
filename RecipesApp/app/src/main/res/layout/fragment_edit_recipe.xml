@@ -264,7 +264,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/ingredients_textView"
                     tools:itemCount="1"
-                    tools:listitem="@layout/item_edit_text" />
+                    tools:listitem="@layout/item_ingredient_edit" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -315,7 +315,7 @@
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/preparation_textView"
-                    tools:listitem="@layout/item_edit_text" />
+                    tools:listitem="@layout/item_preparation_edit" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

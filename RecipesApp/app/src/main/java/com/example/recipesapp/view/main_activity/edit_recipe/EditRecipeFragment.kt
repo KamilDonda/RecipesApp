@@ -19,7 +19,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.adapter.EditIngredientAdapter
-import com.example.recipesapp.adapter.EditPrepAdapter
+import com.example.recipesapp.adapter.EditPreparationAdapter
 import com.example.recipesapp.model.entity.Level
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.utils.Photo
@@ -43,7 +43,7 @@ class EditRecipeFragment : BaseFragment() {
     private lateinit var mealsMenu: RecipeMenu
 
     private lateinit var ingredientsListAdapter: EditIngredientAdapter
-    private lateinit var preparationListAdapter: EditPrepAdapter
+    private lateinit var preparationListAdapter: EditPreparationAdapter
 
     private val auth = FirebaseAuth.getInstance()
 
@@ -61,7 +61,7 @@ class EditRecipeFragment : BaseFragment() {
             EditIngredientAdapter(requireContext(), editRecipeViewModel)
 
         preparationListAdapter =
-            EditPrepAdapter(
+            EditPreparationAdapter(
                 { p: Int, s: String -> editRecipeViewModel.updatePreparation(p, s) },
                 { editRecipeViewModel.deletePreparation(it) }
             )
