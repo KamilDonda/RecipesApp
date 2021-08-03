@@ -5,7 +5,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -173,8 +172,9 @@ class OneRecipeFragment : Fragment() {
 
     private fun setupFabClick() {
         addToBasket_fab.setOnClickListener {
-            // TODO
-            Log.v("test", ingredientsListAdapter.getSelectedList().toString())
+            val items = ingredientsListAdapter.getSelectedList()
+            oneRecipeViewModel.updateBasket(items)
+            ingredientsListAdapter.selectAll(true)
         }
     }
 

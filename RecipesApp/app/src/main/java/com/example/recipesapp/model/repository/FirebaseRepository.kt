@@ -2,6 +2,7 @@ package com.example.recipesapp.model.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.google.firebase.firestore.DocumentSnapshot
@@ -29,6 +30,7 @@ class FirebaseRepository {
     private val FIELD_RECIPES = "recipes"
     private val FIELD_FAVOURITES = "favourites"
     private val FIELD_NAME = "name"
+    private val FIELD_BASKET = "basket"
 
     // Create new user
     fun createUser(user: User) {
@@ -176,5 +178,9 @@ class FirebaseRepository {
                 currentUser.value = value?.toObject(User::class.java)
             })
         return currentUser
+    }
+
+    fun updateUserBasket(uid: String, items: ArrayList<Ingredient>) {
+        cloud.collection(PATH_USER).document(uid).update(FIELD_BASKET, items)
     }
 }

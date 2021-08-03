@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.model.entity.Recipe
 import com.example.recipesapp.model.entity.User
 import com.example.recipesapp.model.repository.FirebaseRepository
@@ -38,6 +39,15 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         repository.updateUserFavourites(auth.uid!!, favourites)
     }
 
+    fun updateBasket(items: ArrayList<Ingredient>) {
+        val user = User.currentUser.value!!
+        val basket = user.basket
+        items.forEach {
+            if (!basket.contains(it)) basket.add(it)
+        }
+        repository.updateUserBasket(auth.currentUser!!.uid, basket)
+    }
+
     private var _visibleIngredients: MutableLiveData<Boolean> = MutableLiveData()
     val visibleIngredients: LiveData<Boolean> get() = _visibleIngredients
     fun changeVisibilityOfIngredients() {
@@ -51,13 +61,13 @@ class OneRecipeViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private var _isSelectedMode: MutableLiveData<Boolean> = MutableLiveData()
-    val isSelectedMode: LiveData<Boolean> get() =_isSelectedMode
+    val isSelectedMode: LiveData<Boolean> get() = _isSelectedMode
     fun setSelectedMode(mode: Boolean) {
         _isSelectedMode.value = mode
     }
 
     private var _allSelected: MutableLiveData<Boolean> = MutableLiveData()
-    val allSelected: LiveData<Boolean> get() =_allSelected
+    val allSelected: LiveData<Boolean> get() = _allSelected
     fun setAllSelected(selected: Boolean) {
         _allSelected.value = selected
     }

@@ -110,8 +110,8 @@ class IngredientsAdapter(private val context: Context, private val viewModel: On
         root.setCardBackgroundColor(color)
     }
 
-    fun selectAll() {
-        val bool = selectedItems.contains(false)
+    fun selectAll(unselect: Boolean? = null) {
+        val bool = if (unselect != null) false else selectedItems.contains(false)
         viewModel.setAllSelected(bool)
         selectedItems.fill(bool)
         viewModel.setSelectedMode(bool)

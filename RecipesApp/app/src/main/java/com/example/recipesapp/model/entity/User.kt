@@ -8,10 +8,11 @@ data class User(
     val uid: String,
     var nickname: String = "",
     val recipes: ArrayList<String> = ArrayList(),
-    val favourites: ArrayList<String> = ArrayList()
+    val favourites: ArrayList<String> = ArrayList(),
+    val basket: ArrayList<Ingredient> = ArrayList()
 ): Serializable {
 
-    constructor() : this("", "", ArrayList(), ArrayList())
+    constructor() : this("", "", ArrayList(), ArrayList(), ArrayList())
 
     companion object {
         private var _currentUser: MutableLiveData<User> = MutableLiveData()
