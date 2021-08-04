@@ -6,22 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Ingredient
 import com.example.recipesapp.utils.NumberConverter
-import com.example.recipesapp.view.main_activity.edit_recipe.EditRecipeViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
-class EditIngredientAdapter(
-    private val context: Context,
-    private val viewModel: EditRecipeViewModel
-) :
-    RecyclerView.Adapter<EditIngredientAdapter.EditIngredientHolder>() {
+class BasketAdapter(private val context: Context) :
+    RecyclerView.Adapter<BasketAdapter.BasketHolder>() {
 
-    inner class EditIngredientHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class BasketHolder(view: View) : RecyclerView.ViewHolder(view)
 
     private val ingredients = ArrayList<Ingredient>()
 
@@ -31,10 +26,10 @@ class EditIngredientAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditIngredientHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_ingredient_edit, parent, false)
-        return EditIngredientHolder(view)
+        return BasketHolder(view)
     }
 
     override fun getItemCount() = ingredients.size
@@ -44,7 +39,7 @@ class EditIngredientAdapter(
     override fun getItemViewType(position: Int) = position
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: EditIngredientHolder, position: Int) {
+    override fun onBindViewHolder(holder: BasketHolder, position: Int) {
         val root = holder.itemView.findViewById<MaterialCardView>(R.id.root)
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_ingredient_textView)
         val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)
@@ -62,15 +57,10 @@ class EditIngredientAdapter(
         amount.text = "${NumberConverter.isWhole(item.amount)} $unit"
 
         root.setOnClickListener {
-            viewModel.setCurrentIngredient(item, position)
-            it.findNavController()
-                .navigate(R.id.action_editRecipeFragment_to_ingredientDialogFragment)
         }
 
         deleteButton.setOnClickListener {
-            viewModel.deleteIngredient(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, ingredients.size)
         }
     }
+
 }
