@@ -2,10 +2,13 @@ package com.example.recipesapp.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesapp.R
 import com.example.recipesapp.model.entity.Ingredient
@@ -28,7 +31,7 @@ class BasketAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_ingredient_edit, parent, false)
+            .inflate(R.layout.item_ingredient_basket, parent, false)
         return BasketHolder(view)
     }
 
@@ -44,7 +47,7 @@ class BasketAdapter(private val context: Context) :
         val number = holder.itemView.findViewById<MaterialTextView>(R.id.number_ingredient_textView)
         val name = holder.itemView.findViewById<MaterialTextView>(R.id.name_textView)
         val amount = holder.itemView.findViewById<MaterialTextView>(R.id.amount_textView)
-        val deleteButton = holder.itemView.findViewById<ImageButton>(R.id.delete_button)
+        val icon = holder.itemView.findViewById<ImageView>(R.id.icon_circle)
 
         number.text = (position + 1).toString()
 
@@ -57,10 +60,28 @@ class BasketAdapter(private val context: Context) :
         amount.text = "${NumberConverter.isWhole(item.amount)} $unit"
 
         root.setOnClickListener {
+            item.isSelected = !item.isSelected
+            changeSelected(item.isSelected, root, icon)
         }
 
-        deleteButton.setOnClickListener {
+        if (item.isSelected) {
+            changeSelected(true, root, icon)
         }
     }
 
+    private fun changeSelected(
+        isSelected: Boolean,
+        root: MaterialCardView,
+        icon: ImageView
+    ) {
+        val color: Int
+        if (isSelected) {
+            color = ContextCompat.getColor(context, R.color.light_green)
+            icon.visibility = View.VISIBLE
+        } else {
+            color = Color.TRANSPARENT
+            icon.visibility = View.INVISIBLE
+        }
+        root.setCardBackgroundColor(color)
+    }
 }
